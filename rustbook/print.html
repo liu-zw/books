@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Rust程序设计</title>
+        <title>Rust 程序设计语言 简体中文版</title>
         
         <meta name="robots" content="noindex" />
         
@@ -15,40 +15,39 @@
 
 
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <meta name="description" content="Create book from markdown files. Like Gitbook but implemented in Rust">
+        <meta name="description" content="Rust 程序设计语言 简体中文版">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
 
         
-        <link rel="icon" href="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/favicon.svg">
+        <link rel="icon" href="favicon.svg">
         
         
-        <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/favicon.png">
+        <link rel="shortcut icon" href="favicon.png">
         
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/css/variables.css">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/css/general.css">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/css/chrome.css">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
         
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/css/print.css" media="print">
+        <link rel="stylesheet" href="css/print.css" media="print">
         
 
         <!-- Fonts -->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
         
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/fonts/fonts.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
         
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/highlight.css">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/tomorrow-night.css">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/ayu-highlight.css">
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
         
-
+        <link rel="stylesheet" href="ferris.css">
         
-        <!-- MathJax -->
-        <script async type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
         
     </head>
     <body>
@@ -132,7 +131,7 @@
                         
                     </div>
 
-                    <h1 class="menu-title">Rust程序设计</h1>
+                    <h1 class="menu-title">Rust 程序设计语言 简体中文版</h1>
 
                     <div class="right-buttons">
                         
@@ -251,10 +250,10 @@ commit 0aa307c7d79d2cbf83cdf5d47780b2904e9cb03f</p>
 <p><span id="ferris"></span></p>
 <p>学习 Rust 的过程中一个重要的部分是学习如何阅读编译器提供的错误信息：它们会指导你编写出能工作的代码。为此，我们会提供很多不能编译的示例代码，以及各个情况下编译器会展示的错误信息。请注意如果随便输入并运行随机的示例代码，它们可能无法编译！请确保阅读任何你尝试运行的示例周围的内容，检视他们是否有意写错。Ferris 也会帮助你区别那些有意无法工作的代码：</p>
 <table><thead><tr><th>Ferris</th><th>意义</th></tr></thead><tbody>
-<tr><td><img src="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/img/ferris/does_not_compile.svg" class="ferris-explain"></td><td>这些代码不能编译！</td></tr>
-<tr><td><img src="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/img/ferris/panics.svg" class="ferris-explain"></td><td>这些代码会 panic！</td></tr>
-<tr><td><img src="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/img/ferris/unsafe.svg" class="ferris-explain"></td><td>这些代码块包含不安全（unsafe）代码。</td></tr>
-<tr><td><img src="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/img/ferris/not_desired_behavior.svg" class="ferris-explain"></td><td>这些代码不会产生期望的行为。</td></tr>
+<tr><td><img src="img/ferris/does_not_compile.svg" class="ferris-explain"></td><td>这些代码不能编译！</td></tr>
+<tr><td><img src="img/ferris/panics.svg" class="ferris-explain"></td><td>这些代码会 panic！</td></tr>
+<tr><td><img src="img/ferris/unsafe.svg" class="ferris-explain"></td><td>这些代码块包含不安全（unsafe）代码。</td></tr>
+<tr><td><img src="img/ferris/not_desired_behavior.svg" class="ferris-explain"></td><td>这些代码不会产生期望的行为。</td></tr>
 </tbody></table>
 <p>在大部分情况，我们会指引你将任何不能编译的代码纠正为正确版本。</p>
 <h2><a class="header" href="#源代码" id="源代码">源代码</a></h2>
@@ -1959,14 +1958,14 @@ let s2 = s1;
 </span></code></pre></pre>
 <p>这看起来与上面的代码非常类似，所以我们可能会假设他们的运行方式也是类似的：也就是说，第二行可能会生成一个 <code>s1</code> 的拷贝并绑定到 <code>s2</code> 上。不过，事实上并不完全是这样。</p>
 <p>看看图 4-1 以了解 <code>String</code> 的底层会发生什么。<code>String</code> 由三部分组成，如图左侧所示：一个指向存放字符串内容内存的指针，一个长度，和一个容量。这一组数据存储在栈上。右侧则是堆上存放内容的内存部分。</p>
-<img alt="String in memory" src="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/img/trpl04-01.svg" class="center" style="width: 50%;" />
+<img alt="String in memory" src="img/trpl04-01.svg" class="center" style="width: 50%;" />
 <p><span class="caption">图 4-1：将值 <code>&quot;hello&quot;</code> 绑定给 <code>s1</code> 的 <code>String</code> 在内存中的表现形式</span></p>
 <p>长度表示 <code>String</code> 的内容当前使用了多少字节的内存。容量是 <code>String</code> 从操作系统总共获取了多少字节的内存。长度与容量的区别是很重要的，不过在当前上下文中并不重要，所以现在可以忽略容量。</p>
 <p>当我们将 <code>s1</code> 赋值给 <code>s2</code>，<code>String</code> 的数据被复制了，这意味着我们从栈上拷贝了它的指针、长度和容量。我们并没有复制指针指向的堆上数据。换句话说，内存中数据的表现如图 4-2 所示。</p>
-<img alt="s1 and s2 pointing to the same value" src="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/img/trpl04-02.svg" class="center" style="width: 50%;" />
+<img alt="s1 and s2 pointing to the same value" src="img/trpl04-02.svg" class="center" style="width: 50%;" />
 <p><span class="caption">图 4-2：变量 <code>s2</code> 的内存表现，它有一份 <code>s1</code> 指针、长度和容量的拷贝</span></p>
 <p>这个表现形式看起来 <strong>并不像</strong> 图 4-3 中的那样，如果 Rust 也拷贝了堆上的数据，那么内存看起来就是这样的。如果 Rust 这么做了，那么操作 <code>s2 = s1</code> 在堆上数据比较大的时候会对运行时性能造成非常大的影响。</p>
-<img alt="s1 and s2 to two places" src="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/img/trpl04-03.svg" class="center" style="width: 50%;" />
+<img alt="s1 and s2 to two places" src="img/trpl04-03.svg" class="center" style="width: 50%;" />
 <p><span class="caption">图 4-3：另一个 <code>s2 = s1</code> 时可能的内存表现，如果 Rust 同时也拷贝了堆上的数据的话</span></p>
 <p>之前我们提到过当变量离开作用域后，Rust 自动调用 <code>drop</code> 函数并清理变量的堆内存。不过图 4-2 展示了两个数据指针指向了同一位置。这就有了一个问题：当 <code>s2</code> 和 <code>s1</code> 离开作用域，他们都会尝试释放相同的内存。这是一个叫做 <strong>二次释放</strong>（<em>double free</em>）的错误，也是之前提到过的内存安全性 bug 之一。两次释放（相同）内存会导致内存污染，它可能会导致潜在的安全漏洞。</p>
 <p>为了确保内存安全，这种场景下 Rust 的处理有另一个细节值得注意。与其尝试拷贝被分配的内存，Rust 则认为 <code>s1</code> 不再有效，因此 Rust 不需要在 <code>s1</code> 离开作用域后清理任何东西。看看在 <code>s2</code> 被创建之后尝试使用 <code>s1</code> 会发生什么；这段代码不能运行：</p>
@@ -1989,7 +1988,7 @@ println!(&quot;{}, world!&quot;, s1);
   not implement the `Copy` trait
 </code></pre>
 <p>如果你在其他语言中听说过术语 <strong>浅拷贝</strong>（<em>shallow copy</em>）和 <strong>深拷贝</strong>（<em>deep copy</em>），那么拷贝指针、长度和容量而不拷贝数据可能听起来像浅拷贝。不过因为 Rust 同时使第一个变量无效了，这个操作被称为 <strong>移动</strong>（<em>move</em>），而不是浅拷贝。上面的例子可以解读为 <code>s1</code> 被 <strong>移动</strong> 到了 <code>s2</code> 中。那么具体发生了什么，如图 4-4 所示。</p>
-<img alt="s1 moved to s2" src="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/img/trpl04-04.svg" class="center" style="width: 50%;" />
+<img alt="s1 moved to s2" src="img/trpl04-04.svg" class="center" style="width: 50%;" />
 <p><span class="caption">图 4-4：<code>s1</code> 无效之后的内存表现</span></p>
 <p>这样就解决了我们的问题！因为只有 <code>s2</code> 是有效的，当其离开作用域，它就释放自己的内存，完毕。</p>
 <p>另外，这里还隐含了一个设计选择：Rust 永远也不会自动创建数据的 “深拷贝”。因此，任何 <strong>自动</strong> 的复制可以被认为对运行时性能影响较小。</p>
@@ -2129,7 +2128,7 @@ fn calculate_length(s: &amp;String) -&gt; usize {
 </code></pre></pre>
 <p>首先，注意变量声明和函数返回值中的所有元组代码都消失了。其次，注意我们传递 <code>&amp;s1</code> 给 <code>calculate_length</code>，同时在函数定义中，我们获取 <code>&amp;String</code> 而不是 <code>String</code>。</p>
 <p>这些 &amp; 符号就是 <strong>引用</strong>，它们允许你使用值但不获取其所有权。图 4-5 展示了一张示意图。</p>
-<img alt="&String s pointing at String s1" src="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/img/trpl04-05.svg" class="center" />
+<img alt="&String s pointing at String s1" src="img/trpl04-05.svg" class="center" />
 <p><span class="caption">图 4-5：<code>&amp;String s</code> 指向 <code>String s1</code> 示意图</span></p>
 <blockquote>
 <p>注意：与使用 <code>&amp;</code> 引用相反的操作是 <strong>解引用</strong>（<em>dereferencing</em>），它使用解引用运算符，<code>*</code>。我们将会在第八章遇到一些解引用运算符，并在第十五章详细讨论解引用。</p>
@@ -2217,7 +2216,7 @@ println!(&quot;{}, {}&quot;, r1, r2);
 7 |     println!(&quot;{}, {}&quot;, r1, r2);
   |                        -- first borrow later used here
 </code></pre>
-<p>这个限制允许可变性，不过是以一种受限制的方式允许。新 Rustacean 们经常与此作斗争，因为大部分语言中变量任何时候都是可变的。</p>
+<p>这个限制允许可变性，不过是以一种受限制的方式允许。新 Rustacean 们经常难以适应这一点，因为大部分语言中变量任何时候都是可变的。</p>
 <p>这个限制的好处是 Rust 可以在编译时就避免数据竞争。<strong>数据竞争</strong>（<em>data race</em>）类似于竞态条件，它可由这三个行为造成：</p>
 <ul>
 <li>两个或更多指针同时访问同一数据。</li>
@@ -2425,7 +2424,7 @@ let world = &amp;s[6..11];
 <p>这类似于引用整个 <code>String</code> 不过带有额外的 <code>[0..5]</code> 部分。它不是对整个 <code>String</code> 的引用，而是对部分 <code>String</code> 的引用。</p>
 <p>可以使用一个由中括号中的 <code>[starting_index..ending_index]</code> 指定的 range 创建一个 slice，其中 <code>starting_index</code> 是 slice 的第一个位置，<code>ending_index</code> 则是 slice 最后一个位置的后一个值。在其内部，slice 的数据结构存储了 slice 的开始位置和长度，长度对应于 <code>ending_index</code> 减去 <code>starting_index</code> 的值。所以对于 <code>let world = &amp;s[6..11];</code> 的情况，<code>world</code> 将是一个包含指向 <code>s</code> 第 7 个字节（从 1 开始）的指针和长度值 5 的 slice。</p>
 <p>图 4-6 展示了一个图例。</p>
-<img alt="world containing a pointer to the 6th byte of String s and a length 5" src="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/img/trpl04-06.svg" class="center" style="width: 50%;" />
+<img alt="world containing a pointer to the 6th byte of String s and a length 5" src="img/trpl04-06.svg" class="center" style="width: 50%;" />
 <p><span class="caption">图 4-6：引用了部分 <code>String</code> 的字符串 slice</span></p>
 <p>对于 Rust 的 <code>..</code> range 语法，如果想要从第一个索引（0）开始，可以不写两个点号之前的值。换句话说，如下两个语句是相同的：</p>
 <pre><pre class="playground"><code class="language-rust">
@@ -3905,7 +3904,7 @@ pub fn eat_at_restaurant() {
 <br>
 commit 6d3e76820418f2d2bb203233c61d90390b5690f1</p>
 </blockquote>
-<p>到目前为止，似乎我们编写的用于调用函数的路径都很冗长且重复，并不方便。例如，示例 7-7 中，无论我们选择 <code>add_to_waitlist</code> 函数的绝对路径还是相对路径，每次我们想要调用 <code>add_to_waitlist</code> 时，都必须指定<code>front_of_house</code> 和 <code>hosting</code>。幸运的是，有一种方法可以简化这个过程。我们可以一次性将路径引入作用域，然后使用 <code>use</code> 关键字调用该路径中的项，就如同它们是本地项一样。</p>
+<p>到目前为止，似乎我们编写的用于调用函数的路径都很冗长且重复，并不方便。例如，示例 7-7 中，无论我们选择 <code>add_to_waitlist</code> 函数的绝对路径还是相对路径，每次我们想要调用 <code>add_to_waitlist</code> 时，都必须指定<code>front_of_house</code> 和 <code>hosting</code>。幸运的是，有一种方法可以简化这个过程。我们可以使用 <code>use</code> 关键字将路径一次性引入作用域，然后调用该路径中的项，就如同它们是本地项一样。</p>
 <p>在示例 7-11 中，我们将 <code>crate::front_of_house::hosting</code> 模块引入了 <code>eat_at_restaurant</code> 函数的作用域，而我们只需要指定 <code>hosting::add_to_waitlist</code> 即可在 <code>eat_at_restaurant</code> 中调用 <code>add_to_waitlist</code> 函数。</p>
 <p><span class="filename">文件名: src/lib.rs</span></p>
 <pre><pre class="playground"><code class="language-rust">mod front_of_house {
@@ -9097,7 +9096,7 @@ pub fn add_one(x: i32) -&gt; i32 {
 <p><span class="caption">示例 14-1：一个函数的文档注释</span></p>
 <p>这里，我们提供了一个 <code>add_one</code> 函数工作的描述，接着开始了一个标题为 <code>Examples</code> 的部分，和展示如何使用 <code>add_one</code> 函数的代码。可以运行 <code>cargo doc</code> 来生成这个文档注释的 HTML 文档。这个命令运行由 Rust 分发的工具 <code>rustdoc</code> 并将生成的 HTML 文档放入 <em>target/doc</em> 目录。</p>
 <p>为了方便起见，运行 <code>cargo doc --open</code> 会构建当前 crate 文档（同时还有所有 crate 依赖的文档）的 HTML 并在浏览器中打开。导航到 <code>add_one</code> 函数将会发现文档注释的文本是如何渲染的，如图 14-1 所示：</p>
-<img alt="`my_crate` 的 `add_one` 函数所渲染的文档注释 HTML" src="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/img/trpl14-01.png" class="center" />
+<img alt="`my_crate` 的 `add_one` 函数所渲染的文档注释 HTML" src="img/trpl14-01.png" class="center" />
 <p><span class="caption">图 14-1：<code>add_one</code> 函数的文档注释 HTML</span></p>
 <h4><a class="header" href="#常用文档注释部分" id="常用文档注释部分">常用（文档注释）部分</a></h4>
 <p>示例 14-1 中使用了 <code># Examples</code> Markdown 标题在 HTML 中创建了一个以 “Examples” 为标题的部分。其他一些 crate 作者经常在文档注释中使用的部分有：</p>
@@ -9132,7 +9131,7 @@ test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out
 <p><span class="caption">示例 14-2：<code>my_crate</code> crate 整体的文档</span></p>
 <p>注意 <code>//!</code> 的最后一行之后没有任何代码。因为他们以 <code>//!</code> 开头而不是 <code>///</code>，这是属于包含此注释的项而不是注释之后项的文档。在这个情况中，包含这个注释的项是 <em>src/lib.rs</em> 文件，也就是 crate 根文件。这些注释描述了整个 crate。</p>
 <p>如果运行 <code>cargo doc --open</code>，将会发现这些注释显示在 <code>my_crate</code> 文档的首页，位于 crate 中公有项列表之上，如图 14-2 所示：</p>
-<img alt="crate 整体注释所渲染的 HTML 文档" src="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/img/trpl14-02.png" class="center" />
+<img alt="crate 整体注释所渲染的 HTML 文档" src="img/trpl14-02.png" class="center" />
 <p><span class="caption">图 14-2：包含 <code>my_crate</code> 整体描述的注释所渲染的文档</span></p>
 <p>位于项之中的文档注释对于描述 crate 和模块特别有用。使用他们描述其容器整体的目的来帮助 crate 用户理解你的代码组织。</p>
 <h3><a class="header" href="#使用-pub-use-导出合适的公有-api" id="使用-pub-use-导出合适的公有-api">使用 <code>pub use</code> 导出合适的公有 API</a></h3>
@@ -9175,7 +9174,7 @@ pub mod utils {
 </span></code></pre>
 <p><span class="caption">示例 14-3：一个库 <code>art</code> 其组织包含 <code>kinds</code> 和 <code>utils</code> 模块</span></p>
 <p><code>cargo doc</code> 所生成的 crate 文档首页如图 14-3 所示：</p>
-<img alt="包含 `kinds` 和 `utils` 模块的 `art`" src="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/img/trpl14-03.png" class="center" />
+<img alt="包含 `kinds` 和 `utils` 模块的 `art`" src="img/trpl14-03.png" class="center" />
 <p><span class="caption">图 14-3：包含 <code>kinds</code> 和 <code>utils</code> 模块的库 <code>art</code> 的文档首页</span></p>
 <p>注意 <code>PrimaryColor</code> 和 <code>SecondaryColor</code> 类型、以及 <code>mix</code> 函数都没有在首页中列出。我们必须点击 <code>kinds</code> 或 <code>utils</code> 才能看到他们。</p>
 <p>另一个依赖这个库的 crate 需要 <code>use</code> 语句来导入 <code>art</code> 中的项，这包含指定其当前定义的模块结构。示例 14-4 展示了一个使用 <code>art</code> crate 中 <code>PrimaryColor</code> 和 <code>mix</code> 项的 crate 的例子：</p>
@@ -9211,7 +9210,7 @@ pub mod utils {
 </code></pre>
 <p><span class="caption">示例 14-5：增加 <code>pub use</code> 语句重导出项</span></p>
 <p>现在此 crate 由 <code>cargo doc</code> 生成的 API 文档会在首页列出重导出的项以及其链接，如图 14-4 所示，这使得 <code>PrimaryColor</code> 和 <code>SecondaryColor</code> 类型和 <code>mix</code> 函数更易于查找。</p>
-<img alt="Rendered documentation for the `art` crate with the re-exports on the front page" src="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/img/trpl14-04.png" class="center" />
+<img alt="Rendered documentation for the `art` crate with the re-exports on the front page" src="img/trpl14-04.png" class="center" />
 <p><span class="caption">图 14-10：<code>art</code> 文档的首页，这里列出了重导出的项</span></p>
 <p><code>art</code> crate 的用户仍然可以看见和选择使用示例 14-4 中的内部结构，或者可以使用示例 14-5 中更为方便的结构，如示例 14-6 所示：</p>
 <p><span class="filename">文件名: src/main.rs</span></p>
@@ -9615,7 +9614,7 @@ fn main() {
 </span></code></pre></pre>
 <p>当 Rust 需要知道要为 <code>Message</code> 值分配多少空间时，它可以检查每一个成员并发现 <code>Message::Quit</code> 并不需要任何空间，<code>Message::Move</code> 需要足够储存两个 <code>i32</code> 值的空间，依此类推。因此，<code>Message</code> 值所需的空间等于储存其最大成员的空间大小。</p>
 <p>与此相对当 Rust 编译器检查像示例 15-2 中的 <code>List</code> 这样的递归类型时会发生什么呢。编译器尝试计算出储存一个 <code>List</code> 枚举需要多少内存，并开始检查 <code>Cons</code> 成员，那么 <code>Cons</code> 需要的空间等于 <code>i32</code> 的大小加上 <code>List</code> 的大小。为了计算 <code>List</code> 需要多少内存，它检查其成员，从 <code>Cons</code> 成员开始。<code>Cons</code>成员储存了一个 <code>i32</code> 值和一个<code>List</code>值，这样的计算将无限进行下去，如图 15-1 所示：</p>
-<img alt="An infinite Cons list" src="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/img/trpl15-01.svg" class="center" style="width: 50%;" />
+<img alt="An infinite Cons list" src="img/trpl15-01.svg" class="center" style="width: 50%;" />
 <p><span class="caption">图 15-1：一个包含无限个 <code>Cons</code> 成员的无限 <code>List</code></span></p>
 <h3><a class="header" href="#使用-boxt-给递归类型一个已知的大小" id="使用-boxt-给递归类型一个已知的大小">使用 <code>Box&lt;T&gt;</code> 给递归类型一个已知的大小</a></h3>
 <p>Rust 无法计算出要为定义为递归的类型分配多少空间，所以编译器给出了示例 15-4 中的错误。这个错误也包括了有用的建议：</p>
@@ -9642,7 +9641,7 @@ fn main() {
 </code></pre></pre>
 <p><span class="caption">示例 15-5：为了拥有已知大小而使用 <code>Box&lt;T&gt;</code> 的 <code>List</code> 定义</span></p>
 <p><code>Cons</code> 成员将会需要一个 <code>i32</code> 的大小加上储存 box 指针数据的空间。<code>Nil</code> 成员不储存值，所以它比 <code>Cons</code> 成员需要更少的空间。现在我们知道了任何 <code>List</code> 值最多需要一个 <code>i32</code> 加上 box 指针数据的大小。通过使用 box ，打破了这无限递归的连锁，这样编译器就能够计算出储存 <code>List</code> 值需要的大小了。图 15-2 展示了现在 <code>Cons</code> 成员看起来像什么：</p>
-<img alt="A finite Cons list" src="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/img/trpl15-02.svg" class="center" />
+<img alt="A finite Cons list" src="img/trpl15-02.svg" class="center" />
 <p><span class="caption">图 15-2：因为 <code>Cons</code> 存放一个 <code>Box</code> 所以 <code>List</code> 不是无限大小的了</span></p>
 <p>box 只提供了间接存储和堆分配；他们并没有任何其他特殊的功能，比如我们将会见到的其他智能指针。它们也没有这些特殊功能带来的性能损失，所以他们可以用于像 cons list 这样间接存储是唯一所需功能的场景。我们还将在第十七章看到 box 的更多应用场景。</p>
 <p><code>Box&lt;T&gt;</code> 类型是一个智能指针，因为它实现了 <code>Deref</code> trait，它允许 <code>Box&lt;T&gt;</code> 值被当作引用对待。当 <code>Box&lt;T&gt;</code> 值离开作用域时，由于 <code>Box&lt;T&gt;</code> 类型 <code>Drop</code> trait 的实现，box 所指向的堆数据也会被清除。让我们更详细的探索一下这两个 trait。这两个 trait 对于在本章余下讨论的其他智能指针所提供的功能中，将会更为重要。</p>
@@ -9944,7 +9943,7 @@ commit 6f292c8439927b4c5b870dd4afd2bfc52cc4eccc</p>
 <p>注意 <code>Rc&lt;T&gt;</code> 只能用于单线程场景；第十六章并发会涉及到如何在多线程程序中进行引用计数。</p>
 <h3><a class="header" href="#使用-rct-共享数据" id="使用-rct-共享数据">使用 <code>Rc&lt;T&gt;</code> 共享数据</a></h3>
 <p>让我们回到示例 15-5 中使用 <code>Box&lt;T&gt;</code> 定义 cons list 的例子。这一次，我们希望创建两个共享第三个列表所有权的列表，其概念将会看起来如图 15-3 所示：</p>
-<img alt="Two lists that share ownership of a third list" src="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/img/trpl15-03.svg" class="center" />
+<img alt="Two lists that share ownership of a third list" src="img/trpl15-03.svg" class="center" />
 <p><span class="caption">图 15-3: 两个列表, <code>b</code> 和 <code>c</code>, 共享第三个列表 <code>a</code> 的所有权</span></p>
 <p>列表 <code>a</code> 包含 5 之后是 10，之后是另两个列表：<code>b</code> 从 3 开始而 <code>c</code> 从 4 开始。<code>b</code> 和 <code>c</code> 会接上包含 5 和 10 的列表 <code>a</code>。换句话说，这两个列表会尝试共享第一个列表所包含的 5 和 10。</p>
 <p>尝试使用 <code>Box&lt;T&gt;</code> 定义的 <code>List</code> 实现并不能工作，如示例 15-17 所示：</p>
@@ -10397,7 +10396,7 @@ a rc count after changing a = 2
 </code></pre>
 <p>可以看到将 <code>a</code> 修改为指向 <code>b</code> 之后，<code>a</code> 和 <code>b</code> 中都有的 <code>Rc&lt;List&gt;</code> 实例的引用计数为 2。在 <code>main</code> 的结尾，Rust 会尝试首先丢弃 <code>b</code>，这会使 <code>a</code> 和 <code>b</code> 中 <code>Rc&lt;List&gt;</code> 实例的引用计数减 1。</p>
 <p>然而，因为 <code>a</code> 仍然引用 <code>b</code> 中的 <code>Rc&lt;List&gt;</code>，<code>Rc&lt;List&gt;</code> 的引用计数是 1 而不是 0，所以 <code>Rc&lt;List&gt;</code> 在堆上的内存不会被丢弃。其内存会因为引用计数为 1 而永远停留。为了更形象的展示，我们创建了一个如图 15-4 所示的引用循环：</p>
-<img alt="Reference cycle of lists" src="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/img/trpl15-04.svg" class="center" />
+<img alt="Reference cycle of lists" src="img/trpl15-04.svg" class="center" />
 <p><span class="caption">图 15-4: 列表 <code>a</code> 和 <code>b</code> 彼此互相指向形成引用循环</span></p>
 <p>如果取消最后 <code>println!</code> 的注释并运行程序，Rust 会尝试打印出 <code>a</code> 指向 <code>b</code> 指向 <code>a</code> 这样的循环直到栈溢出。</p>
 <p>这个特定的例子中，创建了引用循环之后程序立刻就结束了。这个循环的结果并不可怕。如果在更为复杂的程序中并在循环里分配了很多内存并占有很长时间，这个程序会使用多于它所需要的内存，并有可能压垮系统并造成没有内存可供使用。</p>
@@ -13845,7 +13844,7 @@ commit c084bdd9ee328e7e774df19882ccc139532e53d8</p>
 </blockquote>
 <p>这是一次漫长的旅途，不过我们到达了本书的结束。在本章中，我们将一同构建另一个项目，来展示最后几章所学，同时复习更早的章节。</p>
 <p>作为最后的项目，我们将要实现一个返回 “hello” 的 web server，它在浏览器中看起来就如图例 20-1 所示：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/img/trpl20-01.png" alt="hello from rust" /></p>
+<p><img src="img/trpl20-01.png" alt="hello from rust" /></p>
 <p><span class="caption">图例 20-1: 我们最后将一起分享的项目</span></p>
 <p>如下是我们将怎样构建此 web server 的计划：</p>
 <ol>
@@ -15795,21 +15794,6 @@ $ rustup override set nightly
         </div>
 
         
-        <!-- Livereload script (if served using the cli tool) -->
-        <script type="text/javascript">
-            var socket = new WebSocket("ws://localhost:3000/__livereload");
-            socket.onmessage = function (event) {
-                if (event.data === "reload") {
-                    socket.close();
-                    location.reload();
-                }
-            };
-
-            window.onbeforeunload = function() {
-                socket.close();
-            }
-        </script>
-        
 
         
 
@@ -15824,25 +15808,25 @@ $ rustup override set nightly
         
 
         
-        <script src="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/mark.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
         
 
-        <script src="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/clipboard.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/highlight.js" type="text/javascript" charset="utf-8"></script>
-        <script src="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/book.js" type="text/javascript" charset="utf-8"></script>
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
 
         <!-- Custom JS scripts -->
+        
+        <script type="text/javascript" src="ferris.js"></script>
         
 
         
         
         <script type="text/javascript">
         window.addEventListener('load', function() {
-            MathJax.Hub.Register.StartupHook('End', function() {
-                window.setTimeout(window.print, 100);
-            });
+            window.setTimeout(window.print, 100);
         });
         </script>
         

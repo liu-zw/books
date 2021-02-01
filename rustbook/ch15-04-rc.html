@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Rc&lt;T&gt; 引用计数智能指针 - Rust程序设计</title>
+        <title>Rc&lt;T&gt; 引用计数智能指针 - Rust 程序设计语言 简体中文版</title>
         
         
 
@@ -13,40 +13,39 @@
 
 
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <meta name="description" content="Create book from markdown files. Like Gitbook but implemented in Rust">
+        <meta name="description" content="Rust 程序设计语言 简体中文版">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
 
         
-        <link rel="icon" href="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/favicon.svg">
+        <link rel="icon" href="favicon.svg">
         
         
-        <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/favicon.png">
+        <link rel="shortcut icon" href="favicon.png">
         
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/css/variables.css">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/css/general.css">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/css/chrome.css">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
         
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/css/print.css" media="print">
+        <link rel="stylesheet" href="css/print.css" media="print">
         
 
         <!-- Fonts -->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
         
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/fonts/fonts.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
         
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/highlight.css">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/tomorrow-night.css">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/ayu-highlight.css">
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
         
-
+        <link rel="stylesheet" href="ferris.css">
         
-        <!-- MathJax -->
-        <script async type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
         
     </head>
     <body>
@@ -130,7 +129,7 @@
                         
                     </div>
 
-                    <h1 class="menu-title">Rust程序设计</h1>
+                    <h1 class="menu-title">Rust 程序设计语言 简体中文版</h1>
 
                     <div class="right-buttons">
                         
@@ -178,7 +177,7 @@ commit 6f292c8439927b4c5b870dd4afd2bfc52cc4eccc</p>
 <p>注意 <code>Rc&lt;T&gt;</code> 只能用于单线程场景；第十六章并发会涉及到如何在多线程程序中进行引用计数。</p>
 <h3><a class="header" href="#使用-rct-共享数据" id="使用-rct-共享数据">使用 <code>Rc&lt;T&gt;</code> 共享数据</a></h3>
 <p>让我们回到示例 15-5 中使用 <code>Box&lt;T&gt;</code> 定义 cons list 的例子。这一次，我们希望创建两个共享第三个列表所有权的列表，其概念将会看起来如图 15-3 所示：</p>
-<img alt="Two lists that share ownership of a third list" src="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/img/trpl15-03.svg" class="center" />
+<img alt="Two lists that share ownership of a third list" src="img/trpl15-03.svg" class="center" />
 <p><span class="caption">图 15-3: 两个列表, <code>b</code> 和 <code>c</code>, 共享第三个列表 <code>a</code> 的所有权</span></p>
 <p>列表 <code>a</code> 包含 5 之后是 10，之后是另两个列表：<code>b</code> 从 3 开始而 <code>c</code> 从 4 开始。<code>b</code> 和 <code>c</code> 会接上包含 5 和 10 的列表 <code>a</code>。换句话说，这两个列表会尝试共享第一个列表所包含的 5 和 10。</p>
 <p>尝试使用 <code>Box&lt;T&gt;</code> 定义的 <code>List</code> 实现并不能工作，如示例 15-17 所示：</p>
@@ -306,21 +305,6 @@ count after c goes out of scope = 2
         </div>
 
         
-        <!-- Livereload script (if served using the cli tool) -->
-        <script type="text/javascript">
-            var socket = new WebSocket("ws://localhost:3000/__livereload");
-            socket.onmessage = function (event) {
-                if (event.data === "reload") {
-                    socket.close();
-                    location.reload();
-                }
-            };
-
-            window.onbeforeunload = function() {
-                socket.close();
-            }
-        </script>
-        
 
         
 
@@ -335,16 +319,18 @@ count after c goes out of scope = 2
         
 
         
-        <script src="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/mark.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
         
 
-        <script src="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/clipboard.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/highlight.js" type="text/javascript" charset="utf-8"></script>
-        <script src="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/book.js" type="text/javascript" charset="utf-8"></script>
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
 
         <!-- Custom JS scripts -->
+        
+        <script type="text/javascript" src="ferris.js"></script>
         
 
         

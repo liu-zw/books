@@ -145,6 +145,11 @@ window.search = window.search || {};
             url.push("");
         }
 
+        // encodeURIComponent escapes all chars that could allow an XSS except
+        // for '. Due to that we also manually replace ' with its url-encoded
+        // representation (%27).
+        var searchterms = encodeURIComponent(searchterms.join(" ")).replace(/\'/g, "%27");
+
         return '<a href="' + path_to_root + url[0] + '?' + URL_MARK_PARAM + '=' + searchterms + '#' + url[1]
             + '" aria-details="teaser_' + teaser_count + '">' + result.doc.breadcrumbs + '</a>'
             + '<span class="teaser" id="teaser_' + teaser_count + '" aria-label="Search Result Teaser">' 
@@ -462,12 +467,12 @@ window.search = window.search || {};
         showResults(true);
     }
 
-    fetch(path_to_root + 'https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/searchindex.json')
+    fetch(path_to_root + 'searchindex.json')
         .then(response => response.json())
         .then(json => init(json))        
         .catch(error => { // Try to load searchindex.js if fetch failed
             var script = document.createElement('script');
-            script.src = path_to_root + 'https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/searchindex.js';
+            script.src = path_to_root + 'searchindex.js';
             script.onload = () => init(window.search);
             document.head.appendChild(script);
         });

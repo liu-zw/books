@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>将 crate 发布到 Crates.io - Rust程序设计</title>
+        <title>将 crate 发布到 Crates.io - Rust 程序设计语言 简体中文版</title>
         
         
 
@@ -13,40 +13,39 @@
 
 
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <meta name="description" content="Create book from markdown files. Like Gitbook but implemented in Rust">
+        <meta name="description" content="Rust 程序设计语言 简体中文版">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
 
         
-        <link rel="icon" href="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/favicon.svg">
+        <link rel="icon" href="favicon.svg">
         
         
-        <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/favicon.png">
+        <link rel="shortcut icon" href="favicon.png">
         
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/css/variables.css">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/css/general.css">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/css/chrome.css">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
         
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/css/print.css" media="print">
+        <link rel="stylesheet" href="css/print.css" media="print">
         
 
         <!-- Fonts -->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
         
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/fonts/fonts.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
         
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/highlight.css">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/tomorrow-night.css">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/ayu-highlight.css">
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
         
-
+        <link rel="stylesheet" href="ferris.css">
         
-        <!-- MathJax -->
-        <script async type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
         
     </head>
     <body>
@@ -130,7 +129,7 @@
                         
                     </div>
 
-                    <h1 class="menu-title">Rust程序设计</h1>
+                    <h1 class="menu-title">Rust 程序设计语言 简体中文版</h1>
 
                     <div class="right-buttons">
                         
@@ -194,7 +193,7 @@ pub fn add_one(x: i32) -&gt; i32 {
 <p><span class="caption">示例 14-1：一个函数的文档注释</span></p>
 <p>这里，我们提供了一个 <code>add_one</code> 函数工作的描述，接着开始了一个标题为 <code>Examples</code> 的部分，和展示如何使用 <code>add_one</code> 函数的代码。可以运行 <code>cargo doc</code> 来生成这个文档注释的 HTML 文档。这个命令运行由 Rust 分发的工具 <code>rustdoc</code> 并将生成的 HTML 文档放入 <em>target/doc</em> 目录。</p>
 <p>为了方便起见，运行 <code>cargo doc --open</code> 会构建当前 crate 文档（同时还有所有 crate 依赖的文档）的 HTML 并在浏览器中打开。导航到 <code>add_one</code> 函数将会发现文档注释的文本是如何渲染的，如图 14-1 所示：</p>
-<img alt="`my_crate` 的 `add_one` 函数所渲染的文档注释 HTML" src="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/img/trpl14-01.png" class="center" />
+<img alt="`my_crate` 的 `add_one` 函数所渲染的文档注释 HTML" src="img/trpl14-01.png" class="center" />
 <p><span class="caption">图 14-1：<code>add_one</code> 函数的文档注释 HTML</span></p>
 <h4><a class="header" href="#常用文档注释部分" id="常用文档注释部分">常用（文档注释）部分</a></h4>
 <p>示例 14-1 中使用了 <code># Examples</code> Markdown 标题在 HTML 中创建了一个以 “Examples” 为标题的部分。其他一些 crate 作者经常在文档注释中使用的部分有：</p>
@@ -229,7 +228,7 @@ test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out
 <p><span class="caption">示例 14-2：<code>my_crate</code> crate 整体的文档</span></p>
 <p>注意 <code>//!</code> 的最后一行之后没有任何代码。因为他们以 <code>//!</code> 开头而不是 <code>///</code>，这是属于包含此注释的项而不是注释之后项的文档。在这个情况中，包含这个注释的项是 <em>src/lib.rs</em> 文件，也就是 crate 根文件。这些注释描述了整个 crate。</p>
 <p>如果运行 <code>cargo doc --open</code>，将会发现这些注释显示在 <code>my_crate</code> 文档的首页，位于 crate 中公有项列表之上，如图 14-2 所示：</p>
-<img alt="crate 整体注释所渲染的 HTML 文档" src="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/img/trpl14-02.png" class="center" />
+<img alt="crate 整体注释所渲染的 HTML 文档" src="img/trpl14-02.png" class="center" />
 <p><span class="caption">图 14-2：包含 <code>my_crate</code> 整体描述的注释所渲染的文档</span></p>
 <p>位于项之中的文档注释对于描述 crate 和模块特别有用。使用他们描述其容器整体的目的来帮助 crate 用户理解你的代码组织。</p>
 <h3><a class="header" href="#使用-pub-use-导出合适的公有-api" id="使用-pub-use-导出合适的公有-api">使用 <code>pub use</code> 导出合适的公有 API</a></h3>
@@ -272,7 +271,7 @@ pub mod utils {
 </span></code></pre>
 <p><span class="caption">示例 14-3：一个库 <code>art</code> 其组织包含 <code>kinds</code> 和 <code>utils</code> 模块</span></p>
 <p><code>cargo doc</code> 所生成的 crate 文档首页如图 14-3 所示：</p>
-<img alt="包含 `kinds` 和 `utils` 模块的 `art`" src="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/img/trpl14-03.png" class="center" />
+<img alt="包含 `kinds` 和 `utils` 模块的 `art`" src="img/trpl14-03.png" class="center" />
 <p><span class="caption">图 14-3：包含 <code>kinds</code> 和 <code>utils</code> 模块的库 <code>art</code> 的文档首页</span></p>
 <p>注意 <code>PrimaryColor</code> 和 <code>SecondaryColor</code> 类型、以及 <code>mix</code> 函数都没有在首页中列出。我们必须点击 <code>kinds</code> 或 <code>utils</code> 才能看到他们。</p>
 <p>另一个依赖这个库的 crate 需要 <code>use</code> 语句来导入 <code>art</code> 中的项，这包含指定其当前定义的模块结构。示例 14-4 展示了一个使用 <code>art</code> crate 中 <code>PrimaryColor</code> 和 <code>mix</code> 项的 crate 的例子：</p>
@@ -308,7 +307,7 @@ pub mod utils {
 </code></pre>
 <p><span class="caption">示例 14-5：增加 <code>pub use</code> 语句重导出项</span></p>
 <p>现在此 crate 由 <code>cargo doc</code> 生成的 API 文档会在首页列出重导出的项以及其链接，如图 14-4 所示，这使得 <code>PrimaryColor</code> 和 <code>SecondaryColor</code> 类型和 <code>mix</code> 函数更易于查找。</p>
-<img alt="Rendered documentation for the `art` crate with the re-exports on the front page" src="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/img/trpl14-04.png" class="center" />
+<img alt="Rendered documentation for the `art` crate with the re-exports on the front page" src="img/trpl14-04.png" class="center" />
 <p><span class="caption">图 14-10：<code>art</code> 文档的首页，这里列出了重导出的项</span></p>
 <p><code>art</code> crate 的用户仍然可以看见和选择使用示例 14-4 中的内部结构，或者可以使用示例 14-5 中更为方便的结构，如示例 14-6 所示：</p>
 <p><span class="filename">文件名: src/main.rs</span></p>
@@ -429,21 +428,6 @@ Uploading guessing_game v0.1.0 (file:///projects/guessing_game)
         </div>
 
         
-        <!-- Livereload script (if served using the cli tool) -->
-        <script type="text/javascript">
-            var socket = new WebSocket("ws://localhost:3000/__livereload");
-            socket.onmessage = function (event) {
-                if (event.data === "reload") {
-                    socket.close();
-                    location.reload();
-                }
-            };
-
-            window.onbeforeunload = function() {
-                socket.close();
-            }
-        </script>
-        
 
         
 
@@ -458,16 +442,18 @@ Uploading guessing_game v0.1.0 (file:///projects/guessing_game)
         
 
         
-        <script src="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/mark.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
         
 
-        <script src="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/clipboard.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/highlight.js" type="text/javascript" charset="utf-8"></script>
-        <script src="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/book.js" type="text/javascript" charset="utf-8"></script>
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
 
         <!-- Custom JS scripts -->
+        
+        <script type="text/javascript" src="ferris.js"></script>
         
 
         

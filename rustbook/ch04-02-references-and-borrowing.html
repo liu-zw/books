@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>引用与借用 - Rust程序设计</title>
+        <title>引用与借用 - Rust 程序设计语言 简体中文版</title>
         
         
 
@@ -13,40 +13,39 @@
 
 
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <meta name="description" content="Create book from markdown files. Like Gitbook but implemented in Rust">
+        <meta name="description" content="Rust 程序设计语言 简体中文版">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
 
         
-        <link rel="icon" href="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/favicon.svg">
+        <link rel="icon" href="favicon.svg">
         
         
-        <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/favicon.png">
+        <link rel="shortcut icon" href="favicon.png">
         
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/css/variables.css">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/css/general.css">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/css/chrome.css">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
         
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/css/print.css" media="print">
+        <link rel="stylesheet" href="css/print.css" media="print">
         
 
         <!-- Fonts -->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
         
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/fonts/fonts.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
         
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/highlight.css">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/tomorrow-night.css">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/ayu-highlight.css">
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
         
-
+        <link rel="stylesheet" href="ferris.css">
         
-        <!-- MathJax -->
-        <script async type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
         
     </head>
     <body>
@@ -130,7 +129,7 @@
                         
                     </div>
 
-                    <h1 class="menu-title">Rust程序设计</h1>
+                    <h1 class="menu-title">Rust 程序设计语言 简体中文版</h1>
 
                     <div class="right-buttons">
                         
@@ -189,7 +188,7 @@ fn calculate_length(s: &amp;String) -&gt; usize {
 </code></pre></pre>
 <p>首先，注意变量声明和函数返回值中的所有元组代码都消失了。其次，注意我们传递 <code>&amp;s1</code> 给 <code>calculate_length</code>，同时在函数定义中，我们获取 <code>&amp;String</code> 而不是 <code>String</code>。</p>
 <p>这些 &amp; 符号就是 <strong>引用</strong>，它们允许你使用值但不获取其所有权。图 4-5 展示了一张示意图。</p>
-<img alt="&String s pointing at String s1" src="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/img/trpl04-05.svg" class="center" />
+<img alt="&String s pointing at String s1" src="img/trpl04-05.svg" class="center" />
 <p><span class="caption">图 4-5：<code>&amp;String s</code> 指向 <code>String s1</code> 示意图</span></p>
 <blockquote>
 <p>注意：与使用 <code>&amp;</code> 引用相反的操作是 <strong>解引用</strong>（<em>dereferencing</em>），它使用解引用运算符，<code>*</code>。我们将会在第八章遇到一些解引用运算符，并在第十五章详细讨论解引用。</p>
@@ -277,7 +276,7 @@ println!(&quot;{}, {}&quot;, r1, r2);
 7 |     println!(&quot;{}, {}&quot;, r1, r2);
   |                        -- first borrow later used here
 </code></pre>
-<p>这个限制允许可变性，不过是以一种受限制的方式允许。新 Rustacean 们经常与此作斗争，因为大部分语言中变量任何时候都是可变的。</p>
+<p>这个限制允许可变性，不过是以一种受限制的方式允许。新 Rustacean 们经常难以适应这一点，因为大部分语言中变量任何时候都是可变的。</p>
 <p>这个限制的好处是 Rust 可以在编译时就避免数据竞争。<strong>数据竞争</strong>（<em>data race</em>）类似于竞态条件，它可由这三个行为造成：</p>
 <ul>
 <li>两个或更多指针同时访问同一数据。</li>
@@ -432,21 +431,6 @@ fn dangle() -&gt; &amp;String {
         </div>
 
         
-        <!-- Livereload script (if served using the cli tool) -->
-        <script type="text/javascript">
-            var socket = new WebSocket("ws://localhost:3000/__livereload");
-            socket.onmessage = function (event) {
-                if (event.data === "reload") {
-                    socket.close();
-                    location.reload();
-                }
-            };
-
-            window.onbeforeunload = function() {
-                socket.close();
-            }
-        </script>
-        
 
         
 
@@ -461,16 +445,18 @@ fn dangle() -&gt; &amp;String {
         
 
         
-        <script src="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/mark.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
         
 
-        <script src="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/clipboard.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/highlight.js" type="text/javascript" charset="utf-8"></script>
-        <script src="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/book.js" type="text/javascript" charset="utf-8"></script>
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
 
         <!-- Custom JS scripts -->
+        
+        <script type="text/javascript" src="ferris.js"></script>
         
 
         

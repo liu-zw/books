@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>引用循环与内存泄漏是安全的 - Rust程序设计</title>
+        <title>引用循环与内存泄漏是安全的 - Rust 程序设计语言 简体中文版</title>
         
         
 
@@ -13,40 +13,39 @@
 
 
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <meta name="description" content="Create book from markdown files. Like Gitbook but implemented in Rust">
+        <meta name="description" content="Rust 程序设计语言 简体中文版">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
 
         
-        <link rel="icon" href="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/favicon.svg">
+        <link rel="icon" href="favicon.svg">
         
         
-        <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/favicon.png">
+        <link rel="shortcut icon" href="favicon.png">
         
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/css/variables.css">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/css/general.css">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/css/chrome.css">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
         
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/css/print.css" media="print">
+        <link rel="stylesheet" href="css/print.css" media="print">
         
 
         <!-- Fonts -->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
         
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/fonts/fonts.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
         
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/highlight.css">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/tomorrow-night.css">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/ayu-highlight.css">
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
         
-
+        <link rel="stylesheet" href="ferris.css">
         
-        <!-- MathJax -->
-        <script async type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
         
     </head>
     <body>
@@ -130,7 +129,7 @@
                         
                     </div>
 
-                    <h1 class="menu-title">Rust程序设计</h1>
+                    <h1 class="menu-title">Rust 程序设计语言 简体中文版</h1>
 
                     <div class="right-buttons">
                         
@@ -255,7 +254,7 @@ a rc count after changing a = 2
 </code></pre>
 <p>可以看到将 <code>a</code> 修改为指向 <code>b</code> 之后，<code>a</code> 和 <code>b</code> 中都有的 <code>Rc&lt;List&gt;</code> 实例的引用计数为 2。在 <code>main</code> 的结尾，Rust 会尝试首先丢弃 <code>b</code>，这会使 <code>a</code> 和 <code>b</code> 中 <code>Rc&lt;List&gt;</code> 实例的引用计数减 1。</p>
 <p>然而，因为 <code>a</code> 仍然引用 <code>b</code> 中的 <code>Rc&lt;List&gt;</code>，<code>Rc&lt;List&gt;</code> 的引用计数是 1 而不是 0，所以 <code>Rc&lt;List&gt;</code> 在堆上的内存不会被丢弃。其内存会因为引用计数为 1 而永远停留。为了更形象的展示，我们创建了一个如图 15-4 所示的引用循环：</p>
-<img alt="Reference cycle of lists" src="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/img/trpl15-04.svg" class="center" />
+<img alt="Reference cycle of lists" src="img/trpl15-04.svg" class="center" />
 <p><span class="caption">图 15-4: 列表 <code>a</code> 和 <code>b</code> 彼此互相指向形成引用循环</span></p>
 <p>如果取消最后 <code>println!</code> 的注释并运行程序，Rust 会尝试打印出 <code>a</code> 指向 <code>b</code> 指向 <code>a</code> 这样的循环直到栈溢出。</p>
 <p>这个特定的例子中，创建了引用循环之后程序立刻就结束了。这个循环的结果并不可怕。如果在更为复杂的程序中并在循环里分配了很多内存并占有很长时间，这个程序会使用多于它所需要的内存，并有可能压垮系统并造成没有内存可供使用。</p>
@@ -476,21 +475,6 @@ children: RefCell { value: [] } }] } })
         </div>
 
         
-        <!-- Livereload script (if served using the cli tool) -->
-        <script type="text/javascript">
-            var socket = new WebSocket("ws://localhost:3000/__livereload");
-            socket.onmessage = function (event) {
-                if (event.data === "reload") {
-                    socket.close();
-                    location.reload();
-                }
-            };
-
-            window.onbeforeunload = function() {
-                socket.close();
-            }
-        </script>
-        
 
         
 
@@ -505,16 +489,18 @@ children: RefCell { value: [] } }] } })
         
 
         
-        <script src="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/mark.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
         
 
-        <script src="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/clipboard.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/highlight.js" type="text/javascript" charset="utf-8"></script>
-        <script src="https://cdn.jsdelivr.net/gh/liu-zw/liu-zw.github.io@master/rustbook/book.js" type="text/javascript" charset="utf-8"></script>
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
 
         <!-- Custom JS scripts -->
+        
+        <script type="text/javascript" src="ferris.js"></script>
         
 
         
