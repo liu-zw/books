@@ -1,0 +1,5 @@
+_book/
+mdbook/
+book/
+
+.DS_Store
