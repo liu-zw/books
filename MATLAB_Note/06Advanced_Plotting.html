@@ -1,0 +1,515 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>绘图进阶 - MATLAB Note</title>
+        
+        
+
+
+        <!-- Custom HTML head -->
+        
+
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        
+        <link rel="icon" href="favicon.svg">
+        
+        
+        <link rel="shortcut icon" href="favicon.png">
+        
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        
+        <link rel="stylesheet" href="css/print.css" media="print">
+        
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        
+        <link rel="stylesheet" href="fonts/fonts.css">
+        
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="概要.html"><strong aria-hidden="true">1.</strong> 概要</a></li><li class="chapter-item expanded "><a href="02Array_Operation.html"><strong aria-hidden="true">2.</strong> 基本操作</a></li><li class="chapter-item expanded "><a href="03Structured_Programming_&_Function.html"><strong aria-hidden="true">3.</strong> 结构化程序设计及函数</a></li><li class="chapter-item expanded "><a href="04Data_Structure_&_File_Access.html"><strong aria-hidden="true">4.</strong> 数据结构及文件访问</a></li><li class="chapter-item expanded "><a href="05Basic_Plotting.html"><strong aria-hidden="true">5.</strong> 绘图基础</a></li><li class="chapter-item expanded "><a href="06Advanced_Plotting.html" class="active"><strong aria-hidden="true">6.</strong> 绘图进阶</a></li><li class="chapter-item expanded "><a href="08Image_Processing_I.html"><strong aria-hidden="true">7.</strong> 图像处理 Ⅰ</a></li><li class="chapter-item expanded "><a href="09Image_Processing_II.html"><strong aria-hidden="true">8.</strong> 图像处理 Ⅱ</a></li><li class="chapter-item expanded "><a href="10Integration_&_Differentiation.html"><strong aria-hidden="true">9.</strong> 微积分</a></li><li class="chapter-item expanded "><a href="11Root_Finding.html"><strong aria-hidden="true">10.</strong> 方程寻根</a></li><li class="chapter-item expanded "><a href="12Linear_Equations.html"><strong aria-hidden="true">11.</strong> 线性方程</a></li><li class="chapter-item expanded "><a href="13Statistics_&_Data_Analysis.html"><strong aria-hidden="true">12.</strong> 统计及数据分析</a></li><li class="chapter-item expanded "><a href="微分方程数值解.html"><strong aria-hidden="true">13.</strong> 微分方程数值解</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        
+                    </div>
+
+                    <h1 class="menu-title">MATLAB Note</h1>
+
+                    <div class="right-buttons">
+                        
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        
+                        
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <p>@[TOC](matlab绘图-进阶</p>
+<h1 id="进阶2d绘图"><a class="header" href="#进阶2d绘图">进阶2D绘图</a></h1>
+<br>
+<h2 id="scatter散点图"><a class="header" href="#scatter散点图"><code>scatter()</code>散点图</a></h2>
+<p><code>scatter(x,y)</code> 在向量 x 和 y 指定的位置创建一个包含圆形的散点图。该类型的图形也称为气泡图。</p>
+<p><code>scatter(x,y,sz)</code> 指定圆大小。要绘制大小相等的圆圈，请将 sz 指定为标量。要<strong>绘制大小不等的圆，请将 sz 指定为长度等于 x 和 y 的长度的向量</strong>。
+<img src="https://img-blog.csdnimg.cn/2020082621450450.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70#pic_center" alt="" />
+<code>scatter(x,y,sz,c)</code> 指定圆颜色。要以相同的颜色绘制所有圆圈，请将 c 指定为颜色名称或 RGB 三元组。要<strong>使用不同的颜色，请将 c 指定为向量或由 RGB 三元组组成的三列矩阵</strong>。
+<img src="https://img-blog.csdnimg.cn/2020082621455696.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70#pic_center" alt="" />
+<code>scatter(___,'filled')</code> 填充圆形。可以将 'filled' 选项与前面语法中的任何输入参数组合一起使用。
+<img src="https://img-blog.csdnimg.cn/2020082621463636.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70#pic_center" alt="" />
+&gt;<code>scatter3()</code> 绘制三维散点图。</p>
+<br>
+<h2 id="loglog对数图"><a class="header" href="#loglog对数图"><code>loglog()</code>对数图</a></h2>
+<p><img src="https://img-blog.csdnimg.cn/20200808114200357.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70" alt="" />
+<code>semilogx(x,y)</code>：x轴为对数画图；
+<code>semilogy(x,y)</code>：y轴为对数画图；
+<code>loglog(x,y)</code>：x、y轴为对数画图；
+<code>set(gca,'XGrid','on')</code>：在x轴上加上网格
+<br></p>
+<h2 id="yyaxis一图双y轴"><a class="header" href="#yyaxis一图双y轴"><code>yyaxis()</code>一图双y轴</a></h2>
+<h4 id="plotyy"><a class="header" href="#plotyy">plotyy()</a></h4>
+<p><img src="https://img-blog.csdnimg.cn/20200808151733395.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70" alt="" /></p>
+<p><code>plotyy(X1,Y1,X2,Y2)</code>：绘制 <code>Y1</code> 对 <code>X1</code> 的图，在左侧显示 y 轴标签，并同时绘制 <code>Y2</code> 对 <code>X2</code> 的图，在右侧显示 y 轴标签。
+<code>[AX,H1,H2] = plotyy( )</code>：返回给<code>AX</code>两个坐标区(<code>Axes</code>)的句柄(<code>handle</code>)，<code>AX(1)</code>表示左边的坐标区的handle，<code>AX(2)</code> 表示右边的坐标区。返回给 <code>H1</code> 和 <code>H2</code> 每个绘图中Line对象的handle.</p>
+<h4 id="yyaxis"><a class="header" href="#yyaxis">yyaxis()</a></h4>
+<p>相较于<code>plotyy( )</code>，新版本的matlab(R2016a起)更推荐<code>yyaxis( )</code>：
+<code>yyaxis left</code> 激活当前坐标区中与左侧 y 轴关联的一侧。后续图形命令的目标为左侧。
+<code>yyaxis right</code> 激活当前坐标区中与右侧 y 轴关联的一侧。后续图形命令的目标为右侧。</p>
+<pre><code class="language-matlab">clear all;
+close all;
+x=0:0.01:20;
+y1=200*exp(-0.05*x).*sin(x);
+y2=0.8*exp(-0.5*x).*sin(10*x);
+
+yyaxis left;        %激活左侧
+p1=plot(x,y1);
+ylabel('Left Y-axis');
+title('Labeling yyaxis');
+p1.LineStyle='--';
+
+yyaxis right;       %激活右侧
+p2=plot(x,y2);
+ylabel('Right Y-axis');
+p2.LineStyle=':';
+</code></pre>
+<p><img src="https://img-blog.csdnimg.cn/20200808151716812.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70" alt="" /></p>
+<p>如上图所示，执行<code>yyaxis left/right</code>命令后，所有对图像的操作与初阶绘图时基本一致。</p>
+<p><strong>一些补充：</strong>
++ 若要对左边一侧画多条曲线，使用 <code>hold on</code> 命令。
+<code>hold on</code>同时影响左右两侧，若右侧不需要画多条，请及时<code>hold off</code>.</p>
+<ul>
+<li>激活左侧，并==使用cla 命令来清除左侧曲线==：</li>
+</ul>
+<pre><code class="language-matlab">yyaxis left;
+cla；
+</code></pre>
+<br>
+<h2 id="hist直方图"><a class="header" href="#hist直方图"><code>hist()</code>直方图</a></h2>
+<p><img src="https://img-blog.csdnimg.cn/20200808151356573.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70" alt="" /></p>
+<p>较新版本推荐使用 <code>histogram()</code> 代替原来的 <code>hist()</code>；
+&gt;官方文档未明确指出从哪一版开始支持<code>histogram()</code>，我使用的是R2019b，亲测可以。</p>
+<p><code>histogram(y)</code> 基于 <code>y</code> 创建直方图。<code>histogram</code> 函数自动划分 bin.
+<code>histogram(y,nbins)</code> 使用标量 <code>nbins</code> 指定 bin 的数量.
+<br></p>
+<h2 id="bar条形图"><a class="header" href="#bar条形图"><code>bar()</code>条形图</a></h2>
+<p><img src="https://img-blog.csdnimg.cn/2020080815122061.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70" alt="" /></p>
+<p><code>bar(y)</code>：创建一个条形图
++ 如果 y 是向量，则y 中的每个元素对应一个条形，图中第1例；
++ 如果 y 是矩阵，则 bar 根据 y 中的行<strong>对条形分组</strong>，图中第2例</p>
+<p><code>bar3( )</code>：对应画3D图。
+<code>bar(x,y)</code>：在 x 指定的位置绘制条形，x为数值向量
++ 若y为一个向量则长度必须与x相等，一个y值的条形对应于一个x；
++ 若y为一个矩阵，则行数必须与x长度相等，每一行的数据画为一组，每一组对应于一个x；当矩阵y的行数于列数均等于x长度时，x为组号。
++ 也可以使用字符串标注在x轴上，默认按字母顺序显示：</p>
+<pre><code>c = categorical({'apples','pears','oranges'});
+bar(c,y)
+</code></pre>
+<p><img src="https://img-blog.csdnimg.cn/20200808151129410.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70" alt="" /></p>
+<p><code>bar(___,width)</code>：设置条形的<strong>相对</strong>宽度以控制组中各个条形的间隔。
+例如<code>bar(y, 0.4)</code>将<strong>所有条形</strong>的宽度设置为各条形可用总空间的 40%.</p>
+<p><code>bar(___,color)</code>：设置<strong>所有条形</strong>的颜色。
+例如bar(y, 'r')将所有条形设置为红色。
+<img src="https://img-blog.csdnimg.cn/20200808171515533.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70" alt="" />
+<code>bar(y,'stacked')</code>：如图所示，显示为堆叠条形图。为矩阵中的每一行显示一个条形。每个条形的高度是行中各元素之和</p>
+<p><strong><code>barh()</code></strong>
+水平绘制条形图，上文提及的所有对<code>bar()</code>的操作均可直接用于<code>barh()</code>；使用方式一致，将<code>bar()</code>换为<code>barh()</code>即可(<code>bar3()</code>换为<code>bar3h()</code>)，效果为原来垂直显示变为水平显示。
+<br></p>
+<h2 id="pie饼状图"><a class="header" href="#pie饼状图"><code>pie()</code>饼状图</a></h2>
+<p><img src="https://img-blog.csdnimg.cn/20200808173054701.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70" alt="" /></p>
+<p><code>pie(a)</code> 使用 <code>a</code> 中的数据绘制饼图。饼图的每个扇区代表 <code>a</code> 中的一个元素。
++ 若 sum(a) ≥ 0，则按比例绘制饼图；
++ 若 sum(a) &lt; 1，则仅按比例绘制部分饼图</p>
+<p>使用<code>pie(a,explode)</code>并将对应的 explode 元素设置为 1 来偏移对应扇区。如图中第2、3例。</p>
+<p>使用<code>pie(x,{'Taxes','Expenses','Profit'})</code>来给对应扇区指定文本标签。注意所有文本用<code>{}</code>括起来，而不是<code>[]</code>。</p>
+<p><code>pie3(a)</code>：绘制三维饼状图。
+<br></p>
+<h2 id="polar极坐标图"><a class="header" href="#polar极坐标图"><code>polar()</code>极坐标图</a></h2>
+<pre><code class="language-matlab">x = 1:100; theta = x/10; r = log10(x);
+subplot(1,4,1); polar(theta,r);
+
+theta = linspace(0, 2*pi); r = cos(4*theta); 
+subplot(1,4,2); polar(theta, r);
+
+theta = linspace(0, 2*pi, 6); r = ones(1,length(theta));
+subplot(1,4,3); polar(theta,r);
+
+theta = linspace(0, 2*pi); r = 1-sin(theta);
+subplot(1,4,4); polar(theta , r);
+</code></pre>
+<p><img src="https://img-blog.csdnimg.cn/20200808204240210.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70" alt="" />
+<code>polar(theta,r)</code>：绘制极坐标图。
+与<code>plot(x,y)</code>类似，描出所有点之后连线。只不过<code>polar()</code>中的参数对应于极坐标中的极角<code>θ</code>和极径<code>r</code>。
+<br></p>
+<h2 id="stairs阶梯图与stem取样图"><a class="header" href="#stairs阶梯图与stem取样图"><code>stairs()</code>阶梯图与<code>stem()</code>取样图</a></h2>
+<p><img src="https://img-blog.csdnimg.cn/2020080818205872.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70" alt="" />
+<code>stairs(y)/stairs(x,y)</code>：与 <code>plot(y)/plot(x,y)</code> 原理一样，适用于<code>plot()</code>的属性 如指定线条颜色、粗细等，一般也可以直接用于<code>stairs()</code> 。
+不同点在于，如上图所示，<code>stairs()</code> 通过平行于x,y轴的线段将所有点连结起来，而不是直接相连。</p>
+<p><code>stem(y)/stem(x,y)</code> 原理上也与<code>plot()</code>类似，但<code>stem()</code>不连结所描出的各点，而是将各点与x轴垂直相连。该函数适用于对曲线上某些特殊点取样。
+<br></p>
+<h2 id="fill填充图"><a class="header" href="#fill填充图"><code>fill()</code>填充图</a></h2>
+<p><img src="https://img-blog.csdnimg.cn/20200808212546541.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70" alt="" />
+<code>fill(x,y,ColorSpec)</code> 填充 x 和 y 指定的二维多边形（颜色由 ColorSpec 指定）
+比如上图 <code>fill(x,y,'r')</code> 画出多边形，并以红色填充。</p>
+<p><code>axis square off</code>命令实际上是初阶绘图中提及的<code>axis square</code>(使当前区域为正方形)和<code>axis off</code>(使数轴不可见)两个命令的组合命令。</p>
+<p><code>text()</code>函数在初阶绘图中已有简单介绍，下面是<code>text()</code>函数的部分参数说明：
++ <code>'Color'</code>-文本颜色(具体颜色与代表符号 初阶绘图中有详细对比)；
++ <code>'FontSize'</code>-字体大小；
++ <code>‘FontWeight'</code>-字体粗细，指定为<code>normal(默认)</code>(正常)或<code>bold</code>(加粗)；
++ <code>'HorizontalAlignment'</code>-相对于指定位置点 水平对齐文本。效果如下：
+<img src="https://img-blog.csdnimg.cn/2020080821540511.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70" alt="" />
+<br>
+<br></p>
+<h1 id="配色"><a class="header" href="#配色">配色</a></h1>
+<br>
+<h2 id="rgb"><a class="header" href="#rgb">RGB</a></h2>
+<p><img src="https://img-blog.csdnimg.cn/20200808220437386.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70" alt="" />
+<code>[R G B]</code>：一种颜色标准，通过对红(R)、绿(G)、蓝(B)三个颜色相互之间的叠加来得到各式各样的颜色。
+通常使用0~255(十进制)之间的数来表示各成分占比。上图中右边的颜色对照板，则为对应颜色的十六进制表示。比如白色 <code>[255 255 255]</code> 十六进制为 <code>[FF FF FF]</code>，记作 <code>#FFFFFF</code>
+<br></p>
+<h2 id="数据可视化为图像"><a class="header" href="#数据可视化为图像">数据可视化为图像</a></h2>
+<p><img src="https://img-blog.csdnimg.cn/20200809101420175.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70" alt="" />
+前面四行画出图中第一个立体图形，第五行的<code>imagesc(z)</code>命令将数据可视化为图像，而后对图像做一些修正。</p>
+<p>使用<code>colorbar</code>指令调出如图所示的颜色条；
+使用<code>colormap()</code>来改变可视化图像的颜色；
+<img src="https://img-blog.csdnimg.cn/20200809101927754.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70" alt="" />
+<code>colormap()</code>的参数可以是以下这些：
+<img src="https://img-blog.csdnimg.cn/20200809102145903.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70" alt="" />
+这些参数实际上都是一个<code>256x3</code>的矩阵，每一行都对应一种颜色的<code>[R G B]</code>;
+因此我们也可以人为地自定义一个表示颜色的矩阵来作为<code>colormap()</code>的参数。
+<br>
+<br></p>
+<h1 id="三维绘图"><a class="header" href="#三维绘图">三维绘图</a></h1>
+<br>
+<h2 id="plot3三维线图"><a class="header" href="#plot3三维线图"><code>plot3()</code>三维线图</a></h2>
+<p><code>plot3(X,Y,Z)</code> 描点连线，绘制三维点或线图。
++ 要绘制一条线图，请将 X、Y、Z 指定为相同长度的向量。
++ 要在同一组坐标轴上绘制多条线图，请将 X、Y 或 Z 中的至少一个指定为矩阵，其他指定为向量。</p>
+<p>原理上于<code>plot()</code>一致，在使用上，各参数也基本与 <code>plot()</code> 对应相同。
+<img src="https://img-blog.csdnimg.cn/20200809110809181.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70" alt="" />
+<br></p>
+<h2 id="surf三维网图"><a class="header" href="#surf三维网图"><code>surf()</code>三维网图</a></h2>
+<p><img src="https://img-blog.csdnimg.cn/20200809113246320.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70" alt="" />
+<code>[X,Y]=meshgrid(x,y)</code>：基于向量 x 和 y 中包含的坐标返回二维网格坐标。也就是说前面给出的x、y只是一个向量，而画网图需要x、y两个范围围出来的面上的所有点，<code>meshgrid(x,y)</code>则给出这个面上所有的点。
+<img src="https://img-blog.csdnimg.cn/20200809114023914.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70" alt="" />
+<code>mesh()</code>：绘制网格图；
+<code>surf()</code>：绘制网格图并为网格填充颜色。
+&gt;事实上，从R2016b开始，并不总是需要先用<code>meshgrid()</code>创建网格然后才能绘制图像；比如该例，直接使用 <code>surf(x,y,x.*exp(-x.^2-(y').^2))</code> 也能得到以上效果。</p>
+<br>
+<br>
+<h2 id="习题"><a class="header" href="#习题">习题</a></h2>
+<p><img src="https://img-blog.csdnimg.cn/2020080817254892.png" alt="" /></p>
+<pre><code class="language-matlab">close all;
+clear all;
+x=[1 2 5 4 8];
+y=[x;1:5];
+subplot(1,2,1);
+bar(y,'stacked');   %绘制竖直堆叠图
+title('竖直堆叠图');
+
+subplot(1,2,2);     %绘制水平堆叠图
+barh(y,'stacked');
+title('水平堆叠图');
+</code></pre>
+<p>效果如下：
+<img src="https://img-blog.csdnimg.cn/20200809120428984.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70" alt="" />
+<img src="https://img-blog.csdnimg.cn/20200808181614695.png" alt="" /></p>
+<pre><code class="language-matlab">clear all;
+close all;
+a = [10 5 20 30];
+pie(a,[1 1 1 1]);	%分开所有扇区
+</code></pre>
+<br>
+<p><img src="https://img-blog.csdnimg.cn/20200808181626354.png" alt="" /></p>
+<pre><code>clear all;
+close all;
+theta = linspace(0, 2*pi, 7);   %把2π划分为6块
+r = ones(1,length(theta));
+polar(theta,r);                 %画一个六边形
+</code></pre>
+<br>
+<p><img src="https://img-blog.csdnimg.cn/20200809102635626.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70" alt="" /></p>
+<pre><code>clear all;
+close all;
+t=linspace(0,10,1000);
+f=sin(pi*(t.^2)/4);
+plot(t,f);      %第一步，画出蓝色的曲线
+hold on;
+
+x=linspace(0,10,50);
+y=sin(pi*(x.^2)/4);
+stem(x,y);      %第二步，1秒取五次样
+</code></pre>
+<br>
+<p><img src="https://img-blog.csdnimg.cn/20200808215510244.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70" alt="" /></p>
+<pre><code>close all;
+clear all;
+t=(0:4)*pi/2;
+x=sin(t);y=cos(t);
+h=fill(x,y,'y');        %绘制一个以黄色填充的多边形
+h.LineWidth=5;          %将填充多边形的边界曲线设置粗度
+axis square off;        %把显示区域变为正方形，并隐藏数轴
+
+% 在填充的多边形中加上'WAIT'字样
+text(0,0,'WAIT','color','k','FontSize',65, ...
+    'FontWeight','bold','HorizontalAlignment','center');
+</code></pre>
+<blockquote>
+<p>对于这道题，在绘制填充多边形时，我使用了<code>h=fill()</code>，从而获得边界曲线的handle，进而在下一步设置边界曲线的粗度。</p>
+</blockquote>
+<br>
+<p><img src="https://img-blog.csdnimg.cn/2020080910260943.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70" alt="" />
+要指定条形图某些条形的颜色，可以使用 Bar 对象的 CData 属性来控制单个条形的颜色。
+在这之前，需要先将 Bar 对象的 <code>FaceColor</code> 属性设置为 <code>'flat'</code>；可以在画图时直接设置<code>bar(....,'FaceColor','flat')</code>，或者后期单独指定<code>b.FaceColor = 'flat'</code>。</p>
+<pre><code>G = [46 38 29 24 13]; 
+S = [29 27 17 26 8];
+B = [29 23 19 32 7]; 
+% 指定字符串标记x轴
+str=categorical({'USA','CHN','GBR','RUS','KOR'}); 
+% 画图的同时将各条形的handle赋给h，并将FaceColor属性设置为flat
+h = bar(str, [G' S' B'],'FaceColor','flat');
+
+for i=1:size(G',1)      % 将每组第一个条形设置为金色
+    h(1).CData(i,:)=[1,0.843,0];        
+end
+for i=1:size(G',1)      % 将每组第二个条形设置为银色
+    h(2).CData(i,:)=[0.753 0.753 0.753];
+end
+for i=1:size(G',1)      % 将每组第三个条形设置为铜色
+    h(3).CData(i,:)=[.545,.27,.0745];
+end
+title('Medal count for top 5 countries in 2012 Olympics');
+ylabel('Number of medals'); xlabel('Country');
+legend('Gold', 'Silver', 'Bronze')  % 加上图例
+</code></pre>
+<blockquote>
+<p>该例中几个需要注意的点：</p>
+<ol>
+<li><code>G、S、B</code>三个向量需要先转置再串联起来，因为<code>bar()</code>是将矩阵的每一行分为一组，分别画出条形；</li>
+<li>将条形的<code>handle</code>赋给<code>h</code>时，实际上是<code>G、S、B</code>三个列的<code>handle</code>，<code>h</code>是一个1x3的<code>bar数组</code>，因此使用时分别对<code>h(1),h(2),h(3)</code>进行操作；</li>
+<li>在进行颜色设置时，matlab似乎不支持使用0~255的数组来表示<code>[R G B]</code>,将0~255的数组每一项均除以255转换为0~1来表示即可。</li>
+</ol>
+</blockquote>
+<br>
+<p><img src="https://img-blog.csdnimg.cn/20200809102501960.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70" alt="" /></p>
+<pre><code>x = [1:10; 3:12; 5:14];
+imagesc(x);
+colorbar;
+map = zeros(256,3);
+map(:,2) = (0:255)/255;	%除以255，转换为0~1表示
+colormap(map);
+</code></pre>
+<br>
+<br>
+<br>
+<p>以上内容为个人笔记，部分图片来源于郭老师课件或课程截图。
+笔记汇总：<a href="https://blog.csdn.net/weixin_45840825/article/details/107865933">MATLAB基础教程</a>
+课程视频：<a href="https://www.bilibili.com/video/BV1DA411Y7bN">https://www.bilibili.com/video/BV1DA411Y7bN</a>
+课件下载：<a href="https://download.csdn.net/download/weixin_45840825/12696065">MATLAB教程</a>
+郭彦甫老师的YouTube主页：<a href="https://www.youtube.com/user/machinelearningandvi?pbjreload=101v">@Yanfu Kuo</a>
+原视频：<a href="https://www.youtube.com/watch?v=KHFZLkm9qs0&amp;t=8s">https://www.youtube.com/watch?v=KHFZLkm9qs0&amp;t=8s</a></p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="05Basic_Plotting.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="08Image_Processing_I.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a rel="prev" href="05Basic_Plotting.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a rel="next" href="08Image_Processing_I.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+
+        
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>

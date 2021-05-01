@@ -1,0 +1,358 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>方程寻根 - MATLAB Note</title>
+        
+        
+
+
+        <!-- Custom HTML head -->
+        
+
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        
+        <link rel="icon" href="favicon.svg">
+        
+        
+        <link rel="shortcut icon" href="favicon.png">
+        
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        
+        <link rel="stylesheet" href="css/print.css" media="print">
+        
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        
+        <link rel="stylesheet" href="fonts/fonts.css">
+        
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="概要.html"><strong aria-hidden="true">1.</strong> 概要</a></li><li class="chapter-item expanded "><a href="02Array_Operation.html"><strong aria-hidden="true">2.</strong> 基本操作</a></li><li class="chapter-item expanded "><a href="03Structured_Programming_&_Function.html"><strong aria-hidden="true">3.</strong> 结构化程序设计及函数</a></li><li class="chapter-item expanded "><a href="04Data_Structure_&_File_Access.html"><strong aria-hidden="true">4.</strong> 数据结构及文件访问</a></li><li class="chapter-item expanded "><a href="05Basic_Plotting.html"><strong aria-hidden="true">5.</strong> 绘图基础</a></li><li class="chapter-item expanded "><a href="06Advanced_Plotting.html"><strong aria-hidden="true">6.</strong> 绘图进阶</a></li><li class="chapter-item expanded "><a href="08Image_Processing_I.html"><strong aria-hidden="true">7.</strong> 图像处理 Ⅰ</a></li><li class="chapter-item expanded "><a href="09Image_Processing_II.html"><strong aria-hidden="true">8.</strong> 图像处理 Ⅱ</a></li><li class="chapter-item expanded "><a href="10Integration_&_Differentiation.html"><strong aria-hidden="true">9.</strong> 微积分</a></li><li class="chapter-item expanded "><a href="11Root_Finding.html" class="active"><strong aria-hidden="true">10.</strong> 方程寻根</a></li><li class="chapter-item expanded "><a href="12Linear_Equations.html"><strong aria-hidden="true">11.</strong> 线性方程</a></li><li class="chapter-item expanded "><a href="13Statistics_&_Data_Analysis.html"><strong aria-hidden="true">12.</strong> 统计及数据分析</a></li><li class="chapter-item expanded "><a href="微分方程数值解.html"><strong aria-hidden="true">13.</strong> 微分方程数值解</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        
+                    </div>
+
+                    <h1 class="menu-title">MATLAB Note</h1>
+
+                    <div class="right-buttons">
+                        
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        
+                        
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <p>@<a href="%E6%96%B9%E7%A8%8B%E5%BC%8F%E6%B1%82%E6%A0%B9">toc</a></p>
+<h1 id="符号解"><a class="header" href="#符号解">符号解</a></h1>
+<h2 id="符号寻根solve"><a class="header" href="#符号寻根solve">符号寻根<code>solve()</code></a></h2>
+<p>在此之前有必要介绍一下符号变量<code>symbolic variables</code>
+<code>syms var1 ... varN</code>：创建符号变量，以空格分隔不同的变量。
+这是一种特殊的变量，以这种方式<code>syms x</code>声明的变量，matlab当作符号处理，通过此变量运算赋值所得<code>y=x^3+x</code>也是符号变量（<code>sym类型</code>）</p>
+<h4 id="求解一般方程"><a class="header" href="#求解一般方程">求解一般方程</a></h4>
+<p><code>S = solve(eqn,var)</code>：解出关于变量var的方程eqn，如果不指定var，则由<code>symvar</code>函数决定要解的变量。<code>solve(x + 1 == 2, x)</code> 解出x的方程<code>x + 1 = 2</code>。
+通过<code>solve()</code>求解出来的解也是sym类型，不是double类型的数值。
+&gt;+ <code>C = symvar(expr)</code> 搜索表达式 <code>expr</code>，查找除 <code>i、j、pi、inf、nan、eps</code> 和公共函数之外的标识符。这些标识符是表达式中变量的名称。<code>symvar</code> 返回搜索到的标识符。如果 <code>symvar</code> 找不到标识符，则 C 是一个空的元胞数组。
+&gt;+ 较新版本matlab<strong>删除了对字符向量或字符串输入的支持</strong>。<strong>需要先使用 <code>syms</code> 来声明sym变量，然后将 <code>solve('2*x == 1','x')</code> 这样的输入替换为 <code>solve(2*x == 1,x)</code></strong> 。</p>
+<p><img src="https://img-blog.csdnimg.cn/20200810114952381.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70" alt="" /></p>
+<h4 id="求解方程组"><a class="header" href="#求解方程组">求解方程组</a></h4>
+<p>还可以利用<code>solve()</code>求解方程组：
+不过需要注意，如下图所示，求解结果赋值给A，此时A是一个结构体<code>struct</code>，包含x、y两个成员，通过<code>A.x/A.y</code>可以查看求解结果。
+<img src="https://img-blog.csdnimg.cn/2020081014422721.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70" alt="" /></p>
+<h4 id="求解符号方程"><a class="header" href="#求解符号方程">求解符号方程</a></h4>
+<p><code>solve()</code>还可以用来求解用符号代替常数的方程。
+<code>solve()</code>的第二个参数指定自变量（即要求解的对象），如图中第二例；若无指定则由<code>symval()</code>函数得出，如图中第一例：
+<img src="https://img-blog.csdnimg.cn/20200810145213744.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70" alt="" /></p>
+<h4 id="符号函数求微分diff"><a class="header" href="#符号函数求微分diff">符号函数求微分<code>diff()</code></a></h4>
+<p>将变量声明为<code>sym类型</code>可以直接对其使用<code>diff()</code>函数，求解微分式。
+<code>diff(g,x)</code>：指定g对x求导（若有多个自变量，则为求偏导）；
+执行以下代码，<code>yprime</code>是一个<code>sym类型</code>值为<code>20*x^4</code>：
+<img src="https://img-blog.csdnimg.cn/20200810155423845.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70" alt="" /></p>
+<h4 id="符号函数求积分int"><a class="header" href="#符号函数求积分int">符号函数求积分<code>int()</code></a></h4>
+<p><img src="https://img-blog.csdnimg.cn/2020081017044268.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70" alt="" />
+利用<code>int()</code>函数，可以对符号函数求积分，常数项为0；
+<code>subs(s,old,new)</code> 用 new 替换所有的 old ，然后计算此时 s的值并返回，但s本身还是原来的样子，没有改变。
+<br></p>
+<h2 id="符号解与数值解"><a class="header" href="#符号解与数值解">符号解与数值解</a></h2>
+<table><thead><tr><th align="center"></th><th align="left">优点</th><th align="left">缺点</th></tr></thead><tbody>
+<tr><td align="center">符号解</td><td align="left">分析解决方案<br>让你直观的了解解决方案的形式</td><td align="left">可能过于复杂<br>有时无法解决问题</td></tr>
+<tr><td align="center">数值解</td><td align="left">总是得到解决<br>能使解决方案准确无误<br>易于编码</td><td align="left">难以提取更深层次的理解</td></tr>
+<tr><td align="center"><br></td><td align="left"></td><td align="left"></td></tr>
+<tr><td align="center"><br></td><td align="left"></td><td align="left"></td></tr>
+</tbody></table>
+<h1 id="数值解"><a class="header" href="#数值解">数值解</a></h1>
+<h2 id="fsolve"><a class="header" href="#fsolve"><code>fsolve()</code></a></h2>
+<p><code>x = fsolve(fun,x0)</code>：从<code>x0</code>开始，尝试找出离<code>x0</code>最近的，方程<code>fun(x)=0</code>的根。
+若x0为向量或矩阵，则分别给出离每一个元素最近的根，输出为和x0同大小的向量或矩阵。
+给出函数<code>f(x)=0</code>在x=0附件的根：
+<img src="https://img-blog.csdnimg.cn/20200810181350165.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70" alt="" />
+若要解方程组，需要先将方程组的方程放入一个函数中，然后通过<code>@functionname</code>获得handle。注意<code>fsolve()</code>的第二个参数表示寻根的起始点(初始值)，而不是每个方程对应的<code>=</code>右边的值(默认都为0)：
+<img src="https://img-blog.csdnimg.cn/20200814204701272.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70#pic_center" alt="" />
+可以不必单独创建一个函数文件，直接在script文件的最后加上function的整体结构就可以，如练习4。
+&gt;如果是多元方程组，似乎只能如上图所示，使用矩阵x来作为function的input，并用矩阵x的每一个元素来表示不同的自变量。当使用多个参数来作为input时，在<code>fsolve()</code>中通过函数handle调用该函数时总是会提示“输入参数的数目不足”。暂且按照图示方法作好了。</p>
+<br>
+<h2 id="fzero"><a class="header" href="#fzero"><code>fzero()</code></a></h2>
+<p><code>x = fzero(fun,x0)</code>：从x0开始，尝试求出离x0最近的 fun(x) = 0 的解，此解是 fun(x) 变号的位置，即<code>f(x-),f(x+)</code>异号。fzero 无法求例如 x^2 这类函数的根。
+若x0是一个向量[a,b]，则[a,b]即为寻根的范围：(注意与<code>fslove()</code>不同)
+<img src="https://img-blog.csdnimg.cn/20200814193923709.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70#pic_center" alt="" />
+<br></p>
+<h2 id="多项式寻根roots"><a class="header" href="#多项式寻根roots">多项式寻根<code>roots()</code></a></h2>
+<p><code>r = roots(p)</code>：以列向量的形式返回 p 表示的多项式的根。输入 p 是一个包含 n+1 多项式系数的向量。
+<code>roots()</code>只能用于多项式寻根。
+<img src="https://img-blog.csdnimg.cn/20200814210314104.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70#pic_center" alt="" />
+<br>
+<br></p>
+<h1 id="习题"><a class="header" href="#习题">习题</a></h1>
+<p><img src="https://img-blog.csdnimg.cn/20200810151541969.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70" alt="" /></p>
+<pre><code class="language-matlab">% 问题1
+syms x y a b r;
+f=(x-a)^2+(y-b)^2-r^2;
+A=solve(f,x,y);
+A.x	%查看求解出来的x
+A.y	%查看求解出来的y 
+
+% 问题2
+syms a b c d;
+A=[a b;c d];
+B=inv(A);
+</code></pre>
+<blockquote>
+<p><code>Y = inv(X)</code> 计算方阵 X 的 逆矩阵，如果X是由sym类型元素组成的，也可以直接使用</p>
+</blockquote>
+<br>
+<p><img src="https://img-blog.csdnimg.cn/20200810163026418.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70" alt="" /></p>
+<pre><code class="language-matlab">close all;
+clear all;
+syms x y;
+f=exp(x^2)/(x^3-x+3);
+fprime=diff(f);         %默认对x求导
+
+g=(x^2+x*y-1)/(y^3+x+3);
+gprime=diff(g,x);       %指定对x求偏导
+</code></pre>
+<br>
+<p><img src="https://img-blog.csdnimg.cn/20200810171026376.png" alt="" /></p>
+<pre><code>clear all;
+close all;
+%方法1，其实是近似算出具体数值
+y=@(x) (x.^2-x+1)./(x+3);
+z1=integral(y,0,10);
+disp(z1);
+
+%方法2，算出积分函数，再代入数据计算，最后的结果依然是sym类型
+syms x;
+y=(x.^2-x+1)./(x+3);
+z2=int(y);
+z2=subs(z2,x,10)-subs(z2,x,0);
+disp(z2);
+</code></pre>
+<br>
+<p><img src="https://img-blog.csdnimg.cn/20200813180657707.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70#pic_center" alt="" /></p>
+<pre><code class="language-matlab">fun=@root2d;
+%从(5,5)处开始寻根
+x=fsolve(fun,[-5,-5]);
+disp(x);
+
+function F=root2d(x)
+    F(1)=2*x(1)-x(2)-exp(-x(1));
+    F(2)=-x(1)+2*x(2)-exp(-x(2));
+end
+</code></pre>
+<br>
+<br>
+<br>
+<p>以上内容为个人笔记，部分图片来源于郭老师课件或课程截图。
+笔记汇总：<a href="https://blog.csdn.net/weixin_45840825/article/details/107865933">MATLAB基础教程</a>
+课程视频：<a href="https://www.bilibili.com/video/BV1DA411Y7bN">https://www.bilibili.com/video/BV1DA411Y7bN</a>
+课件下载：<a href="https://download.csdn.net/download/weixin_45840825/12696065">MATLAB教程</a>
+郭彦甫老师的YouTube主页：<a href="https://www.youtube.com/user/machinelearningandvi?pbjreload=101v">@Yanfu Kuo</a>
+原视频：<a href="https://www.youtube.com/watch?v=KHFZLkm9qs0&amp;t=8s">https://www.youtube.com/watch?v=KHFZLkm9qs0&amp;t=8s</a></p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="10Integration_&amp;_Differentiation.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="12Linear_Equations.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a rel="prev" href="10Integration_&amp;_Differentiation.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a rel="next" href="12Linear_Equations.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+
+        
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>

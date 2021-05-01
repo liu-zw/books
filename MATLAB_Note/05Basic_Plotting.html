@@ -1,0 +1,448 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>绘图基础 - MATLAB Note</title>
+        
+        
+
+
+        <!-- Custom HTML head -->
+        
+
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        
+        <link rel="icon" href="favicon.svg">
+        
+        
+        <link rel="shortcut icon" href="favicon.png">
+        
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        
+        <link rel="stylesheet" href="css/print.css" media="print">
+        
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        
+        <link rel="stylesheet" href="fonts/fonts.css">
+        
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="概要.html"><strong aria-hidden="true">1.</strong> 概要</a></li><li class="chapter-item expanded "><a href="02Array_Operation.html"><strong aria-hidden="true">2.</strong> 基本操作</a></li><li class="chapter-item expanded "><a href="03Structured_Programming_&_Function.html"><strong aria-hidden="true">3.</strong> 结构化程序设计及函数</a></li><li class="chapter-item expanded "><a href="04Data_Structure_&_File_Access.html"><strong aria-hidden="true">4.</strong> 数据结构及文件访问</a></li><li class="chapter-item expanded "><a href="05Basic_Plotting.html" class="active"><strong aria-hidden="true">5.</strong> 绘图基础</a></li><li class="chapter-item expanded "><a href="06Advanced_Plotting.html"><strong aria-hidden="true">6.</strong> 绘图进阶</a></li><li class="chapter-item expanded "><a href="08Image_Processing_I.html"><strong aria-hidden="true">7.</strong> 图像处理 Ⅰ</a></li><li class="chapter-item expanded "><a href="09Image_Processing_II.html"><strong aria-hidden="true">8.</strong> 图像处理 Ⅱ</a></li><li class="chapter-item expanded "><a href="10Integration_&_Differentiation.html"><strong aria-hidden="true">9.</strong> 微积分</a></li><li class="chapter-item expanded "><a href="11Root_Finding.html"><strong aria-hidden="true">10.</strong> 方程寻根</a></li><li class="chapter-item expanded "><a href="12Linear_Equations.html"><strong aria-hidden="true">11.</strong> 线性方程</a></li><li class="chapter-item expanded "><a href="13Statistics_&_Data_Analysis.html"><strong aria-hidden="true">12.</strong> 统计及数据分析</a></li><li class="chapter-item expanded "><a href="微分方程数值解.html"><strong aria-hidden="true">13.</strong> 微分方程数值解</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        
+                    </div>
+
+                    <h1 class="menu-title">MATLAB Note</h1>
+
+                    <div class="right-buttons">
+                        
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        
+                        
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <p>以下内容为个人笔记，部分图片来源于郭老师课件或课程截图。
+笔记汇总：<a href="https://blog.csdn.net/weixin_45840825/article/details/107865933">MATLAB基础教程</a>
+课程视频：<a href="https://www.bilibili.com/video/BV1DA411Y7bN">MATLAB基础教程-台大郭彦甫（14课全-高清-含课件）</a></p>
+<hr />
+<h1 id="基础绘图"><a class="header" href="#基础绘图">基础绘图</a></h1>
+<h3 id="a-hrefhttpsww2mathworkscnhelpmatlabrefplothtmlplota-基本使用"><a class="header" href="#a-hrefhttpsww2mathworkscnhelpmatlabrefplothtmlplota-基本使用"><a href="https://ww2.mathworks.cn/help/matlab/ref/plot.html">plot()</a> 基本使用</a></h3>
+<p><img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501174843.png" alt="image-20210128181159657" /></p>
+<ul>
+<li><code>plot(x,y)</code>：如果 X 和 Y 都是向量，则它们的长度必须相同，plot 函数绘制 Y 对 X 的图；</li>
+<li>如果 X 和 Y 均为矩阵，则它们的大小必须相同，plot 函数绘制 Y 的列对 X 的列的图（即矩阵X的第1列的数据记为一个vector：x1，Y的第一列记为一个vector：y1，plot(x1, y2)，第2, 3, 4…列类似。将对应的每一列绘制成一个单独的线条）。如：
+<img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501174854.png" alt="image-20210128181737627" /></li>
+<li>如果 X 或 Y 中的一个是向量而另一个是矩阵，则矩阵的各维中必须有一维与向量的长度相等。如果矩阵的列宽等于向量长度，则 plot 函数绘制矩阵中的每一列对向量的图。**如果矩阵的行宽等于向量长度，则该函数绘制矩阵中的每一行对向量的图。**如果矩阵为方阵，则该函数绘制每一列对向量的图。
+通常都会使矩阵的行宽等于向量长度，从而一次画多图，如：
+<img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501174906.png" alt="image-20210128182535419" /></li>
+<li><code>plot(x, y1, x, y2)</code>：同时画两条线；
+<code>plot(y)</code>：分别以x=1,2,3….对应于y的第1,2,3…个数值描点连线（即自动为y配置x坐标）；</li>
+<li>使用 <code>hold on</code> 保持上一次画图，使用 <code>hold off</code> 来关闭此功能， 不使用 <code>hold off</code> 画图将一直存在
+<img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501174915.png" alt="image-20210128194715807" /></li>
+</ul>
+<h3 id="plot-描点连线"><a class="header" href="#plot-描点连线">plot() 描点、连线</a></h3>
+<ul>
+<li><code>plot(X,Y,LineSpec)</code> 设置线型、标记符号和颜色
+<code>LIneSpec</code> 的内容可以包含三个参数，<del>第一个表示颜色，第二个表示连线的类型，第三个表示描点的类型（误）</del>，事实上这三个参数的顺序无关紧要；
+<code>plot(x,y,'b--o')</code> 即表示使用蓝色虚线，带圆形标记画图；
+各类型对应表示如下：
+<img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501174926.png" alt="image-20210128195116498" /></li>
+<li><code>plot(X1,Y1,LineSpec1,...,Xn,Yn,LineSpecn)</code> 设置每个线条的线型、标记符号和颜色. 可以混用 X、Y、LineSpec 三元组和 X、Y 对组：例如 <code>plot(X1,Y1,X2,Y2,LineSpec2,X3,Y3)</code></li>
+</ul>
+<h3 id="a-hrefhttpsww2mathworkscnhelpmatlabreflegendhtmllegenda-添加图例"><a class="header" href="#a-hrefhttpsww2mathworkscnhelpmatlabreflegendhtmllegenda-添加图例"><a href="https://ww2.mathworks.cn/help/matlab/ref/legend.html">legend()</a> 添加图例</a></h3>
+<ul>
+<li>添加图例，参数内容与画图时 <code>plot()</code> 的参数内容一一对应；
+<img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501174935.png" alt="image-20210128195229283" /></li>
+<li>也可以在画图时添加图例：<code>plot(x,y,'DisplayName','cos(x)')</code> 固定参数 <code>DisplayName</code>(可省略) 后的 <code>cos(x)</code> 即是为该曲线添加的图例说明；</li>
+<li>为图例指定其他参数：
+<img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501174950.png" alt="image-20210128195624063" /></li>
+<li>图例位置参数对应的参数：<img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501174958.png" alt="image-20210128195643224" /></li>
+</ul>
+<h3 id="添加标题与坐标轴"><a class="header" href="#添加标题与坐标轴">添加标题与坐标轴</a></h3>
+<p><img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501175006.png" alt="image-20210128200438442" /></p>
+<ul>
+<li><a href="https://ww2.mathworks.cn/help/matlab/ref/title.html">title()</a>：为图添加标题；</li>
+<li><a href="https://ww2.mathworks.cn/help/matlab/ref/suptitle.html">suptitle()</a> 在一个 figure 中画多个子图时，添加一个大标题；</li>
+<li><a href="https://ww2.mathworks.cn/help/matlab/ref/xlabel.html">xlabel()</a>、<a href="https://ww2.mathworks.cn/help/matlab/ref/ylabel.html">ylabel()</a>、<a href="https://ww2.mathworks.cn/help/matlab/ref/zlabel.html">zlabel()</a>：为 x y z 轴添加题注；
+注意诸如 <code>\pi</code> <code>e^{-x}</code> 这样的写法，使得公式显示的更漂亮</li>
+</ul>
+<h3 id="在图中添加文本说明"><a class="header" href="#在图中添加文本说明">在图中添加文本说明</a></h3>
+<p><img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501175018.png" alt="image-20210128201018418" /></p>
+<ul>
+<li>
+<p><a href="https://ww2.mathworks.cn/help/matlab/ref/line.html">line()</a>：绘制基本线条. 在课件的这段代码中，<code>line()</code> 的第一个参数是 x 坐标，第二个参数是 y 坐标. 按照这两个向量连线画图；
+其实效果与plot差不多，基本的使用也与plot一样：
+<img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501175032.png" alt="" /></p>
+</li>
+<li>
+<p><a href="https://ww2.mathworks.cn/help/matlab/ref/text.html">text()</a>：为数据点添加文本说明. 在课件中是使用 <code>text()</code> 结合 latex 语法在图中添加公式说明. 如课件截图中的标识，需要在 latex 语法前后添加 <code>$$</code>，以字符串的形式记入一个 string 变量 str 中；<code>text()</code> 前两个参数是说明在图中的起始位置，第3个参数是 latex 语句字符串，后两个是使用 latex 语法添加说明时的固有格式. 如果只是向图中添加普通文本说明，而非特殊语法(如latex语法)，则不需要最后两个参数.</p>
+<p><code>text()</code> 还有很多不同用法，可以为图添加非常漂亮的说明，可以查看 <a href="https://ww2.mathworks.cn/help/matlab/ref/text.html">text()的官方文档</a>，但就画图的出发点而言，其他的各种效果均可以通过截图添加文本实现，如此更加方便.</p>
+</li>
+<li>
+<p><code>Annotation(lineType, x, y)</code>：创建一个在当前图窗中的两个点之间延伸的线条或箭头注释。
+将 <code>lineType</code> 指定为 <code>line</code>(线条)、<code>arrow</code>(箭头) 或 <code>doublearrow</code>(双向箭头). 
+将 x 和 y 分别指定为 <code>[x_begin, x_end]</code> 和 <code>[y_begin, y_end]</code> 形式的二元素向量.</p>
+</li>
+</ul>
+<h1 id="获取图像的相关-handle-更改图像属性"><a class="header" href="#获取图像的相关-handle-更改图像属性">获取图像的相关 handle 更改图像属性</a></h1>
+<h3 id="图像的属性"><a class="header" href="#图像的属性">图像的属性</a></h3>
+<p>画出的一个图主要包括 Figure  Axes  Line 三个 Object
+<img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501175043.png" alt="image-20210128203041729" /></p>
+<ul>
+<li>
+<p>通过 <code>h = plot(x,y)</code> 可以使 <code>h</code> 得到画出图形中 Line 的 handle (类似于file id)，以后便可以通过 h 来改变 Line 的一些属性； <code>gcf</code>、<code>gca</code>也类似</p>
+</li>
+<li>
+<p>比如像下面这样利用 <code>gca</code> 来改变 Axes，即数轴的属性：
+如图所示，<a href="https://ww2.mathworks.cn/help/matlab/ref/set.html">set()</a>、<a href="https://ww2.mathworks.cn/help/matlab/ref/xlim.html">xlim()</a>两种方式均可以改变数轴的范围
+<img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501175051.png" alt="image-20210128203426352" /></p>
+</li>
+<li>
+<p>从 R2014b 开始，matlab 已经支持类似 sturct 的圆点法来设置属性：
+下属代码可以达到一样的效果，（此方法严格遵守大小写，<code>g.xlim</code> 不可行）</p>
+<pre><code class="language-matlab">g = gca;
+g.XLim = [0, 2*pi];
+g.YLim = [-1.2, 1.2];
+</code></pre>
+</li>
+</ul>
+<h3 id="设置数轴的字体与刻度"><a class="header" href="#设置数轴的字体与刻度">设置数轴的字体与刻度</a></h3>
+<p><img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501175103.png" alt="image-20210128204709889" /></p>
+<ul>
+<li>
+<p><code>set(gca, 'fontsize', 25)</code>：可以将数轴上的字体设置为25号大小；</p>
+</li>
+<li>
+<p><code>set(gca, 'xtick'……)</code> 与 <code>set(gca, 'xticklabel'….)</code> 配合使用，前者 <code>xtick</code> 用于在数轴上对应的点处标出刻度，后者 <code>xticklabel</code> 在标出的刻度上对应地指定一个标签；
+课件中的例子即为：在 <code>x=0</code>, <code>pi/2</code>, <code>pi</code>, <code>3pi/2</code>, <code>2pi</code> 处标出刻度，然后以 0, 90, 180, 270, 360 对应地写上数轴；</p>
+</li>
+<li>
+<p>从 R2014b 开始，matlab 已经支持类似 sturct 的圆点法来设置属性：</p>
+<pre><code class="language-matlab">g = gca;
+g.FontSize = 25;
+g.Xtick = 0:pi/2:2*pi; g.XtickLabel = 0:90:360;
+g.Xtick = 0:pi/2:2*pi; g.XtickLabel = {'0', '\pi/2', '\pi', '3\pi/2', '2\pi'};
+</code></pre>
+</li>
+<li>
+<p><a href="https://ww2.mathworks.cn/help/matlab/ref/xtickangle.html">xtickangle(angle)</a>：将当前坐标区的 x 轴刻度标签旋转到指定角度（以度为单位），其中 0 表示水平。指定正值表示逆时针旋转，负值表示顺时针旋转；
+<code>xtickangle(ax,angle)</code>：旋转 ax 指定的坐标区的刻度标签，而不是旋转当前坐标区的刻度标签；</p>
+</li>
+<li>
+<p>x轴用时间表示：
+<img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501175120.png" alt="image-20210128205503161" /></p>
+</li>
+</ul>
+<p>课件中的第三例，预期在x轴上标出 0, π/2….：
+<img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501175432.png" alt="image-20210128205811878" />
+但貌似较新版本的 matlab 已经无法实现（2016b以及以上不再支持  ）.
+我利用与第二例类似的方法：</p>
+<pre><code class="language-matlab">set(gca,'xtick',0:pi/2:2*pi);
+set(gca,'xticklabel',{'0','\pi/2','\pi','3\pi/2','2\pi'});
+</code></pre>
+<p>得到了不错的效果：
+<img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501175128.png" alt="image-20210128205842167" /></p>
+<h3 id="更改线条属性"><a class="header" href="#更改线条属性">更改线条属性</a></h3>
+<p><img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501175136.png" alt="image-20210128205911308" /></p>
+<ul>
+<li><a href="https://ww2.mathworks.cn/help/matlab/ref/delete.html">delete(h)</a>：将画好的图形清除；</li>
+<li>使用圆点法完成上图实例
+<img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501175145.png" alt="image-20210128210042702" /></li>
+</ul>
+<h3 id="描点属性"><a class="header" href="#描点属性">描点属性</a></h3>
+<p>描出好看的点：
+<img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501175154.png" alt="image-20210128210207109" /></p>
+<ul>
+<li><code>plot()</code> 有多个可选参数，这是常见的几个 <a href="https://ww2.mathworks.cn/help/matlab/ref/matlab.graphics.chart.primitive.line-properties.html">Line属性</a> ：
+<img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501175201.png" alt="image-20210128210432206" /></li>
+<li>由于需要所画图形的光滑性，对x的取值一般比较密集，这样一来对点的标记效果可能不理想，此时可以使用 <code>MarkerIndices</code> 参数选择性地标记部分点：
+x 实际上是一个 1×100 的向量，如果每一点都做标记，呈现的是一连串标记而非曲线，如图所示设置标记点 <code>1:5:length(y)</code>，每5个数据点做一个标记，即能达到预期效果
+<img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501175215.png" alt="image-20210128210524511" /></li>
+</ul>
+<h3 id="多图多-figure"><a class="header" href="#多图多-figure">多图多 Figure</a></h3>
+<p><img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501175223.png" alt="image-20210128210711427" /></p>
+<ul>
+<li>在画图前加上 <a href="https://ww2.mathworks.cn/help/matlab/ref/figure.html">figure</a> 指令，然后 <code>plot()</code> 将创建第一个视窗 Figure1，第二次画图前若再加上figure 再 plot，则将创建第二个视窗 Figure2，前一个视窗依然在；</li>
+<li>还可以使用 <code>h = figure(1)</code> 创建一个编号为 1 的 Figure，并获得它的 handle，便可在有多个 Figure 时，利用 <code>h</code> 来设置编号为 1 的 Figure 的相关属性；</li>
+<li>需要注意的是，画多图后，“当前窗口”指的是最新创建的视窗，所以 gca、gcf 这些指令所做出的操作，结果均作用于最新创建的视窗；</li>
+</ul>
+<h3 id="多图多-figure-1"><a class="header" href="#多图多-figure-1">多图多 Figure</a></h3>
+<p><img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501175231.png" alt="image-20210128211138828" /></p>
+<ul>
+<li><a href="https://ww2.mathworks.cn/help/matlab/ref/subplot.html">subplot(m,n,p)</a> 将当前图窗划分为 m×n 网格，并在 p 指定的位置创建坐标区。按行号对子图位置进行编号. 第一个子图是第一行的第一列，第二个子图是第一行的第二列，依此类推. 如果指定的位置已存在坐标区，则此命令会将该坐标区设为当前坐标区；</li>
+<li><code>subplot(2,2,[3,4])</code>：连接 3、4 两个位置画一个长图；</li>
+<li>自定义子图的位置：
+<img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501175238.png" alt="image-20210128211352682" /></li>
+<li>创建一个包含多个子图的图窗，将每一个子图的 Axes 存入变量中，但不画图。所有子图创建完后再定位到目标子图，画图并进行更多个性化操作：
+<img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501175247.png" alt="image-20210128211419425.png" /></li>
+</ul>
+<h3 id="图像个性化操作"><a class="header" href="#图像个性化操作">图像个性化操作</a></h3>
+<p><img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501175257.png" alt="image-20210128211524132" /></p>
+<ul>
+<li><a href="https://ww2.mathworks.cn/help/matlab/ref/grid.html">grid on/off</a>：使网格可见或不可见
+<a href="https://ww2.mathworks.cn/help/matlab/ref/box.html">box on/off</a>：使盒子可见或不可见（即数轴左方和上方的边框）
+<a href="https://ww2.mathworks.cn/help/matlab/ref/axis.html">axis on/off</a>：使数轴可见或不可见</li>
+</ul>
+<h3 id="保存绘图"><a class="header" href="#保存绘图">保存绘图</a></h3>
+<ul>
+<li>
+<p><a href="https://ww2.mathworks.cn/help/matlab/ref/saveas.html">saveas(fig,filename)</a>：将 <code>fig</code> 指定的图窗保存到 filename 文件中。务必加上文件扩展名，例如 <code>myplot.jpg</code>，如果不指定扩展名，则 <code>saveas()</code> 默认将图窗保存为 FIG 文件；</p>
+</li>
+<li>
+<p>要保存当前图窗，请将 <code>fig</code> 指定为 <code>gcf</code>，一般使用：
+.png 保存为位图，.svg 保存为矢量图，两种格式均可用于word</p>
+<pre><code class="language-matlab">saveas(gcf, 'filename.png');
+saveas(gcf, 'filename.svg');
+saveas(gcf, 'filename.pdf');
+</code></pre>
+</li>
+<li>
+<p><code>print(fig,filename)</code>：与 <code>saveas()</code> 使用基本一致。<code>print()</code> 应该会更加强大一些。目前浅度使用，二者均可；</p>
+<p><code>print(gcf, 'filename.svg')</code> 保存的 .svg 格式图片 word 无法显示。</p>
+</li>
+</ul>
+<h1 id="练习"><a class="header" href="#练习">练习</a></h1>
+<p><img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501175307.png" alt="image-20210128213045285" /></p>
+<pre><code class="language-matlab">clear all;
+close all;
+t=linspace(1,2);
+f=t.^2;
+g=sin(2*pi*t);
+p=plot(t,f,'b',t,g,'ro');
+legend({'t^{2}','sin(2\pi t)'},'location','best');
+title('Mini Assignment #1');
+xlabel('Time (ms)');
+ylabel('f(t)');
+</code></pre>
+<p><img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501175318.png" alt="image-20210128213155460" /></p>
+<pre><code class="language-matlab">clear all;
+close all;
+t=linspace(1,2);
+f=t.^2;
+g=sin(2*pi*t);
+p=plot(t,f,'b',t,g,'ro');
+legend({'t^{2}','sin(2\pi t)'},'location','best');
+title('Mini Assignment #1');
+xlabel('Time (ms)');
+ylabel('f(t)');
+%==============以上均为练习1的代码==============%
+%=========只需修改练习1图的一些属性即可==========%
+p(1).Color='k';
+p(1).LineWidth=3;
+p(2).MarkerEdgeColor='m';
+p(2).MarkerFaceColor='#7E2F8E';
+p(2).MarkerSize=4;
+g=gca;
+g.FontSize=15
+</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="04Data_Structure_&amp;_File_Access.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="06Advanced_Plotting.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a rel="prev" href="04Data_Structure_&amp;_File_Access.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a rel="next" href="06Advanced_Plotting.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+
+        
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>

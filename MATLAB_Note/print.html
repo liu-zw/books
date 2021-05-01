@@ -1,0 +1,1861 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>MATLAB Note</title>
+        
+        <meta name="robots" content="noindex" />
+        
+        
+
+
+        <!-- Custom HTML head -->
+        
+
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        
+        <link rel="icon" href="favicon.svg">
+        
+        
+        <link rel="shortcut icon" href="favicon.png">
+        
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        
+        <link rel="stylesheet" href="css/print.css" media="print">
+        
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        
+        <link rel="stylesheet" href="fonts/fonts.css">
+        
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="概要.html"><strong aria-hidden="true">1.</strong> 概要</a></li><li class="chapter-item expanded "><a href="02Array_Operation.html"><strong aria-hidden="true">2.</strong> 基本操作</a></li><li class="chapter-item expanded "><a href="03Structured_Programming_&_Function.html"><strong aria-hidden="true">3.</strong> 结构化程序设计及函数</a></li><li class="chapter-item expanded "><a href="04Data_Structure_&_File_Access.html"><strong aria-hidden="true">4.</strong> 数据结构及文件访问</a></li><li class="chapter-item expanded "><a href="05Basic_Plotting.html"><strong aria-hidden="true">5.</strong> 绘图基础</a></li><li class="chapter-item expanded "><a href="06Advanced_Plotting.html"><strong aria-hidden="true">6.</strong> 绘图进阶</a></li><li class="chapter-item expanded "><a href="08Image_Processing_I.html"><strong aria-hidden="true">7.</strong> 图像处理 Ⅰ</a></li><li class="chapter-item expanded "><a href="09Image_Processing_II.html"><strong aria-hidden="true">8.</strong> 图像处理 Ⅱ</a></li><li class="chapter-item expanded "><a href="10Integration_&_Differentiation.html"><strong aria-hidden="true">9.</strong> 微积分</a></li><li class="chapter-item expanded "><a href="11Root_Finding.html"><strong aria-hidden="true">10.</strong> 方程寻根</a></li><li class="chapter-item expanded "><a href="12Linear_Equations.html"><strong aria-hidden="true">11.</strong> 线性方程</a></li><li class="chapter-item expanded "><a href="13Statistics_&_Data_Analysis.html"><strong aria-hidden="true">12.</strong> 统计及数据分析</a></li><li class="chapter-item expanded "><a href="微分方程数值解.html"><strong aria-hidden="true">13.</strong> 微分方程数值解</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        
+                    </div>
+
+                    <h1 class="menu-title">MATLAB Note</h1>
+
+                    <div class="right-buttons">
+                        
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        
+                        
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="概述"><a class="header" href="#概述">概述</a></h1>
+<p>本文是<a href="https://github.com/19PDP">19PDP</a>整理的笔记。现在整理后发表以便于后来查看。</p>
+<p>@<a href="matlab%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C%E4%B8%8E%E7%9F%A9%E9%98%B5%E8%BF%90%E7%AE%97">TOC</a></p>
+<h1 id="基本操作"><a class="header" href="#基本操作">基本操作</a></h1>
+<br>
+<h2 id="把matlab当作计算器使用"><a class="header" href="#把matlab当作计算器使用">把matlab当作计算器使用</a></h2>
+<p>把matlab当计算器使用基本符合常识，不过多赘述（下同，着重记录与常识有出入的地方）。</p>
+<p><strong>需要注意的有：</strong>
++ <code>=</code>表示赋值，判断是否相等用<code>==</code>；
++ matlab中没有<code>ln( )</code>函数，<code>log( )</code>默认以<code>e</code>为底;
++ <strong>matlab中要表示自然对数<code>e</code>，用<code>exp(1)</code>表示即可；表示以<code>e</code>为底数的指数函数用<code>exp(n)</code>（e的n次方）</strong>
+<br></p>
+<h2 id="变量"><a class="header" href="#变量">变量</a></h2>
+<ul>
+<li>与一般语言不同，matlab对于变量可以直接使用，不需要提前声明；</li>
+<li>matlab变量大小写敏感；</li>
+<li>matlab中变量命名规则与c一致；</li>
+<li>matlab已有的保留变量不适合做变量名，调用<code>iskeyword</code>命令查看。
+&gt;课件问题：<img src="https://img-blog.csdnimg.cn/20200807173939128.png" alt="问题" />
+&gt;1. matlab大小写敏感，大写与小写有区别
+&gt;2. matlab的变量不能以数字开头</li>
+</ul>
+<h5 id="变量类型"><a class="header" href="#变量类型">变量类型</a></h5>
+<p>对于matlab的变量类型可以是如下这些：
+<img src="https://img-blog.csdnimg.cn/20200807174321798.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70" alt="变量类型" />
+对于数值变量，不显示指明变量类型，默认double类型，就数模而言基本足够。</p>
+<h5 id="避免使用与函数脚本同名的变量"><a class="header" href="#避免使用与函数脚本同名的变量">避免使用与函数、脚本同名的变量</a></h5>
+<p>若出现与函数同名的变量名，调用时优先当作变量名处理。</p>
+<pre><code>cos='This string.';
+cos(8)					% 对字符串进行索引取值,得到'r'
+</code></pre>
+<p>出现这种情况可以使用<code>clear</code>＋<code>变量名</code> 清除该变量，即<code>clear cos</code>
+便可正常使用<code>cos( )</code>函数。
+&gt;顺带一提
+&gt;<code>clear</code>：清除workspace内所有变量（即清空存储区）
+&gt;<code>clear &lt;name&gt;</code>：清除<code>name</code>变量
+&gt;<code>clc</code>：清空终端窗口（变量依然存在）</p>
+<br>
+<h2 id="格式控制"><a class="header" href="#格式控制">格式控制</a></h2>
+<p><strong>一些常用的命令：</strong>
++ 紧凑显示格式：<code>format compact</code>
++ 宽松显示格式：<code>format loose</code>
++ 数据高精度显示：<code>format long</code>
++ 数据低精度显示：<code>format short</code>
++ 以分数显示：<code>format rat</code></p>
+<blockquote>
+<p>值得一提的是，无论以分数显示还是以小数显示，其在matlab内部存储的值都是一样的。
+另外需要注意：</p>
+<ol>
+<li>如果原数值是无理数，显示的分数是在一定误差范围内的有理分式近似值</li>
+<li>可以通过<code>R = rat(x)</code>将小数<code>x</code>以分数的形式赋值给<code>R</code>，<strong>该分数实际上是一个字符串，也就是说R储存的将是一个字符串</strong></li>
+</ol>
+</blockquote>
+<ul>
+<li>在一行命令后紧接着<code>;</code>，使结果不显示在终端窗口中
+&gt;一点补充
+&gt;<code>who</code>：显示工作区内所有的变量
+&gt;<code>whos</code>：显示工作区内所有变量的详细信息
+&gt;<code>whos &lt;name&gt;</code>：显示变量<code>name</code>的详细信息</li>
+</ul>
+<p><br><br></p>
+<h1 id="矩阵运算"><a class="header" href="#矩阵运算">矩阵运算</a></h1>
+<br>
+<h2 id="矩阵的定义"><a class="header" href="#矩阵的定义">矩阵的定义</a></h2>
+<p>区分<strong>vector</strong>与<strong>matrix</strong>：<strong>vector</strong>指向量，<strong>matrix</strong>指矩阵，而<strong>array</strong>则是两者的统称。</p>
+<p><code>,</code>和<code>空格</code>用来间隔列<code>column</code>，<code>;</code>用来间隔行<code>row</code></p>
+<pre><code>a = [1 2 3];		%这是一个行向量
+b = [4, 5, 6];		%这也是一个行向量
+c = [7; 8; 9];		%这是一个列向量
+</code></pre>
+<h4 id="向量乘法"><a class="header" href="#向量乘法">向量乘法</a></h4>
+<p>行向量乘列向量结果是一个数，而列向量乘行向量结果是一个矩阵：</p>
+<pre><code class="language-matlab">&gt;&gt; a=[1 4 6];
+&gt;&gt; b=[3;4;8];
+&gt;&gt; a*b			% 行向量乘列向量
+ans =
+    67
+&gt;&gt; b*a			% 列向量乘行向量
+ans =
+     3    12    18
+     4    16    24
+     8    32    48
+</code></pre>
+<br>
+<br>
+<h2 id="矩阵索引"><a class="header" href="#矩阵索引">矩阵索引</a></h2>
+<p>可以有多种索引方式，普通的<code>a(x, y)</code> 即第x行，第y列；
+<code>a(n)</code> 即从第一列开始依次1、2、3......；如图
+<img src="https://img-blog.csdnimg.cn/20200807202118186.png" alt="矩阵索引" /></p>
+<p>比较特殊的索引：
+<img src="https://img-blog.csdnimg.cn/20200807202040416.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70" alt="矩阵索引" />
+<strong>特别注意<code>A([1 3 5])</code>、<code>A([1 3; 1 3])</code>及<code>A([1 3], [1 3])</code>三者的区别</strong></p>
+<pre><code>&gt;&gt; A=[1 21 6; 5 17 9; 31 2 7];
+&gt;&gt; A([1 3 5])
+ans =
+     1    31    17
+&gt;&gt; A([1 3; 1 3])
+ans =
+     1    31
+     1    31
+&gt;&gt; A([1 3], [1 3])
+ans =
+     1     6
+    31     7
+</code></pre>
+<br>
+<br>
+<h2 id="使用创建向量"><a class="header" href="#使用创建向量">使用<code>:</code>创建向量</a></h2>
+<ul>
+<li><code>x = j:k</code> 创建一个包含元素 <code>[j,j+1,j+2,...,j+m]</code> 的单位间距向量 x</li>
+<li><code>x = j:i:k</code> 创建一个<code>j</code>为起点，<code>k</code>为终点，步长为 <code>i</code> 的向量</li>
+</ul>
+<blockquote>
+<p><img src="https://img-blog.csdnimg.cn/20200807203428911.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" />
+<code>str = 'a':2:'z'</code>将给出一个字符串：<code>'acdfh....z'</code>赋值给<code>str</code></p>
+</blockquote>
+<h4 id="使用索引"><a class="header" href="#使用索引">使用<code>:</code>索引</a></h4>
+<p>使用<code>A(3,:)</code>索引矩阵<code>A</code>的整个第三行
+<code>A(3,:)=[]</code>使矩阵<code>A</code>的整个第三行等于空矩阵：
+<img src="https://img-blog.csdnimg.cn/20200807204015999.png" alt="在这里插入图片描述" />
+<br></p>
+<h2 id="矩阵串联"><a class="header" href="#矩阵串联">矩阵串联</a></h2>
+<p>两个行数相同的矩阵可以通过<code>,</code>或<code>空格</code><strong>横向串联</strong>。即<code>[A,B]</code>或<code>[A B]</code>
+<img src="https://img-blog.csdnimg.cn/20200807211207207.png" alt="矩阵串联" />
+&gt;注意<code>A+B</code>并不能实现矩阵串联，而是<strong>矩阵加法</strong></p>
+<p>两个列数相同的矩阵可以通过<code>;</code><strong>纵向串联</strong>。<code>F=[[A,B];C;D]</code>实现下图：<img src="https://img-blog.csdnimg.cn/20200807212029880.png" alt="矩阵串联" />
+<br></p>
+<h2 id="矩阵运算-1"><a class="header" href="#矩阵运算-1">矩阵运算</a></h2>
+<ul>
+<li>矩阵加减运算均为对应元素的加减</li>
+<li>矩阵乘除运算区分<code>.*</code>,<code>./</code>与<code>*</code>,<code>/</code>
+<code>.*</code>为对应元素相乘，而普通的<code>*</code>则为矩阵乘法。</li>
+<li>矩阵的乘方<code>^</code>与矩阵乘除法类似，<code>.^</code>为对应元素的乘方。</li>
+<li>矩阵转置<code>'</code>，即为现代中的转置。</li>
+</ul>
+<pre><code>% 转置的一点运用
+&gt;&gt; M=rand(4)
+M =
+    0.8147    0.6324    0.9575    0.9572
+    0.9058    0.0975    0.9649    0.4854
+    0.1270    0.2785    0.1576    0.8003
+    0.9134    0.5469    0.9706    0.1419
+&gt;&gt; mean(M)
+ans =
+    0.6902    0.3888    0.7627    0.5962
+&gt;&gt; mean(M')'
+ans =
+    0.8404
+    0.6134
+    0.3408
+    0.6432
+% 直接使用 mean( ) 函数是对每一列求平均数（下面的内容），
+% 而有时候需要对每一列求平均数，则可以将 M 转置后求平均
+% 再转置为一列，即对应于原来矩阵每一行的平均数。
+</code></pre>
+<br>
+<br>
+<h2 id="一些特殊矩阵"><a class="header" href="#一些特殊矩阵">一些特殊矩阵</a></h2>
+<p><img src="https://img-blog.csdnimg.cn/20200807213321614.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70" alt="特殊矩阵" /></p>
+<ul>
+<li><code>linspace(x,y,n)</code>：线性间隔的向量。从x到y均等的给出n个数；
+<code>linspace(x,y)</code>：从x到y均等的给出100个数。</li>
+<li><code>logspace(a,b)</code>：在 10^a^ 和10^b^之间生成50个对数间距点；
+<code>logspace(a,b,n)</code>：在10^a^和10^b^之间生成n个对数间距点;
+注意不是均分</li>
+</ul>
+<pre><code>% logspace()不是均分
+&gt;&gt; logspace(1,2,3)
+ans =
+   10.0000   31.6228  100.0000
+</code></pre>
+<ul>
+<li><code>eye(n)</code>：n×n单位矩阵</li>
+<li><code>diag()</code>：对角矩阵 </li>
+<li><code>rand()</code>：均匀分布的随机数（服从[0,1]上均匀分布）</li>
+</ul>
+<br>
+<br>
+<h2 id="一些矩阵相关的函数"><a class="header" href="#一些矩阵相关的函数">一些矩阵相关的函数</a></h2>
+<p><img src="https://img-blog.csdnimg.cn/20200807213945664.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" /></p>
+<ul>
+<li><code>max(A)</code>：给出每一列中最大的数</li>
+<li><code>max(max(A))</code>：则可给出整个矩阵最大值</li>
+</ul>
+<pre><code>% max(A)：给出每一列中最大的数
+&gt;&gt; A=[8 1 6;3 5 7;4 9 2]
+A =
+     8     1     6
+     3     5     7
+     4     9     2
+&gt;&gt; max(A)
+ans =
+     8     9     7
+&gt;&gt; max(max(A))
+ans =
+     9
+</code></pre>
+<ul>
+<li>左边一栏均类似给出每一列中xx，<code>mean()</code>：平均数</li>
+</ul>
+<p><strong>对于右边一栏</strong></p>
+<ul>
+<li><code>sort(A)</code>：对于每一列，从小到大排序。若只有一行，则对行从小到大排</li>
+<li><code>sortrows(A)</code>：以行为单位(每行的数固定)，按照第一列的数从小到大排</li>
+</ul>
+<pre><code>&gt;&gt; A=[8 1 6;3 5 7;4 9 2]
+A =
+     8     1     6
+     3     5     7
+     4     9     2
+&gt;&gt; sort(A)			% 对每一列从小到大排序
+ans =
+     3     1     2
+     4     5     6
+     8     9     7
+&gt;&gt; sortrows(A)		% 以行为单位，按照每行第一个数的大小对行排序
+ans =
+     3     5     7
+     4     9     2
+     8     1     6
+     
+&gt;&gt; a=[4 6 2];
+&gt;&gt; sort(a)			% 若只有一行，则sort对行从小到大排
+ans =
+     2     4     6
+
+</code></pre>
+<ul>
+<li><code>size(A)</code>：给出行宽和列宽</li>
+<li><code>length(A)</code>：给出行宽(列数)</li>
+</ul>
+<pre><code>&gt;&gt; A=rand(3,5)
+A =
+    0.4218    0.9595    0.8491    0.7577    0.6555
+    0.9157    0.6557    0.9340    0.7431    0.1712
+    0.7922    0.0357    0.6787    0.3922    0.7060
+&gt;&gt; size(A)		%给出行宽和列宽
+ans =
+     3     5
+&gt;&gt; length(A)	%给出行宽
+ans =
+     5
+</code></pre>
+<ul>
+<li><code>find(A==x)</code>：给出矩阵A中等于x的元素位置（以列的形式呈现）</li>
+</ul>
+<pre><code>&gt;&gt; A=magic(3)		% 给出一个3x3的magic矩阵
+A =
+     8     1     6
+     3     5     7
+     4     9     2
+&gt;&gt; A(3,2)=7;		% 将(3,2)位置处的元素赋值为7
+&gt;&gt; find(A==7)		% 给出矩阵中等于7的元素位置
+ans =
+     6
+     8
+</code></pre>
+<blockquote>
+<p><strong>使用 strlength 而非 length 来确定字符串数组的每个元素中的字符数量。</strong><img src="https://img-blog.csdnimg.cn/20200807214658134.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" />
+<strong>length(str)结果为3</strong></p>
+</blockquote>
+<br>
+<br>
+<br>
+<h1 id="习题"><a class="header" href="#习题">习题</a></h1>
+<p><img src="https://img-blog.csdnimg.cn/20200807170423518.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70" alt="练习1" /></p>
+<pre><code>%%
+cos(sqrt((1+2+3+4)^3/5))
+%sqrt( )是matlab内置的平方根函数
+
+%%
+sin(sqrt(pi))+log(tan(1))
+%matlab中没有ln( )函数，log( )默认以e为底
+
+%%
+2^(3.5*1.7)
+
+%%
+exp(sin(10))
+%matlab中要表示自然对数e，用exp(1)表示即可；表示以e为底数的指数函数用exp(n)（e的n次方）
+</code></pre>
+<p><img src="https://img-blog.csdnimg.cn/20200807200910573.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70" alt="练习2" /></p>
+<pre><code>format rat;         %调整成分数显示
+ans=3/13+4/14+5/15
+
+format long;        %调整成高精度小数显示
+ans=3/13+4/14+5/15
+</code></pre>
+<br>
+<br>
+<br>
+<p>以上内容为个人笔记，部分图片来源于郭老师课件或课程截图。
+笔记汇总：<a href="https://blog.csdn.net/weixin_45840825/article/details/107865933">MATLAB基础教程</a>
+课程视频：<a href="https://www.bilibili.com/video/BV1DA411Y7bN">https://www.bilibili.com/video/BV1DA411Y7bN</a>
+课件下载：<a href="https://download.csdn.net/download/weixin_45840825/12696065">MATLAB教程</a>
+郭彦甫老师的YouTube主页：<a href="https://www.youtube.com/user/machinelearningandvi?pbjreload=101v">@Yanfu Kuo</a>
+原视频：<a href="https://www.youtube.com/watch?v=KHFZLkm9qs0&amp;t=8s">https://www.youtube.com/watch?v=KHFZLkm9qs0&amp;t=8s</a></p>
+<p>以下内容为个人笔记，部分图片来源于郭老师课件或课程截图。
+笔记汇总：<a href="https://blog.csdn.net/weixin_45840825/article/details/107865933">MATLAB基础教程</a>
+课程视频：<a href="https://www.bilibili.com/video/BV1DA411Y7bN">MATLAB基础教程-台大郭彦甫（14课全-高清-含课件）</a></p>
+<hr />
+<h1 id="a-hrefhttpsww2mathworkscnhelpmatlablearn_matlabscriptshtml脚本编写a"><a class="header" href="#a-hrefhttpsww2mathworkscnhelpmatlablearn_matlabscriptshtml脚本编写a"><a href="https://ww2.mathworks.cn/help/matlab/learn_matlab/scripts.html">脚本编写</a></a></h1>
+<p><code>%%</code>将整个脚本文件分为若干“节”，可以选择“运行当前节”来执行某部分代码，方便<code>debug</code>：
+<img src="https://img-blog.csdnimg.cn/img_convert/4b7442c2566b6ef2c8aa30d02574f983.png" alt="" /></p>
+<p>也可以添加断点<code>debug</code>，此时鼠标悬停于变量上可以查看该变量详细信息：<img src="https://img-blog.csdnimg.cn/img_convert/7ce57d20cd90d77dc6e6b947f79bb73f.png" alt="" />
+<br></p>
+<h1 id="结构化程序设计"><a class="header" href="#结构化程序设计">结构化程序设计</a></h1>
+<h3 id="a-hrefhttpsww2mathworkscnhelpmatlablogical-operationshtml逻辑运算符a"><a class="header" href="#a-hrefhttpsww2mathworkscnhelpmatlablogical-operationshtml逻辑运算符a"><a href="https://ww2.mathworks.cn/help/matlab/logical-operations.html">逻辑运算符</a></a></h3>
+<p>matlab中的不等于：<code>~=</code>
+其他均与c一致：<img src="https://img-blog.csdnimg.cn/img_convert/a1b0642b6fea36f81caca36bd2ba693a.png" alt="" /></p>
+<h3 id="控制语句"><a class="header" href="#控制语句">控制语句</a></h3>
+<p>注意matlab中<a href="https://ww2.mathworks.cn/help/matlab/ref/if.html">if-else</a>、<a href="https://ww2.mathworks.cn/help/matlab/ref/for.html">for</a>、<a href="https://ww2.mathworks.cn/help/matlab/ref/while.html">while</a>、<a href="https://ww2.mathworks.cn/help/matlab/ref/switch.html">switch</a>...均需要以<code>end</code>结尾
+<img src="https://img-blog.csdnimg.cn/img_convert/b5bd71f6749ea7602f1eb3b77cf3dd13.png" alt="" /></p>
+<ul>
+<li>matlab中<code>switch</code>语句与c不一样，不需要 <a href="https://ww2.mathworks.cn/help/matlab/ref/break.html">break</a> 跳出，不会逐一执行每一条。</li>
+<li><a href="https://ww2.mathworks.cn/help/matlab/ref/otherwise.html">otherwise</a> ：相当于<code>defult</code></li>
+<li><code>break</code>语句会结束<code>for</code>或<code>while</code>循环的执行，但不结束<code>switch</code>语句的执行。
+<img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501175733.png" alt="" /></li>
+</ul>
+<h3 id="为变量预分配空间"><a class="header" href="#为变量预分配空间">为变量预分配空间</a></h3>
+<p>如果未预分配空间（如前面script中第一节），matlab会在每次迭代时调整其大小，会比较费时间：
+<img src="https://img-blog.csdnimg.cn/img_convert/3d582f15a49e4c1da6c2f48e962af1b1.png" alt="" /></p>
+<ul>
+<li><code>tic-toc</code>可以用于计时。</li>
+</ul>
+<h3 id="script-小技巧"><a class="header" href="#script-小技巧">Script 小技巧</a></h3>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/1f841645ee6e0093bb5288865ea8fa66.png" alt="" />
++ 在脚本开头，使用下列 <code>command</code>：
+<code>clear all</code> ：删除以前的变量
+<code>close all</code> ：关闭所有的图形
++ 使用省略号使脚本更具可读性（添加<code>...</code>来换行）
++ 按<code>Ctrl+C</code>提前结束运行
+<br></p>
+<h1 id="自定义函数"><a class="header" href="#自定义函数">自定义函数</a></h1>
+<h3 id="a-hrefhttpsww2mathworkscnhelpmatlabreffunctionhtmlfunction-编写a"><a class="header" href="#a-hrefhttpsww2mathworkscnhelpmatlabreffunctionhtmlfunction-编写a"><a href="https://ww2.mathworks.cn/help/matlab/ref/function.html">function 编写</a></a></h3>
+<p>像这样定义一个 无参、无返回值 的函数：
+<img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501175803.png" alt="" /></p>
+<ul>
+<li>函数以关键字 <code>function</code> 开始，以 <code>end</code> 结尾；</li>
+<li>函数一般保存为单独文件，函数名 必须和 文件名一致；
+函数文件与脚本文件都为 <code>.m</code> 文件；</li>
+<li>也可将临时使用的函数定义在脚本文件内，但需要定义在文件最后；</li>
+<li>输入函数 <a href="https://ww2.mathworks.cn/help/matlab/ref/input.html"><code>input()</code></a>；
+输出可以用 <a href="https://ww2.mathworks.cn/help/matlab/ref/disp.html"><code>disp()</code></a> 或者 <a href="https://ww2.mathworks.cn/help/matlab/ref/fprintf.html"><code>fprintf()</code></a>——与c语言的 <code>printf</code> 使用基本一致，但需要注意 matlab 中对于字符串均使用 <code>''</code> 而不是 <code>&quot;&quot;</code> ，<code>fprintf()</code> 中的内容使用 <code>''</code>括起来；</li>
+</ul>
+<p>像这样定义一个 多参、多返回值 的函数（多输入输出）：
+<img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501180017.png" alt="" /></p>
+<ul>
+<li>注意在函数体中并不需要明示 <code>return</code> ，只需要在返回列表中写出对应的变量名就行，matlab会帮你做好一切；</li>
+<li>要在调用函数时接收返回值，使用类似 <code>[Acc Force]</code> 这样的变量矩阵来接收，函数将分别返回对应的值；使用 <code>[~, Force]</code> 来接收部分返回值；</li>
+</ul>
+<h3 id="a-hrefhttpsww2mathworkscnhelpmatlabreffunction_handlehtmlfunction-handlesa"><a class="header" href="#a-hrefhttpsww2mathworkscnhelpmatlabreffunction_handlehtmlfunction-handlesa"><a href="https://ww2.mathworks.cn/help/matlab/ref/function_handle.html">Function Handles</a></a></h3>
+<p><img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501175814.png" alt="" /></p>
+<p>一种创建匿名函数的方法，即不必在 <code>.m</code> 文件中定义的单行表达式函数。
+function handles 其实是一个 pointer，它使 <code>f</code> 指向函数 <code>exp(-2*x)</code> ；<code>f</code> 的输入在 <code>@(x)</code> 处，此处的 x 则将成为函数 exp 的输入参数。</p>
+<h1 id="练习"><a class="header" href="#练习">练习</a></h1>
+<p><img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501175828.png" alt="" /></p>
+<pre><code class="language-matlab">sum = 0; % 设置初始值为0
+i=1;
+while i &lt;= 999
+    sum = sum + i;
+    i = i+1;
+end
+fprintf('和为：%d\n', sum);
+</code></pre>
+<p><img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501175836.png" alt="" /></p>
+<pre><code class="language-matlab">%% 方法一：普通的遍历
+A = [0  -1  4
+     9 -14 25
+    -34 49 64]
+B = zeros(size(A)); %生成一个和A同样大小的全零矩阵
+for i=1:size(A, 1)  %遍历数组A
+    for j=1:size(A, 2)
+        if(A(i,j) &lt; 0)
+            B(i,j)=1; % 下标置为1表示数组A对应的元素为负
+            A(i,j)=0; % 负的项置为0
+        end
+    end
+end
+
+%% 方法二：矩阵思想
+A = [0  -1  4
+     9 -14 25
+    -34 49 64]
+B = A &lt; 0 %返回一个零一矩阵，数组A中元素小于0的对应位置为1
+A(B) = 0 %将数组B指定位置值置为0
+</code></pre>
+<p>请务必好好思考方法二，并运行一遍看看结果。
+MATLAB 的全称是 Matrix Laboratory（矩阵实验室），以矩阵的思维来利用matlab往往能事半功倍！</p>
+<p><img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501175845.png" alt="" /></p>
+<pre><code class="language-matlab">% 以下所有内容可以保存在一个脚本文件中
+% 或者也可以将函数单独保存在 F2C.m 文件中
+F = input('请输入华氏温度：');
+while(F) % 检查是否有输入
+    fprintf('摄氏温度为：%f\n', F2C(F));
+    
+    F = input('请继续输入华氏温度：(输入空行结束)');
+end
+
+function C = F2C(F)
+    C = (F-32).*5./9;
+end
+</code></pre>
+<p>以下内容为个人笔记，部分图片来源于郭老师课件或课程截图。
+笔记汇总：<a href="https://blog.csdn.net/weixin_45840825/article/details/107865933">MATLAB基础教程</a>
+课程视频：<a href="https://www.bilibili.com/video/BV1DA411Y7bN">MATLAB基础教程-台大郭彦甫（14课全-高清-含课件）</a></p>
+<hr />
+<h1 id="a-hrefhttpsww2mathworkscnhelpmatlabdata-typeshtml变量类型a"><a class="header" href="#a-hrefhttpsww2mathworkscnhelpmatlabdata-typeshtml变量类型a"><a href="https://ww2.mathworks.cn/help/matlab/data-types.html">变量类型</a></a></h1>
+<p><img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501173338.png" alt="" /></p>
+<ul>
+<li>如上图所示，对于 <code>int</code> 需要显示指出位数，没有普通的 <code>int</code> ，对于 <code>float</code> ，对应matlab中的是 <code>single</code>；</li>
+<li>默认情况下，matlab 将所有数值型的数据都存储为 double；
+如果希望以其他类型存储，需要显示指出：<code>x = int32(4)</code>；</li>
+<li>事实上，类似上述 <a href="https://ww2.mathworks.cn/help/matlab/ref/int32.html">int32()</a> 这样显示指出类型本质上是一个函数，将数据类型转换；
+类似的还有 <a href="https://ww2.mathworks.cn/help/matlab/ref/uint32.html">uint32()</a>、<a href="https://ww2.mathworks.cn/help/matlab/ref/double.html">double()</a> 等，上图各类型都有对应的函数。</li>
+<li><code>x = 'c'</code> 像这样用单引号括起来一个字符，即为 char 类型</li>
+</ul>
+<h3 id="a-hrefhttpsww2mathworkscnhelpmatlabrefstringhtmlstringa"><a class="header" href="#a-hrefhttpsww2mathworkscnhelpmatlabrefstringhtmlstringa"><a href="https://ww2.mathworks.cn/help/matlab/ref/string.html">String</a></a></h3>
+<p>字符串实际上是个字符 array ，因此可对其进行矩阵操作：
+<img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501173449.png" alt="" /></p>
+<ul>
+<li><code>[s1 s2]</code> 直接将两个字符串相连；</li>
+<li><code>[s1; s2]</code> 理论上将并联形成两行矩阵，但该例中 s1 与 s2 行宽不等，会报错；</li>
+<li>逻辑运算符用于 string，与应用于矩阵效果一致：
+<img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501173540.png" alt="" /></li>
+</ul>
+<h3 id="a-hrefhttpsww2mathworkscnhelpmatlabrefstructhtmlstructa"><a class="header" href="#a-hrefhttpsww2mathworkscnhelpmatlabrefstructhtmlstructa"><a href="https://ww2.mathworks.cn/help/matlab/ref/struct.html">Struct</a></a></h3>
+<p>struct 的声明，直接像下图一样赋值即可：
+<img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501173619.png" alt="image-20210127205220279" /></p>
+<ul>
+<li>
+<p>声明一个 struct 数组则如此：
+<img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501173649.png" alt="image-20210127205003761" /></p>
+</li>
+<li>
+<p>嵌套 struct 如下图操作：
+注意data、nest...是 struct 的下级
+<img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501173712.png" alt="image-20210127205246319" /></p>
+</li>
+</ul>
+<h3 id="a-hrefhttpsww2mathworkscnhelpmatlabrefcellhtmlcella"><a class="header" href="#a-hrefhttpsww2mathworkscnhelpmatlabrefcellhtmlcella"><a href="https://ww2.mathworks.cn/help/matlab/ref/cell.html">cell</a></a></h3>
+<p>存储异构数据的另一种方法，与矩阵相似，但每个条目包含不同类型的数据；
+声明使用 <code>{}</code> ，如图两种方式均可：
+<img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501173737.png" alt="image-20210127205518872" /></p>
+<ul>
+<li>
+<p>使用 <code>C = {, , ; , , }</code> 创建一个 2×3 的 cell
+<code>,</code> 用来分隔 cell 中的列， <code>;</code> 用来分隔 cell 中的行
+<img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501173755.png" alt="image-20210127205720308" /></p>
+</li>
+<li>
+<p>使用 <code>{}</code> 可以得到具体的矩阵或 string
+注意使用 <code>()</code> 和 <code>{}</code> 的区别
+<img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501173811.png" alt="image-20210127205751298" /></p>
+</li>
+<li>
+<p><strong><a href="https://ww2.mathworks.cn/help/matlab/ref/cell2struct.html">cell2struct()</a> 通过 cell 数组中包含的信息创建一个结构体，重点了解！</strong>
+<a href="https://ww2.mathworks.cn/help/matlab/ref/num2cell.html">num2cell()</a> 将数组转换为相同大小的 cell
+<a href="https://ww2.mathworks.cn/help/matlab/ref/mat2cell.html">mat2cell()</a> 指定行、列划分数组为 cell</p>
+</li>
+</ul>
+<h3 id="多维数组"><a class="header" href="#多维数组">多维数组</a></h3>
+<p>方法一：如图所示用 <code>{}</code> 加三个下标声明：
+<img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501173831.png" alt="image-20210127205932788" /></p>
+<p>方法二：也可以使用 <a href="https://ww2.mathworks.cn/help/matlab/ref/cat.html">cat()</a> 函数串联数组：
+<img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501173916.png" alt="image-20210127210040073" /></p>
+<ul>
+<li>第一个参数为1：纵向串联，需要A、B两个矩阵行宽（列数）一致；
+第一个参数为2：横向串联，需要A、B两个矩阵列宽一致；
+第一个参数为3：前后三维串联，需要A、B两个矩阵行宽和列宽均一致；</li>
+<li>直接使用 <code>[A; B]</code> 与 <code>cat(1, A, B)</code> 效果一致；
+直接使用 <code>[A B]</code> 与 <code>cat(2, A, B)</code> 效果一致</li>
+<li><a href="https://ww2.mathworks.cn/help/matlab/ref/size.html">size()</a> 可以给出矩阵长度
+<code>size(A, 1)</code>：第 1 维的长度，上图中 dim1 的宽度，即列宽；
+<code>size(A, 2)</code>：第 2 维的长度，dim2 的宽度，行宽；
+<code>size(A, 3)</code>：第 3 维的长度，dim3 的宽度</li>
+<li><a href="https://ww2.mathworks.cn/help/matlab/ref/reshape.html">reshape()</a> 改变数组行列数：
+可以看出 matlab 是 按列优先 存储矩阵的
+<img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501174024.png" alt="image-20210127211922049" />
+<img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501174039.png" alt="image-20210127211939120" /></li>
+</ul>
+<p><a href="https://ww2.mathworks.cn/help/matlab/ref/isinteger.html">isinteger()</a>、<a href="https://ww2.mathworks.cn/help/matlab/ref/isnan.html">isnan()</a>、<a href="https://ww2.mathworks.cn/help/matlab/ref/iscell.html">iscell()</a>、<a href="https://ww2.mathworks.cn/help/matlab/ref/isempty.html">isempty()</a> 等方法，如他们的名字一样，用来核实变量类型。</p>
+<h1 id="数据存取"><a class="header" href="#数据存取">数据存取</a></h1>
+<h3 id="a-hrefhttpsww2mathworkscnhelpmatlabrefsavehtmlsavea-和-a-hrefhttpsww2mathworkscnhelpmatlabrefloadhtmlloada"><a class="header" href="#a-hrefhttpsww2mathworkscnhelpmatlabrefsavehtmlsavea-和-a-hrefhttpsww2mathworkscnhelpmatlabrefloadhtmlloada"><a href="https://ww2.mathworks.cn/help/matlab/ref/save.html">save()</a> 和 <a href="https://ww2.mathworks.cn/help/matlab/ref/load.html">load()</a></a></h3>
+<p><img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501174112.png" alt="image-20210128162227444" /></p>
+<ul>
+<li>使用 <code>save mydata.mat</code> 储存
+使用 <code>load('mydata.mat')</code> 读取</li>
+<li><code>save mydata.mat</code> 将数据以 matlab 私有格式存取为二进制文件，其他文本编辑器如 notepad 无法读取文件内容，但matlab使用 <code>load()</code> 读取文件时将得到完整数据（包括变量名、数据内容等）</li>
+<li><code>save mydata.mat -ascii</code> 实际上将所有数据存储为一个矩阵，其他文本编辑器可以读取到文件内容，但 matlab 使用 <code>load()</code> 读取文件时将所有数据以一个矩阵形式存入一个 matrix 变量中（如果行列无法对齐的话 matlab 还会报错）</li>
+<li><code>mydata1.mat</code> 中存储的数据如红框所示，<code>load()</code> 正常读取；
+<code>mydata2.mat</code> 中存储数据与 <code>mydata1.mat</code> 中一致，但以 <code>-ascii</code> 形式存储，读取时因为行列无法对齐报错；
+<code>mydata3.mat</code> 中存储的是 <code>mydata1.mat</code> 中删除一个 1×2 的 vector <code>ans</code> 后的数据，以 <code>-ascii</code> 形式存储，<code>load()</code> 得到一个 8×4的矩阵。
+<img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501174132.png" alt="image-20210128163624676" /></li>
+<li><code>save('pqfile.mat','p','q')</code> 或者 <code>save pqfile.mat p q</code> 将指定变量 <code>p</code>、<code>q</code> 保存到文件 <code>pdfile.mat</code> 中</li>
+</ul>
+<h3 id="向-excel-中读写数据"><a class="header" href="#向-excel-中读写数据">向 Excel 中读写数据</a></h3>
+<p>关于 <a href="https://ww2.mathworks.cn/help/matlab/ref/xlsread.html">xlsread()</a> 和 <a href="https://ww2.mathworks.cn/help/matlab/ref/xlswrite.html">xlswrite</a>：从 R2019a 开始 matlab 建议不再使用，以新函数代替。经过比较，新函数确实更加好用，也支持更多的文件格式，下面介绍新函数。</p>
+<h3 id="a-hrefhttpsww2mathworkscnhelpmatlabrefxlsreadhtmlxlsreada-的替代品a-hrefhttpsww2mathworkscnhelpmatlabrefreadmatrixhtmlreadmatrixa-和-a-hrefhttpsww2mathworkscnhelpmatlabrefreadcellhtmlreadcella"><a class="header" href="#a-hrefhttpsww2mathworkscnhelpmatlabrefxlsreadhtmlxlsreada-的替代品a-hrefhttpsww2mathworkscnhelpmatlabrefreadmatrixhtmlreadmatrixa-和-a-hrefhttpsww2mathworkscnhelpmatlabrefreadcellhtmlreadcella"><a href="https://ww2.mathworks.cn/help/matlab/ref/xlsread.html">xlsread()</a> 的替代品：<a href="https://ww2.mathworks.cn/help/matlab/ref/readmatrix.html">readmatrix()</a> 和 <a href="https://ww2.mathworks.cn/help/matlab/ref/readcell.html">readcell()</a></a></h3>
+<p><a href="https://ww2.mathworks.cn/help/matlab/ref/readmatrix.html"><code>readmatrix()</code></a>：将内容读取为一个 matrix
+<img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501174152.png" alt="image-20210128165111815" /></p>
+<ul>
+<li><a href="https://ww2.mathworks.cn/help/matlab/ref/readmatrix.html"><code>readmatrix()</code></a> 只读取数据，如果指定范围内有其他内容（如 string 等），将直接跳过；</li>
+<li>格式：<code>M = readmatrix('filename.xlsx','Sheet','sheetname','Range','rangenumber')</code>
+也可以直接 <code>M = readmatrixd('filename.xlsx')</code> 读取文件中所有数据；</li>
+<li>如果要读取的文件不再matlab当前的工作路径下，则在 <code>filename</code> 中指定完整路径名；</li>
+</ul>
+<p><a href="https://ww2.mathworks.cn/help/matlab/ref/readcell.html"><code>readcell()</code> </a>：将内容读取为一个 cell
+使用方法与 <code>readmatrix()</code> 一致，但 <code>readcell()</code> 不止读取数据，而是读取指定范围内所有内容，并以 cell 存储入变量 M</p>
+<h3 id="a-hrefhttpsww2mathworkscnhelpmatlabrefxlswritehtmlxlswritea-的替代品a-hrefhttpsww2mathworkscnhelpmatlabrefwritematrixhtmlwritematrixa-和-a-hrefhttpsww2mathworkscnhelpmatlabrefwritecellhtmlwritecella"><a class="header" href="#a-hrefhttpsww2mathworkscnhelpmatlabrefxlswritehtmlxlswritea-的替代品a-hrefhttpsww2mathworkscnhelpmatlabrefwritematrixhtmlwritematrixa-和-a-hrefhttpsww2mathworkscnhelpmatlabrefwritecellhtmlwritecella"><a href="https://ww2.mathworks.cn/help/matlab/ref/xlswrite.html">xlswrite()</a> 的替代品：<a href="https://ww2.mathworks.cn/help/matlab/ref/writematrix.html">writematrix()</a> 和 <a href="https://ww2.mathworks.cn/help/matlab/ref/writecell.html">writecell()</a></a></h3>
+<h4 id="使用-writematrix-将矩阵写入-txt-文档"><a class="header" href="#使用-writematrix-将矩阵写入-txt-文档">使用 <code>writematrix()</code> 将矩阵写入 .txt 文档：</a></h4>
+<p><img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501174215.png" alt="image-20210128170138303" /></p>
+<ul>
+<li>直接 <code>writematrix(M)</code> 则默认以逗号分隔各元素写入 M.txt 文件中；</li>
+<li>指定分隔符则使用 <code>writematrix(M, 'filename.txt', 'Delimiter', ' ')</code>；
+matlab 支持使用 <code> </code>、<code>\t</code>、<code>,</code>、<code>;</code>、<code>|</code>（对应的字符名称为 <code>space</code>、<code>tab</code>、<code>comma</code>、<code>semi</code>、<code>bar</code>）作为分隔符</li>
+</ul>
+<h4 id="使用-writematrix-将矩阵写入-excel-文档"><a class="header" href="#使用-writematrix-将矩阵写入-excel-文档">使用 <code>writematrix()</code> 将矩阵写入 Excel 文档</a></h4>
+<p><code>writematrix(M, 'M.xls')</code> 将矩阵 M 储存的数据写入表格 M.xls
+<code>writematrix(M, 'M.xls', 'Sheet', 2, 'Range', 'A3:E8')</code> 规定范围写入指定表格，注意参数列表中 <code>sheet</code> 后的参数可以是表格名也可以是第 <code>x</code> 个表格
+<img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501174233.png" alt="image-20210128170828580" /></p>
+<p>使用 <code>writecell()</code> 将 cell 写入 Excel 文档，调用格式与 <code>writematrix()</code> 一致；</p>
+<blockquote>
+<p>关键在于如何将数据与字符同时写入文档，我尝试过将数据矩阵和表头矩阵放入一个 cell 中，效果并不理想。matlab 在写入时，似乎将 cell 的一个单元放入一个格子中，这也就意味着如果要得到预期效果需要将每一个数据以及每一个表头都作为 cell 的一个单元存储，似乎比较麻烦。我尝试使用以下方法：</p>
+</blockquote>
+<p>将横轴的表头以 1×n 的 cell 存入 <code>title1</code>：<code>title1 = {'day1', 'day2', 'day3', 'day4', 'day5', 'day6'}</code>；
+将纵轴的表头以 n×1 的 cell 存入 <code>title2</code>：<code>title2 = {'mut1'; 'mut2'; 'mut3'; 'mut4'; 'mut5'; 'mut6'}</code>；
+再利用 <code>writecell()</code> 写入指定位置即可：
+<img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501174259.png" alt="image-20210128172200636" />
+该代码完整写入了表头和数据，效果如下：
+<img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501174317.png" alt="image-20210128172244897" /></p>
+<h3 id="低阶文件处理-io-函数"><a class="header" href="#低阶文件处理-io-函数">低阶文件处理 I/O 函数</a></h3>
+<p>无论是写入还是读取都要先获得 <code>file id</code>，即通过 <a href="https://ww2.mathworks.cn/help/matlab/ref/fopen.html">fopen()</a> 函数返回值获得；
+写入时，<code>fopen()</code> 函数的 <code>permission</code> 参数处为 <code>w</code>，读取时为 <code>r</code>；
+操作完毕后务必使用 <a href="https://ww2.mathworks.cn/help/matlab/ref/fclose.html">fclose(fid)</a> 函数关闭文件，否则 matlab 将一直占用文件；
+<img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501174339.png" alt="image-20210128172544801" />
+<img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501174357.png" alt="image-20210128172559984" />
+<img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501174419.png" alt="image-20210128172613821" /></p>
+<p><code>feof(fid)</code> 检查是否到达文件结尾，到达结尾返回 <code>true</code>：
+<img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501174440.png" alt="image-20210128172647143" /></p>
+<h1 id="练习-1"><a class="header" href="#练习-1">练习</a></h1>
+<p><img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501174501.png" alt="image-20210128173059248" /></p>
+<pre><code class="language-matlab">s1 = 'I like the letter E';
+s2 = s1(size(s1, 2):-1:1) %从s1的最后一个字符向前一个一个拷贝给s2
+
+s3 = reverse(s1) %直接使用函数
+</code></pre>
+<p><img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501174516.png" alt="image-20210128174159435" /></p>
+<pre><code class="language-matlab">B(1,1)={'This is the first cell'};
+B(1,2)={[5+6j 4+5j]};
+B(2,1)={[1 2 3; 4 5 6; 7 8 9]};
+B(2,2)={[{'Tim'}, {'Chris'}]};
+B
+</code></pre>
+<p>以下内容为个人笔记，部分图片来源于郭老师课件或课程截图。
+笔记汇总：<a href="https://blog.csdn.net/weixin_45840825/article/details/107865933">MATLAB基础教程</a>
+课程视频：<a href="https://www.bilibili.com/video/BV1DA411Y7bN">MATLAB基础教程-台大郭彦甫（14课全-高清-含课件）</a></p>
+<hr />
+<h1 id="基础绘图"><a class="header" href="#基础绘图">基础绘图</a></h1>
+<h3 id="a-hrefhttpsww2mathworkscnhelpmatlabrefplothtmlplota-基本使用"><a class="header" href="#a-hrefhttpsww2mathworkscnhelpmatlabrefplothtmlplota-基本使用"><a href="https://ww2.mathworks.cn/help/matlab/ref/plot.html">plot()</a> 基本使用</a></h3>
+<p><img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501174843.png" alt="image-20210128181159657" /></p>
+<ul>
+<li><code>plot(x,y)</code>：如果 X 和 Y 都是向量，则它们的长度必须相同，plot 函数绘制 Y 对 X 的图；</li>
+<li>如果 X 和 Y 均为矩阵，则它们的大小必须相同，plot 函数绘制 Y 的列对 X 的列的图（即矩阵X的第1列的数据记为一个vector：x1，Y的第一列记为一个vector：y1，plot(x1, y2)，第2, 3, 4…列类似。将对应的每一列绘制成一个单独的线条）。如：
+<img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501174854.png" alt="image-20210128181737627" /></li>
+<li>如果 X 或 Y 中的一个是向量而另一个是矩阵，则矩阵的各维中必须有一维与向量的长度相等。如果矩阵的列宽等于向量长度，则 plot 函数绘制矩阵中的每一列对向量的图。**如果矩阵的行宽等于向量长度，则该函数绘制矩阵中的每一行对向量的图。**如果矩阵为方阵，则该函数绘制每一列对向量的图。
+通常都会使矩阵的行宽等于向量长度，从而一次画多图，如：
+<img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501174906.png" alt="image-20210128182535419" /></li>
+<li><code>plot(x, y1, x, y2)</code>：同时画两条线；
+<code>plot(y)</code>：分别以x=1,2,3….对应于y的第1,2,3…个数值描点连线（即自动为y配置x坐标）；</li>
+<li>使用 <code>hold on</code> 保持上一次画图，使用 <code>hold off</code> 来关闭此功能， 不使用 <code>hold off</code> 画图将一直存在
+<img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501174915.png" alt="image-20210128194715807" /></li>
+</ul>
+<h3 id="plot-描点连线"><a class="header" href="#plot-描点连线">plot() 描点、连线</a></h3>
+<ul>
+<li><code>plot(X,Y,LineSpec)</code> 设置线型、标记符号和颜色
+<code>LIneSpec</code> 的内容可以包含三个参数，<del>第一个表示颜色，第二个表示连线的类型，第三个表示描点的类型（误）</del>，事实上这三个参数的顺序无关紧要；
+<code>plot(x,y,'b--o')</code> 即表示使用蓝色虚线，带圆形标记画图；
+各类型对应表示如下：
+<img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501174926.png" alt="image-20210128195116498" /></li>
+<li><code>plot(X1,Y1,LineSpec1,...,Xn,Yn,LineSpecn)</code> 设置每个线条的线型、标记符号和颜色. 可以混用 X、Y、LineSpec 三元组和 X、Y 对组：例如 <code>plot(X1,Y1,X2,Y2,LineSpec2,X3,Y3)</code></li>
+</ul>
+<h3 id="a-hrefhttpsww2mathworkscnhelpmatlabreflegendhtmllegenda-添加图例"><a class="header" href="#a-hrefhttpsww2mathworkscnhelpmatlabreflegendhtmllegenda-添加图例"><a href="https://ww2.mathworks.cn/help/matlab/ref/legend.html">legend()</a> 添加图例</a></h3>
+<ul>
+<li>添加图例，参数内容与画图时 <code>plot()</code> 的参数内容一一对应；
+<img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501174935.png" alt="image-20210128195229283" /></li>
+<li>也可以在画图时添加图例：<code>plot(x,y,'DisplayName','cos(x)')</code> 固定参数 <code>DisplayName</code>(可省略) 后的 <code>cos(x)</code> 即是为该曲线添加的图例说明；</li>
+<li>为图例指定其他参数：
+<img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501174950.png" alt="image-20210128195624063" /></li>
+<li>图例位置参数对应的参数：<img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501174958.png" alt="image-20210128195643224" /></li>
+</ul>
+<h3 id="添加标题与坐标轴"><a class="header" href="#添加标题与坐标轴">添加标题与坐标轴</a></h3>
+<p><img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501175006.png" alt="image-20210128200438442" /></p>
+<ul>
+<li><a href="https://ww2.mathworks.cn/help/matlab/ref/title.html">title()</a>：为图添加标题；</li>
+<li><a href="https://ww2.mathworks.cn/help/matlab/ref/suptitle.html">suptitle()</a> 在一个 figure 中画多个子图时，添加一个大标题；</li>
+<li><a href="https://ww2.mathworks.cn/help/matlab/ref/xlabel.html">xlabel()</a>、<a href="https://ww2.mathworks.cn/help/matlab/ref/ylabel.html">ylabel()</a>、<a href="https://ww2.mathworks.cn/help/matlab/ref/zlabel.html">zlabel()</a>：为 x y z 轴添加题注；
+注意诸如 <code>\pi</code> <code>e^{-x}</code> 这样的写法，使得公式显示的更漂亮</li>
+</ul>
+<h3 id="在图中添加文本说明"><a class="header" href="#在图中添加文本说明">在图中添加文本说明</a></h3>
+<p><img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501175018.png" alt="image-20210128201018418" /></p>
+<ul>
+<li>
+<p><a href="https://ww2.mathworks.cn/help/matlab/ref/line.html">line()</a>：绘制基本线条. 在课件的这段代码中，<code>line()</code> 的第一个参数是 x 坐标，第二个参数是 y 坐标. 按照这两个向量连线画图；
+其实效果与plot差不多，基本的使用也与plot一样：
+<img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501175032.png" alt="" /></p>
+</li>
+<li>
+<p><a href="https://ww2.mathworks.cn/help/matlab/ref/text.html">text()</a>：为数据点添加文本说明. 在课件中是使用 <code>text()</code> 结合 latex 语法在图中添加公式说明. 如课件截图中的标识，需要在 latex 语法前后添加 <code>$$</code>，以字符串的形式记入一个 string 变量 str 中；<code>text()</code> 前两个参数是说明在图中的起始位置，第3个参数是 latex 语句字符串，后两个是使用 latex 语法添加说明时的固有格式. 如果只是向图中添加普通文本说明，而非特殊语法(如latex语法)，则不需要最后两个参数.</p>
+<p><code>text()</code> 还有很多不同用法，可以为图添加非常漂亮的说明，可以查看 <a href="https://ww2.mathworks.cn/help/matlab/ref/text.html">text()的官方文档</a>，但就画图的出发点而言，其他的各种效果均可以通过截图添加文本实现，如此更加方便.</p>
+</li>
+<li>
+<p><code>Annotation(lineType, x, y)</code>：创建一个在当前图窗中的两个点之间延伸的线条或箭头注释。
+将 <code>lineType</code> 指定为 <code>line</code>(线条)、<code>arrow</code>(箭头) 或 <code>doublearrow</code>(双向箭头). 
+将 x 和 y 分别指定为 <code>[x_begin, x_end]</code> 和 <code>[y_begin, y_end]</code> 形式的二元素向量.</p>
+</li>
+</ul>
+<h1 id="获取图像的相关-handle-更改图像属性"><a class="header" href="#获取图像的相关-handle-更改图像属性">获取图像的相关 handle 更改图像属性</a></h1>
+<h3 id="图像的属性"><a class="header" href="#图像的属性">图像的属性</a></h3>
+<p>画出的一个图主要包括 Figure  Axes  Line 三个 Object
+<img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501175043.png" alt="image-20210128203041729" /></p>
+<ul>
+<li>
+<p>通过 <code>h = plot(x,y)</code> 可以使 <code>h</code> 得到画出图形中 Line 的 handle (类似于file id)，以后便可以通过 h 来改变 Line 的一些属性； <code>gcf</code>、<code>gca</code>也类似</p>
+</li>
+<li>
+<p>比如像下面这样利用 <code>gca</code> 来改变 Axes，即数轴的属性：
+如图所示，<a href="https://ww2.mathworks.cn/help/matlab/ref/set.html">set()</a>、<a href="https://ww2.mathworks.cn/help/matlab/ref/xlim.html">xlim()</a>两种方式均可以改变数轴的范围
+<img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501175051.png" alt="image-20210128203426352" /></p>
+</li>
+<li>
+<p>从 R2014b 开始，matlab 已经支持类似 sturct 的圆点法来设置属性：
+下属代码可以达到一样的效果，（此方法严格遵守大小写，<code>g.xlim</code> 不可行）</p>
+<pre><code class="language-matlab">g = gca;
+g.XLim = [0, 2*pi];
+g.YLim = [-1.2, 1.2];
+</code></pre>
+</li>
+</ul>
+<h3 id="设置数轴的字体与刻度"><a class="header" href="#设置数轴的字体与刻度">设置数轴的字体与刻度</a></h3>
+<p><img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501175103.png" alt="image-20210128204709889" /></p>
+<ul>
+<li>
+<p><code>set(gca, 'fontsize', 25)</code>：可以将数轴上的字体设置为25号大小；</p>
+</li>
+<li>
+<p><code>set(gca, 'xtick'……)</code> 与 <code>set(gca, 'xticklabel'….)</code> 配合使用，前者 <code>xtick</code> 用于在数轴上对应的点处标出刻度，后者 <code>xticklabel</code> 在标出的刻度上对应地指定一个标签；
+课件中的例子即为：在 <code>x=0</code>, <code>pi/2</code>, <code>pi</code>, <code>3pi/2</code>, <code>2pi</code> 处标出刻度，然后以 0, 90, 180, 270, 360 对应地写上数轴；</p>
+</li>
+<li>
+<p>从 R2014b 开始，matlab 已经支持类似 sturct 的圆点法来设置属性：</p>
+<pre><code class="language-matlab">g = gca;
+g.FontSize = 25;
+g.Xtick = 0:pi/2:2*pi; g.XtickLabel = 0:90:360;
+g.Xtick = 0:pi/2:2*pi; g.XtickLabel = {'0', '\pi/2', '\pi', '3\pi/2', '2\pi'};
+</code></pre>
+</li>
+<li>
+<p><a href="https://ww2.mathworks.cn/help/matlab/ref/xtickangle.html">xtickangle(angle)</a>：将当前坐标区的 x 轴刻度标签旋转到指定角度（以度为单位），其中 0 表示水平。指定正值表示逆时针旋转，负值表示顺时针旋转；
+<code>xtickangle(ax,angle)</code>：旋转 ax 指定的坐标区的刻度标签，而不是旋转当前坐标区的刻度标签；</p>
+</li>
+<li>
+<p>x轴用时间表示：
+<img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501175120.png" alt="image-20210128205503161" /></p>
+</li>
+</ul>
+<p>课件中的第三例，预期在x轴上标出 0, π/2….：
+<img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501175432.png" alt="image-20210128205811878" />
+但貌似较新版本的 matlab 已经无法实现（2016b以及以上不再支持  ）.
+我利用与第二例类似的方法：</p>
+<pre><code class="language-matlab">set(gca,'xtick',0:pi/2:2*pi);
+set(gca,'xticklabel',{'0','\pi/2','\pi','3\pi/2','2\pi'});
+</code></pre>
+<p>得到了不错的效果：
+<img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501175128.png" alt="image-20210128205842167" /></p>
+<h3 id="更改线条属性"><a class="header" href="#更改线条属性">更改线条属性</a></h3>
+<p><img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501175136.png" alt="image-20210128205911308" /></p>
+<ul>
+<li><a href="https://ww2.mathworks.cn/help/matlab/ref/delete.html">delete(h)</a>：将画好的图形清除；</li>
+<li>使用圆点法完成上图实例
+<img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501175145.png" alt="image-20210128210042702" /></li>
+</ul>
+<h3 id="描点属性"><a class="header" href="#描点属性">描点属性</a></h3>
+<p>描出好看的点：
+<img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501175154.png" alt="image-20210128210207109" /></p>
+<ul>
+<li><code>plot()</code> 有多个可选参数，这是常见的几个 <a href="https://ww2.mathworks.cn/help/matlab/ref/matlab.graphics.chart.primitive.line-properties.html">Line属性</a> ：
+<img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501175201.png" alt="image-20210128210432206" /></li>
+<li>由于需要所画图形的光滑性，对x的取值一般比较密集，这样一来对点的标记效果可能不理想，此时可以使用 <code>MarkerIndices</code> 参数选择性地标记部分点：
+x 实际上是一个 1×100 的向量，如果每一点都做标记，呈现的是一连串标记而非曲线，如图所示设置标记点 <code>1:5:length(y)</code>，每5个数据点做一个标记，即能达到预期效果
+<img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501175215.png" alt="image-20210128210524511" /></li>
+</ul>
+<h3 id="多图多-figure"><a class="header" href="#多图多-figure">多图多 Figure</a></h3>
+<p><img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501175223.png" alt="image-20210128210711427" /></p>
+<ul>
+<li>在画图前加上 <a href="https://ww2.mathworks.cn/help/matlab/ref/figure.html">figure</a> 指令，然后 <code>plot()</code> 将创建第一个视窗 Figure1，第二次画图前若再加上figure 再 plot，则将创建第二个视窗 Figure2，前一个视窗依然在；</li>
+<li>还可以使用 <code>h = figure(1)</code> 创建一个编号为 1 的 Figure，并获得它的 handle，便可在有多个 Figure 时，利用 <code>h</code> 来设置编号为 1 的 Figure 的相关属性；</li>
+<li>需要注意的是，画多图后，“当前窗口”指的是最新创建的视窗，所以 gca、gcf 这些指令所做出的操作，结果均作用于最新创建的视窗；</li>
+</ul>
+<h3 id="多图多-figure-1"><a class="header" href="#多图多-figure-1">多图多 Figure</a></h3>
+<p><img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501175231.png" alt="image-20210128211138828" /></p>
+<ul>
+<li><a href="https://ww2.mathworks.cn/help/matlab/ref/subplot.html">subplot(m,n,p)</a> 将当前图窗划分为 m×n 网格，并在 p 指定的位置创建坐标区。按行号对子图位置进行编号. 第一个子图是第一行的第一列，第二个子图是第一行的第二列，依此类推. 如果指定的位置已存在坐标区，则此命令会将该坐标区设为当前坐标区；</li>
+<li><code>subplot(2,2,[3,4])</code>：连接 3、4 两个位置画一个长图；</li>
+<li>自定义子图的位置：
+<img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501175238.png" alt="image-20210128211352682" /></li>
+<li>创建一个包含多个子图的图窗，将每一个子图的 Axes 存入变量中，但不画图。所有子图创建完后再定位到目标子图，画图并进行更多个性化操作：
+<img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501175247.png" alt="image-20210128211419425.png" /></li>
+</ul>
+<h3 id="图像个性化操作"><a class="header" href="#图像个性化操作">图像个性化操作</a></h3>
+<p><img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501175257.png" alt="image-20210128211524132" /></p>
+<ul>
+<li><a href="https://ww2.mathworks.cn/help/matlab/ref/grid.html">grid on/off</a>：使网格可见或不可见
+<a href="https://ww2.mathworks.cn/help/matlab/ref/box.html">box on/off</a>：使盒子可见或不可见（即数轴左方和上方的边框）
+<a href="https://ww2.mathworks.cn/help/matlab/ref/axis.html">axis on/off</a>：使数轴可见或不可见</li>
+</ul>
+<h3 id="保存绘图"><a class="header" href="#保存绘图">保存绘图</a></h3>
+<ul>
+<li>
+<p><a href="https://ww2.mathworks.cn/help/matlab/ref/saveas.html">saveas(fig,filename)</a>：将 <code>fig</code> 指定的图窗保存到 filename 文件中。务必加上文件扩展名，例如 <code>myplot.jpg</code>，如果不指定扩展名，则 <code>saveas()</code> 默认将图窗保存为 FIG 文件；</p>
+</li>
+<li>
+<p>要保存当前图窗，请将 <code>fig</code> 指定为 <code>gcf</code>，一般使用：
+.png 保存为位图，.svg 保存为矢量图，两种格式均可用于word</p>
+<pre><code class="language-matlab">saveas(gcf, 'filename.png');
+saveas(gcf, 'filename.svg');
+saveas(gcf, 'filename.pdf');
+</code></pre>
+</li>
+<li>
+<p><code>print(fig,filename)</code>：与 <code>saveas()</code> 使用基本一致。<code>print()</code> 应该会更加强大一些。目前浅度使用，二者均可；</p>
+<p><code>print(gcf, 'filename.svg')</code> 保存的 .svg 格式图片 word 无法显示。</p>
+</li>
+</ul>
+<h1 id="练习-2"><a class="header" href="#练习-2">练习</a></h1>
+<p><img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501175307.png" alt="image-20210128213045285" /></p>
+<pre><code class="language-matlab">clear all;
+close all;
+t=linspace(1,2);
+f=t.^2;
+g=sin(2*pi*t);
+p=plot(t,f,'b',t,g,'ro');
+legend({'t^{2}','sin(2\pi t)'},'location','best');
+title('Mini Assignment #1');
+xlabel('Time (ms)');
+ylabel('f(t)');
+</code></pre>
+<p><img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501175318.png" alt="image-20210128213155460" /></p>
+<pre><code class="language-matlab">clear all;
+close all;
+t=linspace(1,2);
+f=t.^2;
+g=sin(2*pi*t);
+p=plot(t,f,'b',t,g,'ro');
+legend({'t^{2}','sin(2\pi t)'},'location','best');
+title('Mini Assignment #1');
+xlabel('Time (ms)');
+ylabel('f(t)');
+%==============以上均为练习1的代码==============%
+%=========只需修改练习1图的一些属性即可==========%
+p(1).Color='k';
+p(1).LineWidth=3;
+p(2).MarkerEdgeColor='m';
+p(2).MarkerFaceColor='#7E2F8E';
+p(2).MarkerSize=4;
+g=gca;
+g.FontSize=15
+</code></pre>
+<p>@[TOC](matlab绘图-进阶</p>
+<h1 id="进阶2d绘图"><a class="header" href="#进阶2d绘图">进阶2D绘图</a></h1>
+<br>
+<h2 id="scatter散点图"><a class="header" href="#scatter散点图"><code>scatter()</code>散点图</a></h2>
+<p><code>scatter(x,y)</code> 在向量 x 和 y 指定的位置创建一个包含圆形的散点图。该类型的图形也称为气泡图。</p>
+<p><code>scatter(x,y,sz)</code> 指定圆大小。要绘制大小相等的圆圈，请将 sz 指定为标量。要<strong>绘制大小不等的圆，请将 sz 指定为长度等于 x 和 y 的长度的向量</strong>。
+<img src="https://img-blog.csdnimg.cn/2020082621450450.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70#pic_center" alt="" />
+<code>scatter(x,y,sz,c)</code> 指定圆颜色。要以相同的颜色绘制所有圆圈，请将 c 指定为颜色名称或 RGB 三元组。要<strong>使用不同的颜色，请将 c 指定为向量或由 RGB 三元组组成的三列矩阵</strong>。
+<img src="https://img-blog.csdnimg.cn/2020082621455696.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70#pic_center" alt="" />
+<code>scatter(___,'filled')</code> 填充圆形。可以将 'filled' 选项与前面语法中的任何输入参数组合一起使用。
+<img src="https://img-blog.csdnimg.cn/2020082621463636.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70#pic_center" alt="" />
+&gt;<code>scatter3()</code> 绘制三维散点图。</p>
+<br>
+<h2 id="loglog对数图"><a class="header" href="#loglog对数图"><code>loglog()</code>对数图</a></h2>
+<p><img src="https://img-blog.csdnimg.cn/20200808114200357.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70" alt="" />
+<code>semilogx(x,y)</code>：x轴为对数画图；
+<code>semilogy(x,y)</code>：y轴为对数画图；
+<code>loglog(x,y)</code>：x、y轴为对数画图；
+<code>set(gca,'XGrid','on')</code>：在x轴上加上网格
+<br></p>
+<h2 id="yyaxis一图双y轴"><a class="header" href="#yyaxis一图双y轴"><code>yyaxis()</code>一图双y轴</a></h2>
+<h4 id="plotyy"><a class="header" href="#plotyy">plotyy()</a></h4>
+<p><img src="https://img-blog.csdnimg.cn/20200808151733395.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70" alt="" /></p>
+<p><code>plotyy(X1,Y1,X2,Y2)</code>：绘制 <code>Y1</code> 对 <code>X1</code> 的图，在左侧显示 y 轴标签，并同时绘制 <code>Y2</code> 对 <code>X2</code> 的图，在右侧显示 y 轴标签。
+<code>[AX,H1,H2] = plotyy( )</code>：返回给<code>AX</code>两个坐标区(<code>Axes</code>)的句柄(<code>handle</code>)，<code>AX(1)</code>表示左边的坐标区的handle，<code>AX(2)</code> 表示右边的坐标区。返回给 <code>H1</code> 和 <code>H2</code> 每个绘图中Line对象的handle.</p>
+<h4 id="yyaxis"><a class="header" href="#yyaxis">yyaxis()</a></h4>
+<p>相较于<code>plotyy( )</code>，新版本的matlab(R2016a起)更推荐<code>yyaxis( )</code>：
+<code>yyaxis left</code> 激活当前坐标区中与左侧 y 轴关联的一侧。后续图形命令的目标为左侧。
+<code>yyaxis right</code> 激活当前坐标区中与右侧 y 轴关联的一侧。后续图形命令的目标为右侧。</p>
+<pre><code class="language-matlab">clear all;
+close all;
+x=0:0.01:20;
+y1=200*exp(-0.05*x).*sin(x);
+y2=0.8*exp(-0.5*x).*sin(10*x);
+
+yyaxis left;        %激活左侧
+p1=plot(x,y1);
+ylabel('Left Y-axis');
+title('Labeling yyaxis');
+p1.LineStyle='--';
+
+yyaxis right;       %激活右侧
+p2=plot(x,y2);
+ylabel('Right Y-axis');
+p2.LineStyle=':';
+</code></pre>
+<p><img src="https://img-blog.csdnimg.cn/20200808151716812.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70" alt="" /></p>
+<p>如上图所示，执行<code>yyaxis left/right</code>命令后，所有对图像的操作与初阶绘图时基本一致。</p>
+<p><strong>一些补充：</strong>
++ 若要对左边一侧画多条曲线，使用 <code>hold on</code> 命令。
+<code>hold on</code>同时影响左右两侧，若右侧不需要画多条，请及时<code>hold off</code>.</p>
+<ul>
+<li>激活左侧，并==使用cla 命令来清除左侧曲线==：</li>
+</ul>
+<pre><code class="language-matlab">yyaxis left;
+cla；
+</code></pre>
+<br>
+<h2 id="hist直方图"><a class="header" href="#hist直方图"><code>hist()</code>直方图</a></h2>
+<p><img src="https://img-blog.csdnimg.cn/20200808151356573.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70" alt="" /></p>
+<p>较新版本推荐使用 <code>histogram()</code> 代替原来的 <code>hist()</code>；
+&gt;官方文档未明确指出从哪一版开始支持<code>histogram()</code>，我使用的是R2019b，亲测可以。</p>
+<p><code>histogram(y)</code> 基于 <code>y</code> 创建直方图。<code>histogram</code> 函数自动划分 bin.
+<code>histogram(y,nbins)</code> 使用标量 <code>nbins</code> 指定 bin 的数量.
+<br></p>
+<h2 id="bar条形图"><a class="header" href="#bar条形图"><code>bar()</code>条形图</a></h2>
+<p><img src="https://img-blog.csdnimg.cn/2020080815122061.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70" alt="" /></p>
+<p><code>bar(y)</code>：创建一个条形图
++ 如果 y 是向量，则y 中的每个元素对应一个条形，图中第1例；
++ 如果 y 是矩阵，则 bar 根据 y 中的行<strong>对条形分组</strong>，图中第2例</p>
+<p><code>bar3( )</code>：对应画3D图。
+<code>bar(x,y)</code>：在 x 指定的位置绘制条形，x为数值向量
++ 若y为一个向量则长度必须与x相等，一个y值的条形对应于一个x；
++ 若y为一个矩阵，则行数必须与x长度相等，每一行的数据画为一组，每一组对应于一个x；当矩阵y的行数于列数均等于x长度时，x为组号。
++ 也可以使用字符串标注在x轴上，默认按字母顺序显示：</p>
+<pre><code>c = categorical({'apples','pears','oranges'});
+bar(c,y)
+</code></pre>
+<p><img src="https://img-blog.csdnimg.cn/20200808151129410.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70" alt="" /></p>
+<p><code>bar(___,width)</code>：设置条形的<strong>相对</strong>宽度以控制组中各个条形的间隔。
+例如<code>bar(y, 0.4)</code>将<strong>所有条形</strong>的宽度设置为各条形可用总空间的 40%.</p>
+<p><code>bar(___,color)</code>：设置<strong>所有条形</strong>的颜色。
+例如bar(y, 'r')将所有条形设置为红色。
+<img src="https://img-blog.csdnimg.cn/20200808171515533.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70" alt="" />
+<code>bar(y,'stacked')</code>：如图所示，显示为堆叠条形图。为矩阵中的每一行显示一个条形。每个条形的高度是行中各元素之和</p>
+<p><strong><code>barh()</code></strong>
+水平绘制条形图，上文提及的所有对<code>bar()</code>的操作均可直接用于<code>barh()</code>；使用方式一致，将<code>bar()</code>换为<code>barh()</code>即可(<code>bar3()</code>换为<code>bar3h()</code>)，效果为原来垂直显示变为水平显示。
+<br></p>
+<h2 id="pie饼状图"><a class="header" href="#pie饼状图"><code>pie()</code>饼状图</a></h2>
+<p><img src="https://img-blog.csdnimg.cn/20200808173054701.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70" alt="" /></p>
+<p><code>pie(a)</code> 使用 <code>a</code> 中的数据绘制饼图。饼图的每个扇区代表 <code>a</code> 中的一个元素。
++ 若 sum(a) ≥ 0，则按比例绘制饼图；
++ 若 sum(a) &lt; 1，则仅按比例绘制部分饼图</p>
+<p>使用<code>pie(a,explode)</code>并将对应的 explode 元素设置为 1 来偏移对应扇区。如图中第2、3例。</p>
+<p>使用<code>pie(x,{'Taxes','Expenses','Profit'})</code>来给对应扇区指定文本标签。注意所有文本用<code>{}</code>括起来，而不是<code>[]</code>。</p>
+<p><code>pie3(a)</code>：绘制三维饼状图。
+<br></p>
+<h2 id="polar极坐标图"><a class="header" href="#polar极坐标图"><code>polar()</code>极坐标图</a></h2>
+<pre><code class="language-matlab">x = 1:100; theta = x/10; r = log10(x);
+subplot(1,4,1); polar(theta,r);
+
+theta = linspace(0, 2*pi); r = cos(4*theta); 
+subplot(1,4,2); polar(theta, r);
+
+theta = linspace(0, 2*pi, 6); r = ones(1,length(theta));
+subplot(1,4,3); polar(theta,r);
+
+theta = linspace(0, 2*pi); r = 1-sin(theta);
+subplot(1,4,4); polar(theta , r);
+</code></pre>
+<p><img src="https://img-blog.csdnimg.cn/20200808204240210.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70" alt="" />
+<code>polar(theta,r)</code>：绘制极坐标图。
+与<code>plot(x,y)</code>类似，描出所有点之后连线。只不过<code>polar()</code>中的参数对应于极坐标中的极角<code>θ</code>和极径<code>r</code>。
+<br></p>
+<h2 id="stairs阶梯图与stem取样图"><a class="header" href="#stairs阶梯图与stem取样图"><code>stairs()</code>阶梯图与<code>stem()</code>取样图</a></h2>
+<p><img src="https://img-blog.csdnimg.cn/2020080818205872.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70" alt="" />
+<code>stairs(y)/stairs(x,y)</code>：与 <code>plot(y)/plot(x,y)</code> 原理一样，适用于<code>plot()</code>的属性 如指定线条颜色、粗细等，一般也可以直接用于<code>stairs()</code> 。
+不同点在于，如上图所示，<code>stairs()</code> 通过平行于x,y轴的线段将所有点连结起来，而不是直接相连。</p>
+<p><code>stem(y)/stem(x,y)</code> 原理上也与<code>plot()</code>类似，但<code>stem()</code>不连结所描出的各点，而是将各点与x轴垂直相连。该函数适用于对曲线上某些特殊点取样。
+<br></p>
+<h2 id="fill填充图"><a class="header" href="#fill填充图"><code>fill()</code>填充图</a></h2>
+<p><img src="https://img-blog.csdnimg.cn/20200808212546541.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70" alt="" />
+<code>fill(x,y,ColorSpec)</code> 填充 x 和 y 指定的二维多边形（颜色由 ColorSpec 指定）
+比如上图 <code>fill(x,y,'r')</code> 画出多边形，并以红色填充。</p>
+<p><code>axis square off</code>命令实际上是初阶绘图中提及的<code>axis square</code>(使当前区域为正方形)和<code>axis off</code>(使数轴不可见)两个命令的组合命令。</p>
+<p><code>text()</code>函数在初阶绘图中已有简单介绍，下面是<code>text()</code>函数的部分参数说明：
++ <code>'Color'</code>-文本颜色(具体颜色与代表符号 初阶绘图中有详细对比)；
++ <code>'FontSize'</code>-字体大小；
++ <code>‘FontWeight'</code>-字体粗细，指定为<code>normal(默认)</code>(正常)或<code>bold</code>(加粗)；
++ <code>'HorizontalAlignment'</code>-相对于指定位置点 水平对齐文本。效果如下：
+<img src="https://img-blog.csdnimg.cn/2020080821540511.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70" alt="" />
+<br>
+<br></p>
+<h1 id="配色"><a class="header" href="#配色">配色</a></h1>
+<br>
+<h2 id="rgb"><a class="header" href="#rgb">RGB</a></h2>
+<p><img src="https://img-blog.csdnimg.cn/20200808220437386.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70" alt="" />
+<code>[R G B]</code>：一种颜色标准，通过对红(R)、绿(G)、蓝(B)三个颜色相互之间的叠加来得到各式各样的颜色。
+通常使用0~255(十进制)之间的数来表示各成分占比。上图中右边的颜色对照板，则为对应颜色的十六进制表示。比如白色 <code>[255 255 255]</code> 十六进制为 <code>[FF FF FF]</code>，记作 <code>#FFFFFF</code>
+<br></p>
+<h2 id="数据可视化为图像"><a class="header" href="#数据可视化为图像">数据可视化为图像</a></h2>
+<p><img src="https://img-blog.csdnimg.cn/20200809101420175.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70" alt="" />
+前面四行画出图中第一个立体图形，第五行的<code>imagesc(z)</code>命令将数据可视化为图像，而后对图像做一些修正。</p>
+<p>使用<code>colorbar</code>指令调出如图所示的颜色条；
+使用<code>colormap()</code>来改变可视化图像的颜色；
+<img src="https://img-blog.csdnimg.cn/20200809101927754.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70" alt="" />
+<code>colormap()</code>的参数可以是以下这些：
+<img src="https://img-blog.csdnimg.cn/20200809102145903.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70" alt="" />
+这些参数实际上都是一个<code>256x3</code>的矩阵，每一行都对应一种颜色的<code>[R G B]</code>;
+因此我们也可以人为地自定义一个表示颜色的矩阵来作为<code>colormap()</code>的参数。
+<br>
+<br></p>
+<h1 id="三维绘图"><a class="header" href="#三维绘图">三维绘图</a></h1>
+<br>
+<h2 id="plot3三维线图"><a class="header" href="#plot3三维线图"><code>plot3()</code>三维线图</a></h2>
+<p><code>plot3(X,Y,Z)</code> 描点连线，绘制三维点或线图。
++ 要绘制一条线图，请将 X、Y、Z 指定为相同长度的向量。
++ 要在同一组坐标轴上绘制多条线图，请将 X、Y 或 Z 中的至少一个指定为矩阵，其他指定为向量。</p>
+<p>原理上于<code>plot()</code>一致，在使用上，各参数也基本与 <code>plot()</code> 对应相同。
+<img src="https://img-blog.csdnimg.cn/20200809110809181.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70" alt="" />
+<br></p>
+<h2 id="surf三维网图"><a class="header" href="#surf三维网图"><code>surf()</code>三维网图</a></h2>
+<p><img src="https://img-blog.csdnimg.cn/20200809113246320.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70" alt="" />
+<code>[X,Y]=meshgrid(x,y)</code>：基于向量 x 和 y 中包含的坐标返回二维网格坐标。也就是说前面给出的x、y只是一个向量，而画网图需要x、y两个范围围出来的面上的所有点，<code>meshgrid(x,y)</code>则给出这个面上所有的点。
+<img src="https://img-blog.csdnimg.cn/20200809114023914.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70" alt="" />
+<code>mesh()</code>：绘制网格图；
+<code>surf()</code>：绘制网格图并为网格填充颜色。
+&gt;事实上，从R2016b开始，并不总是需要先用<code>meshgrid()</code>创建网格然后才能绘制图像；比如该例，直接使用 <code>surf(x,y,x.*exp(-x.^2-(y').^2))</code> 也能得到以上效果。</p>
+<br>
+<br>
+<h2 id="习题-1"><a class="header" href="#习题-1">习题</a></h2>
+<p><img src="https://img-blog.csdnimg.cn/2020080817254892.png" alt="" /></p>
+<pre><code class="language-matlab">close all;
+clear all;
+x=[1 2 5 4 8];
+y=[x;1:5];
+subplot(1,2,1);
+bar(y,'stacked');   %绘制竖直堆叠图
+title('竖直堆叠图');
+
+subplot(1,2,2);     %绘制水平堆叠图
+barh(y,'stacked');
+title('水平堆叠图');
+</code></pre>
+<p>效果如下：
+<img src="https://img-blog.csdnimg.cn/20200809120428984.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70" alt="" />
+<img src="https://img-blog.csdnimg.cn/20200808181614695.png" alt="" /></p>
+<pre><code class="language-matlab">clear all;
+close all;
+a = [10 5 20 30];
+pie(a,[1 1 1 1]);	%分开所有扇区
+</code></pre>
+<br>
+<p><img src="https://img-blog.csdnimg.cn/20200808181626354.png" alt="" /></p>
+<pre><code>clear all;
+close all;
+theta = linspace(0, 2*pi, 7);   %把2π划分为6块
+r = ones(1,length(theta));
+polar(theta,r);                 %画一个六边形
+</code></pre>
+<br>
+<p><img src="https://img-blog.csdnimg.cn/20200809102635626.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70" alt="" /></p>
+<pre><code>clear all;
+close all;
+t=linspace(0,10,1000);
+f=sin(pi*(t.^2)/4);
+plot(t,f);      %第一步，画出蓝色的曲线
+hold on;
+
+x=linspace(0,10,50);
+y=sin(pi*(x.^2)/4);
+stem(x,y);      %第二步，1秒取五次样
+</code></pre>
+<br>
+<p><img src="https://img-blog.csdnimg.cn/20200808215510244.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70" alt="" /></p>
+<pre><code>close all;
+clear all;
+t=(0:4)*pi/2;
+x=sin(t);y=cos(t);
+h=fill(x,y,'y');        %绘制一个以黄色填充的多边形
+h.LineWidth=5;          %将填充多边形的边界曲线设置粗度
+axis square off;        %把显示区域变为正方形，并隐藏数轴
+
+% 在填充的多边形中加上'WAIT'字样
+text(0,0,'WAIT','color','k','FontSize',65, ...
+    'FontWeight','bold','HorizontalAlignment','center');
+</code></pre>
+<blockquote>
+<p>对于这道题，在绘制填充多边形时，我使用了<code>h=fill()</code>，从而获得边界曲线的handle，进而在下一步设置边界曲线的粗度。</p>
+</blockquote>
+<br>
+<p><img src="https://img-blog.csdnimg.cn/2020080910260943.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70" alt="" />
+要指定条形图某些条形的颜色，可以使用 Bar 对象的 CData 属性来控制单个条形的颜色。
+在这之前，需要先将 Bar 对象的 <code>FaceColor</code> 属性设置为 <code>'flat'</code>；可以在画图时直接设置<code>bar(....,'FaceColor','flat')</code>，或者后期单独指定<code>b.FaceColor = 'flat'</code>。</p>
+<pre><code>G = [46 38 29 24 13]; 
+S = [29 27 17 26 8];
+B = [29 23 19 32 7]; 
+% 指定字符串标记x轴
+str=categorical({'USA','CHN','GBR','RUS','KOR'}); 
+% 画图的同时将各条形的handle赋给h，并将FaceColor属性设置为flat
+h = bar(str, [G' S' B'],'FaceColor','flat');
+
+for i=1:size(G',1)      % 将每组第一个条形设置为金色
+    h(1).CData(i,:)=[1,0.843,0];        
+end
+for i=1:size(G',1)      % 将每组第二个条形设置为银色
+    h(2).CData(i,:)=[0.753 0.753 0.753];
+end
+for i=1:size(G',1)      % 将每组第三个条形设置为铜色
+    h(3).CData(i,:)=[.545,.27,.0745];
+end
+title('Medal count for top 5 countries in 2012 Olympics');
+ylabel('Number of medals'); xlabel('Country');
+legend('Gold', 'Silver', 'Bronze')  % 加上图例
+</code></pre>
+<blockquote>
+<p>该例中几个需要注意的点：</p>
+<ol>
+<li><code>G、S、B</code>三个向量需要先转置再串联起来，因为<code>bar()</code>是将矩阵的每一行分为一组，分别画出条形；</li>
+<li>将条形的<code>handle</code>赋给<code>h</code>时，实际上是<code>G、S、B</code>三个列的<code>handle</code>，<code>h</code>是一个1x3的<code>bar数组</code>，因此使用时分别对<code>h(1),h(2),h(3)</code>进行操作；</li>
+<li>在进行颜色设置时，matlab似乎不支持使用0~255的数组来表示<code>[R G B]</code>,将0~255的数组每一项均除以255转换为0~1来表示即可。</li>
+</ol>
+</blockquote>
+<br>
+<p><img src="https://img-blog.csdnimg.cn/20200809102501960.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70" alt="" /></p>
+<pre><code>x = [1:10; 3:12; 5:14];
+imagesc(x);
+colorbar;
+map = zeros(256,3);
+map(:,2) = (0:255)/255;	%除以255，转换为0~1表示
+colormap(map);
+</code></pre>
+<br>
+<br>
+<br>
+<p>以上内容为个人笔记，部分图片来源于郭老师课件或课程截图。
+笔记汇总：<a href="https://blog.csdn.net/weixin_45840825/article/details/107865933">MATLAB基础教程</a>
+课程视频：<a href="https://www.bilibili.com/video/BV1DA411Y7bN">https://www.bilibili.com/video/BV1DA411Y7bN</a>
+课件下载：<a href="https://download.csdn.net/download/weixin_45840825/12696065">MATLAB教程</a>
+郭彦甫老师的YouTube主页：<a href="https://www.youtube.com/user/machinelearningandvi?pbjreload=101v">@Yanfu Kuo</a>
+原视频：<a href="https://www.youtube.com/watch?v=KHFZLkm9qs0&amp;t=8s">https://www.youtube.com/watch?v=KHFZLkm9qs0&amp;t=8s</a></p>
+<p>以下内容为个人笔记，部分图片来源于郭老师课件或课程截图。
+笔记汇总：<a href="https://blog.csdn.net/weixin_45840825/article/details/107865933">MATLAB基础教程</a>
+课程视频：<a href="https://www.bilibili.com/video/BV1DA411Y7bN">MATLAB基础教程-台大郭彦甫（14课全-高清-含课件）</a></p>
+<hr />
+<h2 id="数字图像简述"><a class="header" href="#数字图像简述">数字图像简述</a></h2>
+<p><img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501180053.png" alt="image-20210131115053887" /></p>
+<ul>
+<li>数字图像大概可以分为如上图所示的三类：彩色、灰阶、黑白；</li>
+<li>计算机存储图像时，实际上当作一个矩阵来存储，简单来说，矩阵的大小即为图片的像素大小；</li>
+<li>对于最简单的黑白图像，是一个二维 01 矩阵，图片的每一个像素点对应一个数值，黑色为0，白色为1；
+对于灰阶图像，是一个二维矩阵，每一个像素点对应的数值为 <code>uint8</code> 类型，即 0~255；越白数值越大；
+对于彩色图像，可以简单地理解为三个灰阶矩阵叠加成的一个三维矩阵，其每一个灰阶矩阵分别对应 R G B；这样每一个像素点对应三个数值，叠加得到该像素点的颜色；</li>
+<li>MATLAB 对于图片的处理实际上就是对这样的矩阵做各种运算；</li>
+</ul>
+<h2 id="图像准备"><a class="header" href="#图像准备">图像准备</a></h2>
+<ul>
+<li><a href="https://ww2.mathworks.cn/help/matlab/ref/imread.html">A = imread(filename)</a> 读取图像并存入变量 <code>A</code>，<code>A</code> 实际上是一个矩阵，其内容如前所述；</li>
+<li><a href="https://ww2.mathworks.cn/help/matlab/ref/imshow.html">imshow(A)</a> 显示 <code>A</code> 中存有的图像；</li>
+<li><a href="https://ww2.mathworks.cn/help/images/ref/imageinfo.html">imageinfo(filename)</a> 一个工具箱，用于查看图像的各种信息；</li>
+<li><a href="https://ww2.mathworks.cn/help/images/ref/imtool.html">imtool(filename)</a> <code>imtool(A)</code> 一个图像处理工具箱，常用它查看图像的像素点信息（即矩阵中元素的值）；</li>
+<li><a href="https://ww2.mathworks.cn/help/matlab/ref/imwrite.html">imwrite(I, 'newImage.png')</a> 将处理后的图片 <code>I</code> 存入文件</li>
+</ul>
+<h2 id="图像算法"><a class="header" href="#图像算法">图像算法</a></h2>
+<h3 id="图像乘法"><a class="header" href="#图像乘法">图像乘法</a></h3>
+<p><img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501180058.png" alt="image-20210131161933165" /></p>
+<ul>
+<li><a href="https://ww2.mathworks.cn/help/images/ref/immultiply.html">Z = immultiply(X, Y)</a> 将图像 <code>X</code> 乘以 <code>Y</code>；</li>
+<li>如果<code>Y</code> 是常数，则<code>X</code>每一个元素值乘以Y；比如上图将图片乘以 1.5 变得更亮；要变得更暗则乘以小于 1 的数；</li>
+<li>如果<code>Y</code> 是图片（矩阵），则必须是和<code>X</code>等大小的图片，两个矩阵做点乘；</li>
+<li><a href="https://ww2.mathworks.cn/help/images/ref/imdivide.html">Z = imdivide(X, Y)</a> 与矩阵乘法对应的矩阵除法</li>
+</ul>
+<h3 id="图像加法"><a class="header" href="#图像加法">图像加法</a></h3>
+<p><img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501180105.png" alt="image-20210131162652324" /></p>
+<ul>
+<li><a href="https://ww2.mathworks.cn/help/images/ref/imadd.html">Z = imadd(X, Y)</a> 将图像 <code>X</code> 加上 <code>Y</code>；</li>
+<li>如果<code>Y</code> 是常数，则<code>X</code>每一个元素值加上 Y；</li>
+<li>如果<code>Y</code> 是图片（矩阵），则必须是和<code>X</code>等大小的图片，两个矩阵做加法；比如上图将两个图片相加；</li>
+<li><a href="https://ww2.mathworks.cn/help/images/ref/imsubtract.html">Z = imsubtract(X, Y)</a> 与图像加法对应的图像减法</li>
+</ul>
+<blockquote>
+<p>图像的加减乘除可能会出现超出 <code>uint8</code> 的范围，matlab不会发生溢出之类的现象，而是对于超过255的结果其值即为255；对于小于0的结果其值即为0；</p>
+<p>对图像的处理实际上就是对矩阵的运算，因此 <code>Z = X.*Y</code> <code>Z = X+Y</code> 可以达到一样的效果，matlab只是将其封装成了如上述的函数而非魔法；（包括后续一系列函数也是这样）</p>
+</blockquote>
+<h3 id="图像直方图"><a class="header" href="#图像直方图">图像直方图</a></h3>
+<p><img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501180111.png" alt="image-20210131163813610" /></p>
+<ul>
+<li><a href="https://ww2.mathworks.cn/help/images/ref/imhist.html">imhist(I)</a> 画出图像 <code>I</code> 的色阶直方图（实际上是图像矩阵元素数值的直方图），只使用于灰阶图像；</li>
+<li><code>[cunts, bin] = imhist(I)</code> 返回直方图 x 轴的索引 <code>bin</code> 和对应的直方图高度(个数) <code>cunts</code>；</li>
+<li><a href="https://ww2.mathworks.cn/help/images/ref/imsteq.html">histeq(I)</a> 使图像直方图分布均匀，即增强图像的对比度；
+<img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501180219.png" alt="image-20210131165122516" /></li>
+</ul>
+<h3 id="图像几何变换"><a class="header" href="#图像几何变换">图像几何变换</a></h3>
+<p>图像的几何变换实质上是将图像矩阵与某一变换矩阵做矩阵乘法：
+<img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501180226.png" alt="image-20210131170822398" /></p>
+<h3 id="图像旋转"><a class="header" href="#图像旋转">图像旋转</a></h3>
+<p><img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501180235.png" alt="image-20210131171407341" /></p>
+<ul>
+<li><a href="https://ww2.mathworks.cn/help/images/ref/imrotate.html">J = imrotate(I,angle,method)</a> 将图片旋转 <code>angle</code> 度，参数 <code>method</code> 指出使用的插值方法；</li>
+</ul>
+<h3 id="补充几个函数"><a class="header" href="#补充几个函数">补充几个函数</a></h3>
+<table><thead><tr><th>函数</th><th>作用</th></tr></thead><tbody>
+<tr><td><a href="https://ww2.mathworks.cn/help/images/ref/imabsdiff.html">Z = imabsdiff(X, Y)</a></td><td>两个图像的绝对差，返回差的绝对值(注意和<code>imsubtract</code>的区别)</td></tr>
+<tr><td><a href="https://ww2.mathworks.cn/help/images/ref/imapplymatrix.html">imapplymatrix</a></td><td>对彩色图像的 RGB 对应的三个值线性组合(即赋不同权重组合)，得到灰阶图像；</td></tr>
+<tr><td><a href="https://ww2.mathworks.cn/help/images/ref/imcomplement.html">imcomplement</a></td><td>计算图像的补图，即将颜色反转</td></tr>
+<tr><td><a href="https://ww2.mathworks.cn/help/images/ref/imlincomb.html">imlincomb</a></td><td>将多张图片线性组合(即按照不同的权重叠加)</td></tr>
+</tbody></table>
+<h1 id="练习-3"><a class="header" href="#练习-3">练习</a></h1>
+<p><img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501180240.png" alt="" /></p>
+<pre><code class="language-matlab">I = imread('rice.png');
+subplot(131)
+imshow(I)
+J = immultiply(I, 2); % 增强亮度
+subplot(132)
+imshow(J)
+J = histeq(J); % 再增强对比度
+subplot(133)
+imshow(J)
+</code></pre>
+<p><img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501180250.png" alt="image-20210131181644511" /></p>
+<pre><code class="language-matlab">I = imread('rice.png');
+subplot(131); imshow(I)
+J = immultiply(I, 2); % 增强亮度
+subplot(132); imshow(J)
+J = histeq(J); % 再增强对比度
+subplot(133); imshow(J)
+
+figure
+subplot(121); imhist(I) % 原图的histogram
+subplot(122); imhist(J) % 增强亮度和对比度后的histogram
+</code></pre>
+<p>以下内容为个人笔记，部分图片来源于郭老师课件或课程截图。
+笔记汇总：<a href="https://blog.csdn.net/weixin_45840825/article/details/107865933">MATLAB基础教程</a>
+课程视频：<a href="https://www.bilibili.com/video/BV1DA411Y7bN">MATLAB基础教程-台大郭彦甫（14课全-高清-含课件）</a></p>
+<hr />
+<p>为了解决下列问题展开：
+<img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501180313.png" alt="image-20210131215140272" /></p>
+<h2 id="图像黑白化"><a class="header" href="#图像黑白化">图像黑白化</a></h2>
+<p>对灰阶图像黑白化，即把图像颜色较深的那部分值设为全黑(0)，较浅那一部分设为全白(1)；
+量化来说，就是对于图像的 histogram 图，选取一个合适的值(分界线)，将小于这个值的点设置为0，大于的设置为1：
+<img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501180322.png" alt="image-20210131222851388" /></p>
+<ul>
+<li><a href="https://ww2.mathworks.cn/help/images/ref/graythresh.html">level = graythresh(I)</a> 可以计算出这个合适的值；</li>
+<li><a href="https://ww2.mathworks.cn/help/images/ref/im2bw.html">bw = im2bw(I, level)</a> 则根据阈值 <code>I</code> 来把图像黑白化；
+<img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501180330.png" alt="" /></li>
+</ul>
+<h2 id="图像背景"><a class="header" href="#图像背景">图像背景</a></h2>
+<p>可以看出，简单的黑白化，会由于图像的整体亮度不均，导致效果不理想；
+可以通过去除背景后再黑白化来优化。</p>
+<ul>
+<li><a href="https://ww2.mathworks.cn/help/images/ref/imopen.html">BG = imopen(I, strel('disk', 15))</a> 可以通过此方法得到 rice.png 的背景；
+其中 <a href="https://ww2.mathworks.cn/help/images/ref/strel.html">strel()</a> 的参数需要根据不同图像进行调整；
+与此对应的还有 <a href="https://ww2.mathworks.cn/help/images/ref/imclose.html">imclose(I, strel('disk', 15))</a> 看用来对图像去噪；</li>
+<li><a href="https://ww2.mathworks.cn/help/images/ref/imsubtract.html">I2 = imsubtract(I, BG)</a> 使用上一节的图像减法，得到去除背景后的图像，此时的图像整体亮度较为均衡，对其黑白化：
+<img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501180338.png" alt="image-20210131225740683" /></li>
+</ul>
+<h2 id="图像计数"><a class="header" href="#图像计数">图像计数</a></h2>
+<ul>
+<li><a href="https://ww2.mathworks.cn/help/images/ref/bwlabel.html">[labeled,n] = bwlabel(BW, 8)</a> 对二维黑白图中的连通分量进行标注，返回标注后的图像矩阵 <code>labeled</code> 和连通分量数 <code>n</code>；
+其原理即为对黑白图像的 01 矩阵全局 DFS，将连通的像素点标上同一个编号，<code>bwlabel(BW,conn)</code> 的第二个参数用于指定连通性：
+<img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501180345.png" alt="image-20210131230755678" /></li>
+<li><a href="https://ww2.mathworks.cn/help/images/ref/label2rgb.html">RGB_label=label2rgb(labeled)</a> 可以对标注的连通分量上色；</li>
+<li><a href="https://ww2.mathworks.cn/help/images/ref/regionprops.html">graindata = regionprops(labeled, 'basic')</a> 给出每一个连通分量的 面积、中心、边界框 三个属性；</li>
+<li><a href="https://ww2.mathworks.cn/help/images/ref/bwselect.html">ObjI = bwselect(BW)</a> 手动选择显示特定的连通分量，选择完成按回车键</li>
+</ul>
+<pre><code class="language-matlab">I=imread('rice.png');
+BG=imopen(I, strel('disk', 15));
+I2=imsubtract(I, BG); level=graythresh(I2);
+BW=im2bw(I2, level);
+% 计数
+[labeled, numObjects]=bwlabel(BW, 8); 
+% 上色
+RGB_label=label2rgb(labeled); figure; imshow(RGB_label); 
+% 给出连通分量的属性
+graindata = regionprops(labeled, 'basic'); 
+graindata(51) % 查看第51个连通分量的各属性
+% 选择连通分量
+ObjI = bwselect(BW); figure; imshow(ObjI);
+</code></pre>
+<h1 id="练习-4"><a class="header" href="#练习-4">练习</a></h1>
+<p><img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501180353.png" alt="image-20210131234447367" /></p>
+<pre><code class="language-matlab">I = imread('rice.png');
+imhist(I);
+BW = I &gt; 130; % 通过观察图像的histogram选择适当阈值
+subplot(121); imshow(BW);
+BW2 = I &gt; graythresh(I)*255; % 通过函数计算合适的阈值
+subplot(122); imshow(BW2);
+</code></pre>
+<blockquote>
+<p>实际上，灰阶图转化为黑白图，只需要 <code>I &gt; x</code> 一条语句即可实现，大于阈值 <code>x</code> 的点将置为1，小于的将置为0；关键在于阈值的确定，可以通过观察图像的 histogram 图选择合适的，也可以通过函数计算</p>
+</blockquote>
+<p><img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501180401.png" alt="image-20210131235244713" /></p>
+<pre><code class="language-matlab">I=imread('rice.png');
+BG=imopen(I, strel('disk', 15));
+I2=imsubtract(I, BG); level=graythresh(I2);
+BW=im2bw(I2, level);
+[labeled, numObjects]=bwlabel(BW, 8);
+
+%% 直方图
+num_of_lab = zeros(1,numObjects); %预为哈希表先分配空间
+for i=1:size(labeled, 1)
+    for j=1:size(labeled, 2)
+        index = labeled(i,j);
+        if index ~= 0 %如果该点不为0，即被标记了，对应该标记的米粒大小加一
+           num_of_lab(index)=num_of_lab(index)+1; %思想类似哈希表
+        end
+    end
+end
+histogram(num_of_lab)
+
+%% 上色
+r = BW * 255; %把白色部分的red分量置为全红
+g = zeros(size(BW)); %green分量和blue分量为全0
+b = zeros(size(BW));
+red_rice = cat(3,r,g,b); %将RGB三个分量拼接为一个三维的彩图矩阵
+figure; imshow(red_rice)
+</code></pre>
+<blockquote>
+<p>从连通块大小(连通块中像素点个数)的 histogram 中可以看出，连通块大小集中在150到250作用，说明米粒基本上就是这个大小(每个米粒大小差不多)；
+但居然还存在小于100这样的连通块，这可能是一些噪点或者边界的不完整米粒，可以考虑去除这部分连通块数；
+还有大于350的连通块，这可能是两颗米粒相邻比较近，被标记为一个连通块，可以考虑将这部分连通块数乘以2；</p>
+</blockquote>
+<p>@<a href="matlab%E5%BE%AE%E7%A7%AF%E5%88%86%E8%BF%90%E7%AE%97">TOC</a></p>
+<h1 id="多项式微积分"><a class="header" href="#多项式微积分">多项式微积分</a></h1>
+<h2 id="多项式的值polyval"><a class="header" href="#多项式的值polyval">多项式的值<code>polyval()</code></a></h2>
+<p><code>y = polyval(p,x)</code> 计算多项式 <code>p</code> 在 <code>x</code> 的每个点处的值。参数 <code>p</code> 是长度为 n+1 的向量，其元素是 n 次多项式的系数（降幂排序）。
+如图，计算多项式在<code>x=-2:0.01:5</code>处的值，并<code>plot()</code>出多项式曲线：
+<img src="https://img-blog.csdnimg.cn/20200809172410940.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70" alt="" />
+<code>[y,delta] = polyval(p,x,S)</code> 使用 polyfit 生成的可选输出结构体 S 来生成误差估计值。delta 是使用 p(x) 预测 x 处的未来观测值时的标准误差估计值。
+<img src="https://img-blog.csdnimg.cn/20200826213142625.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70#pic_center" alt="" />
+<img src="https://img-blog.csdnimg.cn/20200826213214863.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70#pic_center" alt="" />
+<br></p>
+<h2 id="多项式微分polyder"><a class="header" href="#多项式微分polyder">多项式微分<code>polyder()</code></a></h2>
+<p><code>k = polyder(p)</code> 返回 p 中的系数表示的多项式的导数；
+<code>k = polyder(a,b)</code> 返回多项式 a 和 b 的乘积的导数；
+<code>[q,d] = polyder(a,b)</code> 返回多项式 a 和 b 的商的导数(q为分子，d为分母)。
+如图，对多项式求微分，并计算<code>x=7</code>处的微分值：
+<img src="https://img-blog.csdnimg.cn/20200809172941900.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70" alt="" />
+<br></p>
+<h2 id="多项式积分polyint"><a class="header" href="#多项式积分polyint">多项式积分<code>polyint()</code></a></h2>
+<p><code>q = polyint(p,k)</code> 返回对多项式积分后的多项式系数，常数项为k；
+<code>q = polyint(p)</code> 常数项 k = 0。
+如图，常数项为3，对多项式积分，并计算x=7时的积分值：
+<img src="https://img-blog.csdnimg.cn/20200809180816897.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70" alt="" />
+<br>
+<br></p>
+<h1 id="数值微积分"><a class="header" href="#数值微积分">数值微积分</a></h1>
+<h2 id="数值微分法"><a class="header" href="#数值微分法">数值微分法</a></h2>
+<h3 id="diff"><a class="header" href="#diff">diff()</a></h3>
+<p><code>Y = diff(X)</code> 计算相邻元素之间的差分：
+如果 X 是长度为 m 的向量，返回长度为 m-1 的向量。Y 的元素是 X 相邻元素之间的差分。<code>Y = [X(2)-X(1) X(3)-X(2) ... X(m)-X(m-1)]</code>
+如果 X 是 p×m 矩阵，则返回大小为 <strong>(p-1)×m</strong>(行变少了) 的矩阵，其元素是 X 的行之间的差分（即每一列中的相邻元素作差分)。<code>Y = [X(2,:)-X(1,:); X(3,:)-X(2,:); ... X(p,:)-X(p-1,:)]</code></p>
+<h3 id="微分法"><a class="header" href="#微分法">微分法</a></h3>
+<p>设置好步长，对x取样<code>x=0:h:2*pi</code>，然后取得各点处函数值<code>f(x)=sin(x)</code>，对x和f(x)分别作差分<code>diff()</code>，再对两者作除法<code>diff(f(x))./diff(x)</code>即可求得该函数各点处的近似微分值。
+<img src="https://img-blog.csdnimg.cn/20200809205445259.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70" alt="" /></p>
+<pre><code class="language-matlab">h = 0.5; x = 0:h:2*pi;
+y = sin(x); 
+m = diff(y)./diff(x);
+x=0:h:(2*pi-h);
+% 因为作差分会缺失最后一个元素，因此x的元素从第1个到end-1
+plot(x(1:end-1),m);			%绘制出微分曲线cos(x),
+</code></pre>
+<h3 id="各种步长对比"><a class="header" href="#各种步长对比">各种步长对比</a></h3>
+<p>如下图所示，步长越小，误差越小，微分的曲线与实际曲线越逼近：
+&gt;较新版本matlab已不再支持symbol，具体解决方案在初阶绘图已有介绍。</p>
+<p><img src="https://img-blog.csdnimg.cn/20200809212906946.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70" alt="" /></p>
+<h3 id="高阶微分"><a class="header" href="#高阶微分">高阶微分</a></h3>
+<p>高阶微分，在原来的基础上继续微分即可<code>diff(m)./diff(x(1:end-1))</code>，注意<code>x(1:end-1)</code>
+<img src="https://img-blog.csdnimg.cn/20200809215407645.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70" alt="" />
+<br></p>
+<h2 id="数值积分法"><a class="header" href="#数值积分法">数值积分法</a></h2>
+<h3 id="获取函数handle"><a class="header" href="#获取函数handle">获取函数handle</a></h3>
+<p>函数的handle可以理解为一个指向该函数的指针，通过<code>@</code>运算符获得；
+要想在一个函数<code>A()</code>中调用另一个函数<code>B()</code>，则必须将函数<code>B()</code>的handle作为输入参数传递给函数<code>A()</code>：<code>A(@B,....)</code>
+如下图所示，函数<code>xy_plot()</code>可以画出input所指向函数的曲线图，并返回对应的函数值。只需在调用时指定其传入参数即可：
+<img src="https://img-blog.csdnimg.cn/20200810095704595.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70" alt="" /></p>
+<h3 id="定积分integral"><a class="header" href="#定积分integral">定积分<code>integral()</code></a></h3>
+<p><code>q = integral(fun,xmin,xmax)</code> 使用全局自适应积分和默认误差容限在 xmin 至 xmax 间以数值形式为函数 fun 求积分。
+<img src="https://img-blog.csdnimg.cn/202008101011085.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70" alt="" /></p>
+<p>二、三重积分：
+<img src="https://img-blog.csdnimg.cn/20200810101419421.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70" alt="" />
+&gt;计算广义积分，正/负无穷可以用<code>-Inf/Inf</code>表示</p>
+<br>
+<br>
+<h1 id="习题-2"><a class="header" href="#习题-2">习题</a></h1>
+<p><img src="https://img-blog.csdnimg.cn/20200809173041655.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70" alt="" />
+解答该题，可以用<code>conv()</code>函数计算两多项式乘积。
+<code>w = conv(u,v)</code> 返回向量 u 和 v 的卷积。如果 u 和 v 是多项式系数的向量，对其卷积与将这两个多项式相乘等效。</p>
+<pre><code class="language-matlab">clear all;
+close all;
+x=-2:0.01:1;
+a1=[5,-7,5,10]
+a2=[4,12,-3];
+a=conv(a1,a2);      %计算两多项式相乘所得多项式系数
+y=polyval(a,x);
+a_=polyder(a);      %计算f(x)微分式的系数
+y_=polyval(a_,x);
+plot(x,y,'--b',x,y_,'r','linewidth',2);
+legend('f(x)','f''(x)');
+</code></pre>
+<p>注意	<code>plot()</code>中设置线条宽度的<code>'linewidth'</code>参数，对前面所画两条线都起作用；添加图例时，在字符串中显示单引号，打两个单引号<code>'f''(x)'</code>即显示一个单引号。
+<br>
+<img src="https://img-blog.csdnimg.cn/20200809213840728.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70" alt="" /></p>
+<pre><code class="language-matlab">clear all;
+close all;
+g=colormap(lines);
+hold on;
+for i=1:3
+    x=0:power(10,-i):2*pi;
+    y=exp(-x).*sin(x.^2/2);
+    m=diff(y)./diff(x);
+    plot(x(1:end-1),m,'Color',g(i,:));
+end
+hold off;
+g=gca;
+g.XLim=[0,2*pi]; g.YLim=[-0.3,0.3];
+g.FontSize=18;
+g.XTick=[0:pi/2:2*pi];
+g.XTickLabel={'0','\pi/2','\pi','3\pi/2','2\pi'};
+h=legend('h=0.1','h=0.01','h=0.001');
+</code></pre>
+<br>
+<br>
+<br>
+<p>以上内容为个人笔记，部分图片来源于郭老师课件或课程截图。
+笔记汇总：<a href="https://blog.csdn.net/weixin_45840825/article/details/107865933">MATLAB基础教程</a>
+课程视频：<a href="https://www.bilibili.com/video/BV1DA411Y7bN">https://www.bilibili.com/video/BV1DA411Y7bN</a>
+课件下载：<a href="https://download.csdn.net/download/weixin_45840825/12696065">MATLAB教程</a>
+郭彦甫老师的YouTube主页：<a href="https://www.youtube.com/user/machinelearningandvi?pbjreload=101v">@Yanfu Kuo</a>
+原视频：<a href="https://www.youtube.com/watch?v=KHFZLkm9qs0&amp;t=8s">https://www.youtube.com/watch?v=KHFZLkm9qs0&amp;t=8s</a></p>
+<p>@<a href="%E6%96%B9%E7%A8%8B%E5%BC%8F%E6%B1%82%E6%A0%B9">toc</a></p>
+<h1 id="符号解"><a class="header" href="#符号解">符号解</a></h1>
+<h2 id="符号寻根solve"><a class="header" href="#符号寻根solve">符号寻根<code>solve()</code></a></h2>
+<p>在此之前有必要介绍一下符号变量<code>symbolic variables</code>
+<code>syms var1 ... varN</code>：创建符号变量，以空格分隔不同的变量。
+这是一种特殊的变量，以这种方式<code>syms x</code>声明的变量，matlab当作符号处理，通过此变量运算赋值所得<code>y=x^3+x</code>也是符号变量（<code>sym类型</code>）</p>
+<h4 id="求解一般方程"><a class="header" href="#求解一般方程">求解一般方程</a></h4>
+<p><code>S = solve(eqn,var)</code>：解出关于变量var的方程eqn，如果不指定var，则由<code>symvar</code>函数决定要解的变量。<code>solve(x + 1 == 2, x)</code> 解出x的方程<code>x + 1 = 2</code>。
+通过<code>solve()</code>求解出来的解也是sym类型，不是double类型的数值。
+&gt;+ <code>C = symvar(expr)</code> 搜索表达式 <code>expr</code>，查找除 <code>i、j、pi、inf、nan、eps</code> 和公共函数之外的标识符。这些标识符是表达式中变量的名称。<code>symvar</code> 返回搜索到的标识符。如果 <code>symvar</code> 找不到标识符，则 C 是一个空的元胞数组。
+&gt;+ 较新版本matlab<strong>删除了对字符向量或字符串输入的支持</strong>。<strong>需要先使用 <code>syms</code> 来声明sym变量，然后将 <code>solve('2*x == 1','x')</code> 这样的输入替换为 <code>solve(2*x == 1,x)</code></strong> 。</p>
+<p><img src="https://img-blog.csdnimg.cn/20200810114952381.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70" alt="" /></p>
+<h4 id="求解方程组"><a class="header" href="#求解方程组">求解方程组</a></h4>
+<p>还可以利用<code>solve()</code>求解方程组：
+不过需要注意，如下图所示，求解结果赋值给A，此时A是一个结构体<code>struct</code>，包含x、y两个成员，通过<code>A.x/A.y</code>可以查看求解结果。
+<img src="https://img-blog.csdnimg.cn/2020081014422721.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70" alt="" /></p>
+<h4 id="求解符号方程"><a class="header" href="#求解符号方程">求解符号方程</a></h4>
+<p><code>solve()</code>还可以用来求解用符号代替常数的方程。
+<code>solve()</code>的第二个参数指定自变量（即要求解的对象），如图中第二例；若无指定则由<code>symval()</code>函数得出，如图中第一例：
+<img src="https://img-blog.csdnimg.cn/20200810145213744.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70" alt="" /></p>
+<h4 id="符号函数求微分diff"><a class="header" href="#符号函数求微分diff">符号函数求微分<code>diff()</code></a></h4>
+<p>将变量声明为<code>sym类型</code>可以直接对其使用<code>diff()</code>函数，求解微分式。
+<code>diff(g,x)</code>：指定g对x求导（若有多个自变量，则为求偏导）；
+执行以下代码，<code>yprime</code>是一个<code>sym类型</code>值为<code>20*x^4</code>：
+<img src="https://img-blog.csdnimg.cn/20200810155423845.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70" alt="" /></p>
+<h4 id="符号函数求积分int"><a class="header" href="#符号函数求积分int">符号函数求积分<code>int()</code></a></h4>
+<p><img src="https://img-blog.csdnimg.cn/2020081017044268.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70" alt="" />
+利用<code>int()</code>函数，可以对符号函数求积分，常数项为0；
+<code>subs(s,old,new)</code> 用 new 替换所有的 old ，然后计算此时 s的值并返回，但s本身还是原来的样子，没有改变。
+<br></p>
+<h2 id="符号解与数值解"><a class="header" href="#符号解与数值解">符号解与数值解</a></h2>
+<table><thead><tr><th align="center"></th><th align="left">优点</th><th align="left">缺点</th></tr></thead><tbody>
+<tr><td align="center">符号解</td><td align="left">分析解决方案<br>让你直观的了解解决方案的形式</td><td align="left">可能过于复杂<br>有时无法解决问题</td></tr>
+<tr><td align="center">数值解</td><td align="left">总是得到解决<br>能使解决方案准确无误<br>易于编码</td><td align="left">难以提取更深层次的理解</td></tr>
+<tr><td align="center"><br></td><td align="left"></td><td align="left"></td></tr>
+<tr><td align="center"><br></td><td align="left"></td><td align="left"></td></tr>
+</tbody></table>
+<h1 id="数值解"><a class="header" href="#数值解">数值解</a></h1>
+<h2 id="fsolve"><a class="header" href="#fsolve"><code>fsolve()</code></a></h2>
+<p><code>x = fsolve(fun,x0)</code>：从<code>x0</code>开始，尝试找出离<code>x0</code>最近的，方程<code>fun(x)=0</code>的根。
+若x0为向量或矩阵，则分别给出离每一个元素最近的根，输出为和x0同大小的向量或矩阵。
+给出函数<code>f(x)=0</code>在x=0附件的根：
+<img src="https://img-blog.csdnimg.cn/20200810181350165.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70" alt="" />
+若要解方程组，需要先将方程组的方程放入一个函数中，然后通过<code>@functionname</code>获得handle。注意<code>fsolve()</code>的第二个参数表示寻根的起始点(初始值)，而不是每个方程对应的<code>=</code>右边的值(默认都为0)：
+<img src="https://img-blog.csdnimg.cn/20200814204701272.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70#pic_center" alt="" />
+可以不必单独创建一个函数文件，直接在script文件的最后加上function的整体结构就可以，如练习4。
+&gt;如果是多元方程组，似乎只能如上图所示，使用矩阵x来作为function的input，并用矩阵x的每一个元素来表示不同的自变量。当使用多个参数来作为input时，在<code>fsolve()</code>中通过函数handle调用该函数时总是会提示“输入参数的数目不足”。暂且按照图示方法作好了。</p>
+<br>
+<h2 id="fzero"><a class="header" href="#fzero"><code>fzero()</code></a></h2>
+<p><code>x = fzero(fun,x0)</code>：从x0开始，尝试求出离x0最近的 fun(x) = 0 的解，此解是 fun(x) 变号的位置，即<code>f(x-),f(x+)</code>异号。fzero 无法求例如 x^2 这类函数的根。
+若x0是一个向量[a,b]，则[a,b]即为寻根的范围：(注意与<code>fslove()</code>不同)
+<img src="https://img-blog.csdnimg.cn/20200814193923709.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70#pic_center" alt="" />
+<br></p>
+<h2 id="多项式寻根roots"><a class="header" href="#多项式寻根roots">多项式寻根<code>roots()</code></a></h2>
+<p><code>r = roots(p)</code>：以列向量的形式返回 p 表示的多项式的根。输入 p 是一个包含 n+1 多项式系数的向量。
+<code>roots()</code>只能用于多项式寻根。
+<img src="https://img-blog.csdnimg.cn/20200814210314104.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70#pic_center" alt="" />
+<br>
+<br></p>
+<h1 id="习题-3"><a class="header" href="#习题-3">习题</a></h1>
+<p><img src="https://img-blog.csdnimg.cn/20200810151541969.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70" alt="" /></p>
+<pre><code class="language-matlab">% 问题1
+syms x y a b r;
+f=(x-a)^2+(y-b)^2-r^2;
+A=solve(f,x,y);
+A.x	%查看求解出来的x
+A.y	%查看求解出来的y 
+
+% 问题2
+syms a b c d;
+A=[a b;c d];
+B=inv(A);
+</code></pre>
+<blockquote>
+<p><code>Y = inv(X)</code> 计算方阵 X 的 逆矩阵，如果X是由sym类型元素组成的，也可以直接使用</p>
+</blockquote>
+<br>
+<p><img src="https://img-blog.csdnimg.cn/20200810163026418.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70" alt="" /></p>
+<pre><code class="language-matlab">close all;
+clear all;
+syms x y;
+f=exp(x^2)/(x^3-x+3);
+fprime=diff(f);         %默认对x求导
+
+g=(x^2+x*y-1)/(y^3+x+3);
+gprime=diff(g,x);       %指定对x求偏导
+</code></pre>
+<br>
+<p><img src="https://img-blog.csdnimg.cn/20200810171026376.png" alt="" /></p>
+<pre><code>clear all;
+close all;
+%方法1，其实是近似算出具体数值
+y=@(x) (x.^2-x+1)./(x+3);
+z1=integral(y,0,10);
+disp(z1);
+
+%方法2，算出积分函数，再代入数据计算，最后的结果依然是sym类型
+syms x;
+y=(x.^2-x+1)./(x+3);
+z2=int(y);
+z2=subs(z2,x,10)-subs(z2,x,0);
+disp(z2);
+</code></pre>
+<br>
+<p><img src="https://img-blog.csdnimg.cn/20200813180657707.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70#pic_center" alt="" /></p>
+<pre><code class="language-matlab">fun=@root2d;
+%从(5,5)处开始寻根
+x=fsolve(fun,[-5,-5]);
+disp(x);
+
+function F=root2d(x)
+    F(1)=2*x(1)-x(2)-exp(-x(1));
+    F(2)=-x(1)+2*x(2)-exp(-x(2));
+end
+</code></pre>
+<br>
+<br>
+<br>
+<p>以上内容为个人笔记，部分图片来源于郭老师课件或课程截图。
+笔记汇总：<a href="https://blog.csdn.net/weixin_45840825/article/details/107865933">MATLAB基础教程</a>
+课程视频：<a href="https://www.bilibili.com/video/BV1DA411Y7bN">https://www.bilibili.com/video/BV1DA411Y7bN</a>
+课件下载：<a href="https://download.csdn.net/download/weixin_45840825/12696065">MATLAB教程</a>
+郭彦甫老师的YouTube主页：<a href="https://www.youtube.com/user/machinelearningandvi?pbjreload=101v">@Yanfu Kuo</a>
+原视频：<a href="https://www.youtube.com/watch?v=KHFZLkm9qs0&amp;t=8s">https://www.youtube.com/watch?v=KHFZLkm9qs0&amp;t=8s</a></p>
+<p>@<a href="%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B">toc</a>
+&gt;本次内容涉及线性代数，视频中大部分在讲解线性代数的知识，只稍微提及了几个matlab来实现的指令。
+&gt;学了现代之后再来看一遍（逃~</p>
+<h1 id="求解线性方程"><a class="header" href="#求解线性方程">求解线性方程</a></h1>
+<p>将线性方程组用矩阵 <strong><code>Ax=b</code></strong> 表示，则可通过求解矩阵来解方程：
+<img src="https://img-blog.csdnimg.cn/20200819180539920.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70#pic_center" alt="" /></p>
+<h4 id="高斯消去法rref"><a class="header" href="#高斯消去法rref">高斯消去法<code>rref()</code></a></h4>
+<p><code>R = rref(A)</code> 使用 Gauss-Jordan 消元法和部分主元消元法返回A的简化行阶梯形。
+对增广矩阵 <strong><code>[A b]</code></strong> 使用<code>rref()</code>则可以求解 <strong><code>Ax=b</code></strong> 对应的线性方程组
+<img src="https://img-blog.csdnimg.cn/20200819210621164.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70#pic_center" alt="" /></p>
+<h4 id="lu因子化"><a class="header" href="#lu因子化">LU因子化</a></h4>
+<p><code>[L,U,P] = lu(A)</code> 将满矩阵或稀疏矩阵 A 分解为一个上三角矩阵 U 和一个经过置换的下三角矩阵 L，使得 A = L*U；返回一个置换矩阵 P，并满足 A = P'*L*U。
+通过执行 LU 分解，然后使用因子来简化问题，对线性方程组求解。
+&gt;一些矩阵分解函数
+&gt;+ <code>qr()</code>：正交三角分解
+&gt;+ <code>ldl()</code>：Hermitian 不定矩阵的分块 LDL 分解
+&gt;+ <code>ilu()</code>：不完全 LU 分解
+&gt;+ <code>chol()</code>：Cholesky 分解
+&gt;+ <code>gsvd()</code>：广义奇异值分解
+&gt;+ <code>svd()</code>：奇异值分解</p>
+<br>
+<h4 id="高效mldivide"><a class="header" href="#高效mldivide">高效<code>mldivide()、\</code></a></h4>
+<p>以上两种方法在对于一般的线性方程组的求解其实并不友好，过于繁琐。<strong>实际上，更加高效的方式是使用<code>A\b</code>（或者<code>mldivide(A,b)</code>）可直接求得方程组的根 向量<code>x</code>。</strong>
+<br></p>
+<h4 id="克莱默法则"><a class="header" href="#克莱默法则">克莱默法则</a></h4>
+<p>求解矩阵方程 <strong><code>Ax=b</code></strong> ，<strong>x</strong>等于<strong>A</strong>的逆矩阵乘以<strong>b</strong>，即 <strong>x=A^-1^b</strong> 
+通过<code>inv(A)</code>对矩阵A求逆，然后直接计算即可：<code>x = inv(A)*b</code>
+&gt;需要注意，矩阵A的逆矩阵可能不存在</p>
+<br>
+<h1 id="线性系统"><a class="header" href="#线性系统">线性系统</a></h1>
+<h4 id="特征值和特征向量eig"><a class="header" href="#特征值和特征向量eig">特征值和特征向量<code>eig()</code></a></h4>
+<p><code>e = eig(A)</code> 返回一个列向量，其中包含方阵 A 的特征值；
+<code>[V,D] = eig(A)</code> 返回特征值的对角矩阵 D 和矩阵 V，其列是对应的右特征向量，使得 A<em>V = V</em>D。</p>
+<p>模糊综合评价中利用<code>eig()</code>求解最大特征根和权向量：
+<img src="https://img-blog.csdnimg.cn/202008201741376.png#pic_center" alt="" />
+<br></p>
+<h4 id="矩阵指数expm"><a class="header" href="#矩阵指数expm">矩阵指数<code>expm()</code></a></h4>
+<p><code>Y = expm(X)</code> 计算 X 的矩阵指数。如果 X 有一组完整的特征向量 V 和对应特征值 D，[V,D] = eig(X)，则expm(X) = V*diag(exp(diag(D)))/V；
+对于逐个元素的指数运算，使用 <code>exp()</code>
+<img src="https://img-blog.csdnimg.cn/20200820175219699.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70#pic_center" alt="" /></p>
+<h1 id="习题-4"><a class="header" href="#习题-4">习题</a></h1>
+<p><img src="https://img-blog.csdnimg.cn/20200819214210506.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70#pic_center" alt="" /></p>
+<pre><code class="language-matlab">syms R1 R2 R3 R4 R5 V1 V2;
+A=[R1 0 0 R4 0;0 R2 0 -R4 R5;0 0 -R3 0 R5;1 -1 0 -1 0;0 1 -1 0 -1];
+b=[V1;0;V2;0;0];
+x=A\b
+</code></pre>
+<br>
+<br>
+<br>
+<p>以上内容为个人笔记，部分图片来源于郭老师课件或课程截图。
+笔记汇总：<a href="https://blog.csdn.net/weixin_45840825/article/details/107865933">MATLAB基础教程</a>
+课程视频：<a href="https://www.bilibili.com/video/BV1DA411Y7bN">https://www.bilibili.com/video/BV1DA411Y7bN</a></p>
+<p>@<a href="%E7%BB%9F%E8%AE%A1">TOC</a></p>
+<h1 id="叙述统计学"><a class="header" href="#叙述统计学">叙述统计学</a></h1>
+<h2 id="数值统计"><a class="header" href="#数值统计">数值统计</a></h2>
+<p>主要介绍一些函数。</p>
+<p><strong><code>M = mean(A)</code> 返回 A 沿大小不等于 1 的第一个数组维度的元素的均值</strong>
+如果 A 是向量，则 mean(A) 返回元素均值；
+如果 A 为矩阵，那么 mean(A) 返回包含每列均值的行向量。</p>
+<p><strong><code>M = mean(A,'all')</code></strong> 计算 A 的所有元素的均值（R2018b及以上）。
+<strong><code>M = mean(A,dim)</code></strong> 返回维度 dim 上的均值。例如，如果 A 为矩阵，则 mean(A,2) 是包含每一行均值的列向量。
+<strong><code>M = mean(A,vecdim)</code></strong> 计算向量 vecdim 所指定的维度上的均值。例如，如果 A 是矩阵，则 mean(A,[1 2]) 是 A 中所有元素的均值，因为矩阵的每个元素都包含在由维度 1 和 2 定义的数组切片中。
+<br></p>
+<p><strong><code>M = median(A)</code> 返回 A 的中位数值</strong>
+如果 A 为向量，则 median(A) 返回 A 的中位数值。
+如果 A 为非空矩阵，则 median(A) 将 A 的各列视为向量，并返回中位数值的行向量。
+<code>M = median(A,'all')</code>/<code>M = median(A,dim)</code>/<code>M = median(A,vecdim)</code>与上述一致。
+<br>
+<strong><code>M = mode(A)</code> 返回 A 的样本众数</strong>。如果有多个值以相同的次数出现，mode 将返回其中最小的值。
+如果 A 为向量，则 mode(A) 返回 A 中出现次数最多的值。
+如果 A 为非空矩阵，那么 mode(A) 将返回包含 A 每列众数的行向量。
+<code>'all'/dim/vecdim</code>用法与上述一致
+<br>
+<code>Y = prctile(X,p)</code> 返回 X 中元素在 [0,100] 区间内的百分比 p 的百分数。
+如果 X 是一个向量，那么 Y 是一个标量或向量，其长度与请求的百分比数（length( p)）相同。Y(i)包含p(i)百分位数。
+如果X是一个矩阵，那么Y是一个行向量或矩阵，其中Y的行数等于请求的百分位数(length( p))。Y的第i行包含X的每一列的p(i)百分位数。
+<code>'all'/dim/vecdim</code>用法与上述一致
+<br>
+<strong><code>S = std(A)</code> 返回 A 沿大小不等于 1 的第一个数组维度的元素的标准差</strong>。
+如果 A 是观测值的向量，则标准差为标量。
+如果 A 是一个列为随机变量且行为观测值的矩阵，则 S 是一个包含与每列对应的标准差的行向量。
+<code>'all'/dim/vecdim</code>用法与上述一致</p>
+<p>默认情况下，标准差按 N-1 实现归一化，其中 N 是观测值数量。
+<strong><code>S = std(A,w)</code> 指定一个权重方案</strong>。当 w = 0 时（默认值），S 按 N-1 进行归一化。当 w = 1 时，S 按观测值数量 N 进行归一化。w 也可以是包含非负元素的权重向量。在这种情况下，w 的长度必须等于 std 将作用于的维度的长度。
+<br>
+<strong><code>V = var(A)</code> 返回 A 中沿大小不等于 1 的第一个数组维度的元素的方差</strong>。
+如果 A 是一个观测值向量，则方差为标量。
+如果 A 是一个其各列为随机变量、其各行为观测值的矩阵，则 V 是一个包含对应于每列的方差的行向量。
+<code>'all'/dim/vecdim</code>用法与上述一致</p>
+<p><code>V = var(A,w)</code> 指定权重方案。如果 w = 0（默认值），则 V 按观测值数量 -1 实现归一化。如果 w = 1，则它按观测值数量实现归一化。w 也可以是包含非负元素的权重向量。在这种情况下，w 的长度必须等于 var 将作用于的维度的长度。
+<br></p>
+<h2 id="图形统计"><a class="header" href="#图形统计">图形统计</a></h2>
+<p><strong><code>area()</code> 填充二维绘图</strong>
+区域图将 Y 中的元素显示为一个或多个曲线并填充每个曲线下方的区域。如果 Y 为矩阵，则曲线堆叠在一起，显示<strong>每行元素占每个 x 区间的曲线总高度的相对量</strong>。</p>
+<p><strong><code>stem()</code> 绘制离散序列数据</strong>
+stem(Y) 将数据序列 Y 绘制为从沿 x 轴的基线延伸的针状图。各个数据值由终止每个针状图的圆指示。
+<img src="https://img-blog.csdnimg.cn/20200825221559749.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70#pic_center" alt="" />
+<br>
+<strong><code>boxplot(x)</code> 为 x 中的数据创建一个方框图</strong>。如果 x 是一个向量，boxplot 会绘制一个方框。如果 x 是一个矩阵，boxplot 为 x 的每一列绘制一个方框。
+在每个方框中，中心标记表示中位数，方框的底部和顶部边缘分别表示第25和第75百分位数。晶须延伸到不被认为是离群值的最极端的数据点，离群值用 &quot;+&quot;号单独绘制。
+<img src="https://img-blog.csdnimg.cn/20200826195611675.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70#pic_center" alt="" />
+<br>
+<strong>衡量分布偏度的方法</strong>：
+向左倾斜：skewness &lt; 0
+向右倾斜：skewness &gt; 0
+<img src="https://img-blog.csdnimg.cn/20200826202913284.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70#pic_center" alt="" />
+<strong><code>y = skewness(X)</code> 返回 X 的样本偏度</strong>。
+如果 X 是一个向量，那么 skewness(X) 返回一个标量值，即 X 中元素的偏度。
+如果 X 是一个矩阵，那么 skewness(X) 返回一个包含 X 中每一列样本偏度的行向量。
+<img src="https://img-blog.csdnimg.cn/20200826202739350.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70#pic_center" alt="" />
+<br>
+<strong><code>k = kurtosis(X)</code> 返回 X 的样本峰度</strong>。
+如果X是一个向量，那么kurtosis(X)返回一个标量值，它是X中元素的峰度。
+如果X是一个矩阵，那么kurtosis(X)返回一个包含X中每一列的样本峰度的行向量。
+<img src="https://img-blog.csdnimg.cn/20200826203504289.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70#pic_center" alt="" />
+<br>
+<br></p>
+<h1 id="推论统计学"><a class="header" href="#推论统计学">推论统计学</a></h1>
+<p>基本上都是统计学的知识，应该概率论与数理统计会教到。
+日后补上（逃
+<br>
+<br></p>
+<h1 id="练习-5"><a class="header" href="#练习-5">练习</a></h1>
+<p><img src="https://img-blog.csdnimg.cn/20200825222624855.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70#pic_center" alt="" /></p>
+<pre><code class="language-matlab">clear all;close all;
+x = 1:14;
+y = [1 3 5 5 5 5 7 9 9 9 10 13 14];
+for i=1:14
+    freqy(i) = length(find(y==i));
+end
+subplot(1,3,1); bar(x,freqy); xlim([0 15]);
+subplot(1,3,2); area(x,freqy); xlim([0 15]);
+subplot(1,3,3); stem(x,freqy); xlim([0 15]);
+</code></pre>
+<br>
+<p><img src="https://img-blog.csdnimg.cn/20200826200450225.png#pic_center" alt="" /></p>
+<pre><code class="language-matlab">load stockreturns;
+boxplot(stocks)
+</code></pre>
+<br>
+<br>
+<br>
+<p>以上内容为个人笔记，部分图片来源于郭老师课件或课程截图。
+笔记汇总：<a href="https://blog.csdn.net/weixin_45840825/article/details/107865933">MATLAB基础教程</a>
+课程视频：<a href="https://www.bilibili.com/video/BV1DA411Y7bN">https://www.bilibili.com/video/BV1DA411Y7bN</a></p>
+<h2 id="为-ode-和-pde-求解器创建或修改-options-结构体"><a class="header" href="#为-ode-和-pde-求解器创建或修改-options-结构体">为 ODE 和 PDE 求解器创建或修改 options 结构体</a></h2>
+<p><code>options = odeset(Name,Value,...)</code> 创建 options 结构体，可以将其作为参数传递给 ODE 和 PDE 求解器。在结构体 options 中，指定选项具有指定的值。任何未指定的选项都使用默认值。例如，<code>options = odeset('RelTol',1e-3)</code> 返回 RelTol 设置为 1e-3 的 options 结构体。</p>
+<p><code>options = odeset(oldopts,Name,Value,...)</code> 使用新指定的名称-值对组修改现有的 options 结构体 oldopts。这样将覆盖指定选项的任何旧值，并将新选项的值添加到结构体中。</p>
+<p><code>options = odeset(oldopts,newopts)</code> 通过合并现有 options 结构体 oldopts 和新 options 结构体 newopts 来修改现有 options 结构体。任何不等于 [] 的新选项都会覆盖 oldopts 中的相应选项。</p>
+<h2 id="求解非刚性微分方程_低阶ode23"><a class="header" href="#求解非刚性微分方程_低阶ode23">求解非刚性微分方程_低阶<code>ode23()</code></a></h2>
+<p><code>[t,y] = ode23(odefun,tspan,y0)</code>（其中 <strong><code>tspan = [t0 tf]</code></strong>）求微分方程组 $y′=f(t,y)$ 从 t0 到 tf 的积分，初始条件为 y0。<strong>解 数组 y 中的每一行都与<strong><strong>列向量 t</strong></strong> 中返回的值相对应</strong>。</p>
+<p><code>[t,y] = ode23(odefun,tspan,y0,options)</code> 还使用由 options（使用 odeset 函数创建的参数）定义的积分设置。例如，使用 AbsTol 和 RelTol 选项指定<strong>绝对误差容限</strong>和<strong>相对误差容限</strong>，或者使用 Mass 选项提供质量矩阵。</p>
+<p>这是一个简单的求解实例，<code>plot(X,Y)</code>可以直接绘制原方程图形：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501180432.png" alt="" /></p>
+<p>这是一个微分方程组示例：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501180441.png" alt="" /></p>
+<p>求解高阶微分方程，像下面这样：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501180450.png" alt="" /></p>
+<blockquote>
+<p>在上述例子中，
+<code>ode23()</code> 函数的 odefun 参数写成 <code>'funname'</code> 或 <code>@funname</code>两种形式都可以；
+微分方程组的ode_function中<code>y(1)=...; y(2)=...;</code> 或<code>y=[...; ...];</code> 两种形式都可以。
+另外需要注意：
+<strong>解出来的 数组 y 中的每一行都与<strong><strong>列向量 t</strong></strong> 中返回的值相对应</strong>。解高阶微分方程时，<code>y(:,1)</code>(即y的第一列) 对应是y' 的解；<code>y(:,2)</code>对应的是y'' 的解。</p>
+</blockquote>
+<h2 id="求解非刚性微分方程_中阶ode45"><a class="header" href="#求解非刚性微分方程_中阶ode45">求解非刚性微分方程_中阶<code>ode45()</code></a></h2>
+<p>基本使用与ode23() 完全一致。</p>
+<p>要编写带有时变项的ode，将时变项作为函数参数，在<code>ode45()</code> 的odefun参数中把函数句柄写成如下这种形式：
+这是一个经典SIR模型</p>
+<p><img src="https://cdn.jsdelivr.net/gh/liu-zw/Dim@master/img/20210501180501.png" alt="" /></p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+
+        
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+        
+        <script type="text/javascript">
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
+        
+        
+
+    </body>
+</html>

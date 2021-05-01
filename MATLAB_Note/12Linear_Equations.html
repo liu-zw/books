@@ -1,0 +1,287 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>线性方程 - MATLAB Note</title>
+        
+        
+
+
+        <!-- Custom HTML head -->
+        
+
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        
+        <link rel="icon" href="favicon.svg">
+        
+        
+        <link rel="shortcut icon" href="favicon.png">
+        
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        
+        <link rel="stylesheet" href="css/print.css" media="print">
+        
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        
+        <link rel="stylesheet" href="fonts/fonts.css">
+        
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="概要.html"><strong aria-hidden="true">1.</strong> 概要</a></li><li class="chapter-item expanded "><a href="02Array_Operation.html"><strong aria-hidden="true">2.</strong> 基本操作</a></li><li class="chapter-item expanded "><a href="03Structured_Programming_&_Function.html"><strong aria-hidden="true">3.</strong> 结构化程序设计及函数</a></li><li class="chapter-item expanded "><a href="04Data_Structure_&_File_Access.html"><strong aria-hidden="true">4.</strong> 数据结构及文件访问</a></li><li class="chapter-item expanded "><a href="05Basic_Plotting.html"><strong aria-hidden="true">5.</strong> 绘图基础</a></li><li class="chapter-item expanded "><a href="06Advanced_Plotting.html"><strong aria-hidden="true">6.</strong> 绘图进阶</a></li><li class="chapter-item expanded "><a href="08Image_Processing_I.html"><strong aria-hidden="true">7.</strong> 图像处理 Ⅰ</a></li><li class="chapter-item expanded "><a href="09Image_Processing_II.html"><strong aria-hidden="true">8.</strong> 图像处理 Ⅱ</a></li><li class="chapter-item expanded "><a href="10Integration_&_Differentiation.html"><strong aria-hidden="true">9.</strong> 微积分</a></li><li class="chapter-item expanded "><a href="11Root_Finding.html"><strong aria-hidden="true">10.</strong> 方程寻根</a></li><li class="chapter-item expanded "><a href="12Linear_Equations.html" class="active"><strong aria-hidden="true">11.</strong> 线性方程</a></li><li class="chapter-item expanded "><a href="13Statistics_&_Data_Analysis.html"><strong aria-hidden="true">12.</strong> 统计及数据分析</a></li><li class="chapter-item expanded "><a href="微分方程数值解.html"><strong aria-hidden="true">13.</strong> 微分方程数值解</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        
+                    </div>
+
+                    <h1 class="menu-title">MATLAB Note</h1>
+
+                    <div class="right-buttons">
+                        
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        
+                        
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <p>@<a href="%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B">toc</a>
+&gt;本次内容涉及线性代数，视频中大部分在讲解线性代数的知识，只稍微提及了几个matlab来实现的指令。
+&gt;学了现代之后再来看一遍（逃~</p>
+<h1 id="求解线性方程"><a class="header" href="#求解线性方程">求解线性方程</a></h1>
+<p>将线性方程组用矩阵 <strong><code>Ax=b</code></strong> 表示，则可通过求解矩阵来解方程：
+<img src="https://img-blog.csdnimg.cn/20200819180539920.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70#pic_center" alt="" /></p>
+<h4 id="高斯消去法rref"><a class="header" href="#高斯消去法rref">高斯消去法<code>rref()</code></a></h4>
+<p><code>R = rref(A)</code> 使用 Gauss-Jordan 消元法和部分主元消元法返回A的简化行阶梯形。
+对增广矩阵 <strong><code>[A b]</code></strong> 使用<code>rref()</code>则可以求解 <strong><code>Ax=b</code></strong> 对应的线性方程组
+<img src="https://img-blog.csdnimg.cn/20200819210621164.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70#pic_center" alt="" /></p>
+<h4 id="lu因子化"><a class="header" href="#lu因子化">LU因子化</a></h4>
+<p><code>[L,U,P] = lu(A)</code> 将满矩阵或稀疏矩阵 A 分解为一个上三角矩阵 U 和一个经过置换的下三角矩阵 L，使得 A = L*U；返回一个置换矩阵 P，并满足 A = P'*L*U。
+通过执行 LU 分解，然后使用因子来简化问题，对线性方程组求解。
+&gt;一些矩阵分解函数
+&gt;+ <code>qr()</code>：正交三角分解
+&gt;+ <code>ldl()</code>：Hermitian 不定矩阵的分块 LDL 分解
+&gt;+ <code>ilu()</code>：不完全 LU 分解
+&gt;+ <code>chol()</code>：Cholesky 分解
+&gt;+ <code>gsvd()</code>：广义奇异值分解
+&gt;+ <code>svd()</code>：奇异值分解</p>
+<br>
+<h4 id="高效mldivide"><a class="header" href="#高效mldivide">高效<code>mldivide()、\</code></a></h4>
+<p>以上两种方法在对于一般的线性方程组的求解其实并不友好，过于繁琐。<strong>实际上，更加高效的方式是使用<code>A\b</code>（或者<code>mldivide(A,b)</code>）可直接求得方程组的根 向量<code>x</code>。</strong>
+<br></p>
+<h4 id="克莱默法则"><a class="header" href="#克莱默法则">克莱默法则</a></h4>
+<p>求解矩阵方程 <strong><code>Ax=b</code></strong> ，<strong>x</strong>等于<strong>A</strong>的逆矩阵乘以<strong>b</strong>，即 <strong>x=A^-1^b</strong> 
+通过<code>inv(A)</code>对矩阵A求逆，然后直接计算即可：<code>x = inv(A)*b</code>
+&gt;需要注意，矩阵A的逆矩阵可能不存在</p>
+<br>
+<h1 id="线性系统"><a class="header" href="#线性系统">线性系统</a></h1>
+<h4 id="特征值和特征向量eig"><a class="header" href="#特征值和特征向量eig">特征值和特征向量<code>eig()</code></a></h4>
+<p><code>e = eig(A)</code> 返回一个列向量，其中包含方阵 A 的特征值；
+<code>[V,D] = eig(A)</code> 返回特征值的对角矩阵 D 和矩阵 V，其列是对应的右特征向量，使得 A<em>V = V</em>D。</p>
+<p>模糊综合评价中利用<code>eig()</code>求解最大特征根和权向量：
+<img src="https://img-blog.csdnimg.cn/202008201741376.png#pic_center" alt="" />
+<br></p>
+<h4 id="矩阵指数expm"><a class="header" href="#矩阵指数expm">矩阵指数<code>expm()</code></a></h4>
+<p><code>Y = expm(X)</code> 计算 X 的矩阵指数。如果 X 有一组完整的特征向量 V 和对应特征值 D，[V,D] = eig(X)，则expm(X) = V*diag(exp(diag(D)))/V；
+对于逐个元素的指数运算，使用 <code>exp()</code>
+<img src="https://img-blog.csdnimg.cn/20200820175219699.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70#pic_center" alt="" /></p>
+<h1 id="习题"><a class="header" href="#习题">习题</a></h1>
+<p><img src="https://img-blog.csdnimg.cn/20200819214210506.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTg0MDgyNQ==,size_16,color_FFFFFF,t_70#pic_center" alt="" /></p>
+<pre><code class="language-matlab">syms R1 R2 R3 R4 R5 V1 V2;
+A=[R1 0 0 R4 0;0 R2 0 -R4 R5;0 0 -R3 0 R5;1 -1 0 -1 0;0 1 -1 0 -1];
+b=[V1;0;V2;0;0];
+x=A\b
+</code></pre>
+<br>
+<br>
+<br>
+<p>以上内容为个人笔记，部分图片来源于郭老师课件或课程截图。
+笔记汇总：<a href="https://blog.csdn.net/weixin_45840825/article/details/107865933">MATLAB基础教程</a>
+课程视频：<a href="https://www.bilibili.com/video/BV1DA411Y7bN">https://www.bilibili.com/video/BV1DA411Y7bN</a></p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="11Root_Finding.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="13Statistics_&amp;_Data_Analysis.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a rel="prev" href="11Root_Finding.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a rel="next" href="13Statistics_&amp;_Data_Analysis.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+
+        
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>
